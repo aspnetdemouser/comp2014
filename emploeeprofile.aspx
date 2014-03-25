@@ -97,7 +97,7 @@
     <div class="gray_box profile_gray_box profile_gray_box_officers">
         <div class="box_title" id="divAddNewEmployeeTitle" runat="server">
             <h2>
-                Add Emploee Profile</h2>
+                Add Employee Profile</h2>
         </div>
         <div class="box_title" id="divOfficerInfo" runat="server">
             <h2>
@@ -156,8 +156,7 @@
                 </div>
                 <br />
                 <div class="form_block Sign_In_Information Sign_In_Information_acc">
-                    <div class="title" align="center">
-                        1. Sign In Information</div>
+                    <div class="title" align="center">1. Sign In Information</div>
                     <div>
                         <span>E-mail:<b class="madatorystar">*</b></span>
                         <asp:TextBox ID="txtemailaddress" name="txtemailaddress" runat="server" autocomplete="off"
@@ -166,7 +165,7 @@
                             Display="None" ErrorMessage="" ControlToValidate="txtemailaddress"></asp:RequiredFieldValidator>
                     </div>
                     <div>
-                        <span>Pick a Password:<b class="madatorystar">*</b></span>
+                        <span>Password:<b class="madatorystar">*</b></span>
                         <asp:TextBox ID="txtpassword" TextMode="Password" runat="server" size="30" MaxLength="50"
                             autocomplete="off" CssClass="PASSWORD1"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="emploeeprofile"
@@ -192,26 +191,26 @@
                     </div>
                     <div>
                         <span>Date of Hire<b class="madatorystar">*</b>:</span>
-                        <asp:TextBox ID="txtDATEHIRE" runat="server" autocomplete="off" CssClass="mandatory"></asp:TextBox>
+                        <asp:TextBox ID="txtDATEHIRE" runat="server" autocomplete="off" size="30" CssClass="mandatory"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ValidationGroup="emploeeprofile"
                             runat="server" ErrorMessage="" ControlToValidate="txtDATEHIRE"></asp:RequiredFieldValidator>
                     </div>
                     <div>
-                        <span>Licence#<b class="madatorystar">*</b>:</span>
+                        <span>License #<b class="madatorystar">*</b>:</span>
                         <asp:TextBox ID="txtLICENCE" runat="server" MaxLength="200" autocomplete="off" size="30"
                             CssClass="mandatory"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ValidationGroup="emploeeprofile"
                             runat="server" ErrorMessage="" ControlToValidate="txtLICENCE"></asp:RequiredFieldValidator>
                     </div>
                     <div>
-                        <span>Licence Exp<b class="madatorystar">*</b>:</span>
-                        <asp:TextBox ID="txtLICENSE_EXP" runat="server" autocomplete="off" CssClass="mandatory"></asp:TextBox>
+                        <span>License Exp.<b class="madatorystar">*</b>:</span>
+                        <asp:TextBox ID="txtLICENSE_EXP" runat="server" autocomplete="off"  size="30" CssClass="mandatory"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ValidationGroup="emploeeprofile"
                             runat="server" ErrorMessage="" ControlToValidate="txtLICENSE_EXP"></asp:RequiredFieldValidator>
                     </div>
                     <div>
                         <span>Date of Last Exclusion Check<b class="madatorystar">*</b>:</span>
-                        <asp:TextBox ID="txtEXCLUSSION" runat="server" autocomplete="off" CssClass="mandatory"></asp:TextBox>
+                        <asp:TextBox ID="txtEXCLUSSION" runat="server" autocomplete="off" size="30" CssClass="mandatory"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ValidationGroup="emploeeprofile"
                             runat="server" ErrorMessage="" ControlToValidate="txtEXCLUSSION"></asp:RequiredFieldValidator>
                     </div>
@@ -231,7 +230,7 @@
                             runat="server" ErrorMessage="" ControlToValidate="txtFNAME"></asp:RequiredFieldValidator>
                     </div>
                     <div>
-                        <span>Last name<b class="madatorystar">*</b>:</span>
+                        <span>Last Name<b class="madatorystar">*</b>:</span>
                         <asp:TextBox ID="txtLNAME" runat="server" size="30" MaxLength="50" autocomplete="off"
                             CssClass="mandatory"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator9" ValidationGroup="emploeeprofile"
