@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.master" AutoEventWireup="true"
-    CodeFile="emploeeprofile.aspx.cs" Inherits="emploeeprofile" %>
+    CodeFile="emploeeprofile.aspx.cs" Inherits="emploeeprofile" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
@@ -151,7 +151,7 @@
                 <div align="center" class="form_err_message error_mess">
                     <br />
                     <span class="form_email_error">Value entered for e-mail is invalid<br />
-                    </span><span class="form_password_error">Passwords don't match<br />
+                    </span><span class="form_password_error" style="font-size:24px;color:#ff0000;">Passwords don't match!<br />
                     </span><span class="form_mandatory_error">Please fill up missing fields below</span>
                 </div>
                 <br />

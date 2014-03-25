@@ -257,6 +257,7 @@ public partial class emploeeprofile : System.Web.UI.Page
                     {
                         lblErr.Text = "Information updated.";
                         lblErr.ForeColor = System.Drawing.Color.WhiteSmoke;
+                        btnEmpUpdateInformation.Focus();
                     }
                     else
                     {
