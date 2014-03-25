@@ -1,1 +1,10 @@
 *.suo
+*.dll
+*.dll
+*.pdb
+BLCompliance/obj/Debug/BLCompliance.pdb
+BLCompliance/obj/Debug/BLCompliance.pdb
+BLCompliance/obj/Debug/BLCompliance.dll
+BLCompliance/bin/Debug/BLCompliance.pdb
+BLCompliance/bin/Debug/BLCompliance.dll
+BLCompliance/bin/Debug/BLCompliance.dll
