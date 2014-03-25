@@ -1,0 +1,113 @@
+UL.comments_list
+{
+	/*[disabled]list-style-type:none;*/
+	/*[disabled]float:left;*/
+	/*[disabled]margin:0 0 0 1%;*/
+	/*[disabled]padding:0;*/
+	/*[disabled]width:99%;*/
+}
+.body_rtl UL.comments_list
+{
+	/*[disabled]float:right;*/
+}
+UL.comments_list LI DIV.spacer
+{
+	/*[disabled]width:100%;*/
+	/*[disabled]height:5px;*/
+	/*[disabled]float:left;*/
+	/*[disabled]margin:0;*/
+	/*[disabled]padding:0;*/
+	/*[disabled]line-height:1px;*/
+	/*[disabled]font-size:1px;*/
+}
+.body_rtl UL.comments_list LI DIV.spacer
+{
+	/*[disabled]float:right;*/
+}
+UL.comments_list LI
+{
+	/*[disabled]margin:0;*/
+}
+.body_rtl UL.comments_list LI
+{
+	/*[disabled]margin-bottom:0;*/
+	/*[disabled]margin-left:0;*/
+	/*[disabled]margin-right:20px;*/
+}
+UL.comments_list LI UL LI
+{
+	/*[disabled]margin-left:10px;*/
+}
+UL.comments_list LI .left_comment
+{
+	/*[disabled]float:left;*/
+	/*[disabled]margin:0;*/
+	/*[disabled]width:100%;*/
+	/*[disabled]margin-bottom:10px;*/
+}
+.body_rtl UL.comments_list LI .left_comment
+{
+	/*[disabled]float:right;*/
+}
+UL.comments_list LI .left
+{
+	/*[disabled]margin-bottom:0;*/
+	/*[disabled]float:left;*/
+}
+.body_rtl UL.comments_list LI .left
+{
+	/*[disabled]float:right;*/
+}
+UL.comments_list LI .links
+{
+	/*[disabled]margin-bottom:0;*/
+	/*[disabled]float:left;*/
+}
+.body_rtl UL.comments_list LI .links
+{
+	/*[disabled]float:right;*/
+}
+UL.comments_list LI .author
+{
+	/*[disabled]font-weight:bold;*/
+}
+UL.comments_list LI .info
+{
+	/*[disabled]margin-bottom:0;*/
+	/*[disabled]text-align:left;*/
+}
+.g-hdn
+{
+	/*[disabled]display:none;*/
+}
+.icons_sm
+{
+	/*[disabled]background:#F7F7F7 none repeat scroll 0 0;*/
+	/*[disabled]border:1px solid #D8D8D8;*/
+	/*[disabled]font-size:12px;*/
+	/*[disabled]height:20px;*/
+	/*[disabled]line-height:18px;*/
+	/*[disabled]margin-top:10px;*/
+}
+.insert_bbcode
+{
+	/*[disabled]padding:0 5px;*/
+}
+.icons_sm DIV
+{
+	/*[disabled]border-right:1px solid #D8D8D8;*/
+	/*[disabled]float:left;*/
+	/*[disabled]font-size:1px;*/
+	/*[disabled]line-height:1px;*/
+}
+.body_rtl .icons_sm DIV
+{
+	/*[disabled]float:right;*/
+}
+.quote
+{
+	/*[disabled]background:#F7F7F7 none repeat scroll 0 0;*/
+	/*[disabled]border:1px solid #D8D8D8;*/
+	/*[disabled]padding:3px;*/
+	/*[disabled]margin:3px;*/
+}

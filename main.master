@@ -1,0 +1,140 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="main.master.cs" Inherits="main" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Main</title>
+    <link href="CSS/jquery-ui-1.8.14.custom.css" type="text/css" rel="stylesheet" />
+    <link href="CSS/jquery.lightbox-0.5.css" type="text/css" rel="stylesheet" />
+    <link href="CSS/demos.css" type="text/css" rel="stylesheet" />
+    <link href="CSS/font-face.css" type="text/css" rel="stylesheet" />
+    <link href="CSS/bbcode_editor.css" type="text/css" rel="stylesheet" />
+    <link href="CSS/listing.css" type="text/css" rel="stylesheet" />
+    <link media="screen" type="text/css" href="CSS/lightslideshow.css" rel="stylesheet" />
+    <link type="text/css" href="CSS/slideshow.css" rel="stylesheet" />
+    <link href="CSS/comments.css" type="text/css" rel="stylesheet" />
+    <link rel="STYLESHEET" type="text/css" href="CSS/main_index.css" />
+    <link rel="STYLESHEET" type="text/css" href="CSS/extra.css" />
+
+    <!--Old JS functions for backword compatibility-->
+    <script src="JS/functions.js" type="text/javascript" language="javascript"></script>
+    <script src="JS/AJAX.js" type="text/javascript" language="javascript"></script>
+    <%--<script src="JS/jquery.min.js" type="text/javascript" language="javascript"></script>--%>
+
+    <!--Jquery UI Core (used for dialogs)-->
+    <script src="JS/jquery-ui.min.js" type="text/javascript" language="javascript"></script>
+    <script src="JS/jquery.extends.js" type="text/javascript" language="javascript"></script>
+    <script src="JS/jquery.adialog.js" type="text/javascript" language="javascript"></script>
+    <!--Light box-->
+    <script src="JS/jquery.lightbox-0.5.js" type="text/javascript" language="javascript"></script>
+    <!--Scroller for gallery-->
+    <script src="JS/jquery.scrollTo-min.js" type="text/javascript" language="javascript"></script>
+    <script src="JS/jquery.serialScroll-min.js" type="text/javascript" language="javascript"></script>
+    <script src="JS/jquery.bbcode_wysiwyg.js" type="text/javascript" language="javascript"></script>
+    <!--Main page tabulator-->
+    <script src="JS/jquery.listing.js" type="text/javascript" language="javascript"></script>
+    <!--Plug-in to slow down mouse in and mouse out events firing-->
+    <script src="JS/jquery.hoverIntent.minified.js" type="text/javascript" language="javascript"></script>
+    <!--Slideshow for galleries-->
+    <script type="text/javascript" src="JS/lightslideshow.js"></script>
+    <script type="text/javascript" src="JS/jquery.jcarousel.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="CSS/jcarousel.css" />
+    <script src="JS/jquery.mousewheel.min.js" type="text/javascript" language="javascript"></script>
+    <script src="JS/jquery.em.js" type="text/javascript" language="javascript"></script>
+    <script src="JS/jScrollPane.js" type="text/javascript" language="javascript"></script>
+    <link href="CSS/jScrollPane.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="JS/jquery.form.js"></script>
+    <!--Main Jquery Scripts: -->
+    <script src="JS/main.js" type="text/javascript" language="javascript"></script>
+    <!--This one is required for video to play:-->
+    <script type="text/javascript" src="JS/AC_RunActiveContent.js"></script>
+    <!--To ensuure menu works under IE DO NOT REMOVE this comment!!!!-->
+    <!--[if IE]>
+		<LINK REL="STYLESHEET" TYPE="text/css" HREF="../css/ddmenu_ie.css">
+		<LINK REL="STYLESHEET" TYPE="text/css" HREF="../css/ie7.css">
+	<![endif]-->
+    <!--[if IE 6]>
+		<script src="../css/unitpngfix.js" type="text/javascript" language="javascript"></script>
+		<link rel="stylesheet" href="../css/ie6.css" type="text/css">
+	<![endif]-->
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body leftmargin="0" topmargin="0" rightmargin="0" bottommargin="0" marginwidth="0"
+    marginheight="0">
+    <form id="form1" runat="server">
+    <div style="left: -100em; position: absolute; width: 100em;">
+    </div>
+    <span id="SITEHOME" style="display: none;">http://www.google.com</span> <span id="LOGIN"
+        style="display: none;"></span>
+    <center>
+        <div class="spaser" style="height: 5px;">
+        </div>
+        <div class="all_panel">
+            <!-- shadow panel start -->
+            <div class="shadow_panel">
+                <div class="top_pan">
+                    <div class="spaser" style="height: 1px;">
+                    </div>
+                    <div class="logo">
+                        <a href="http://www.google.com/"></a>
+                    </div>
+                    <!--Main search div starts here-->
+                    <div class="header_search">
+                        <div class="spaser" style="height: 5px;">
+                        </div>
+                        <div class="top_welcome">
+                            Welcome
+                            <asp:Literal ID="lblFacilityName" runat="server"></asp:Literal> 
+                            - Officer <asp:Literal ID="lblEmpName" runat="server"></asp:Literal>
+                            !
+                        </div>
+                        <ul class="top_icons">
+                            <li class=""><a href="#">Inbox</a></li>
+                            <li class=""><asp:LinkButton runat="server" ID="lnkProfileC" 
+                                    onclick="lnkProfileC_Click">Profile</asp:LinkButton></li>
+                            <li><a href="#">Help</a></li>
+                            <li class="logout"><a class="after_logout_return" href="logout.aspx">Logout</a></li>
+                        </ul>
+                    </div>
+                    <div class="mega_menu_wrop mega_menu_wrop_corporate">
+                        <ul class="mega_menu" style="z-index: 20;">
+                            <li class="	first" style="z-index: 20;"><a href="#">Dashboard</a></li>
+                            <li class="" style="z-index: 20;"><a href="#">Tracking</a></li>
+                            <li class="" style="z-index: 20;"><a href="ManageTraining.aspx">Training</a></li>
+                            <li class="" style="z-index: 20;"><a href="#">Library</a></li>
+                            <li class="last	sel" style="z-index: 20;"><a href="manage_facility_employees.aspx">Facility Employees</a></li>
+                        </ul>
+                    </div>
+                    <div class="spaser">
+                    </div>
+                    <!--Main search div ends-->
+                    <div class="spaser" style="height: 1px;">
+                    </div>
+                </div>
+                <!--1 pixel bottom gap-->
+                <div class="spaser" style="height: 1px;">
+                </div>
+                <!--Main middle div starts-->
+                <div class="content">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div class="footer">
+                    <div class="spaser" style="height: 1px;">
+                        &nbsp;</div>
+                    <span class="left">© 2014 &nbsp; sitename </span>
+                    <!-- Bottom menu-->
+                    <span class="right"><a href="#">Home</a>&nbsp; | &nbsp;<a href="#">Policy</a>&nbsp;
+                        | &nbsp;<a href="#">Help</a>&nbsp; | &nbsp;<a href="#">Contact</a>&nbsp; | &nbsp;<a
+                            href="#">Site Map</a>&nbsp; &nbsp; </span>
+                    <!-- Bottom manu gap of 6 px.-->
+                    <div class="spaser" style="height: 6px;">
+                        &nbsp;</div>
+                </div>
+            </div>
+        </div>
+    </center>
+    </form>
+</body>
+</html>

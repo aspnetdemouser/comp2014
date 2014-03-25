@@ -1,0 +1,79 @@
+.adialog {display: none;}
+.adialog.edit_facility_wrapper {width: 930px;}
+.adialog.edit_facility_wrapper .save {clear: both; float: none; width: 105px; margin: 15px auto 0;}
+.edit_facility #FACILITY_FORM div.st {width: 53px;}
+.edit_facility #FACILITY_FORM div.st select {width: auto;}
+.edit_facility #FACILITY_FORM div.zip {width: 82px;}
+.edit_facility #FACILITY_FORM div.zip input {width: 62px;}
+.adialog.edit_facility_wrapper .edit_facility {height: auto; margin: 0;}
+.edit_facility #FACILITY_FORM h2 {padding-bottom: 15px; text-align: left; font-size: 25px;}
+.edit_facility #FACILITY_FORM .form_err_message {float: none; width: auto; padding: 0 0 15px 0;}
+.edit_facility #FACILITY_FORM .form_err_message span {display: inline; float: none;}
+
+.adialog a.close {float: none; position: absolute; right: 13px; top: 11px; margin: 0;}
+
+
+.hidden {display: none;}
+.plus {cursor:pointer;}
+.minus {display: none;}
+.search_elements {margin: 0 0 5px 0;}
+.library_gray_box_bot .find {float: none; position: absolute; right: 15px; bottom: 10px;}
+.library_gray_box_bot .box A.minus {display: none;}
+
+.library_gray_box_bot .form {overflow: hidden; height: 100px;}
+
+.facility_gray_box TABLE TD a.list_delete_button {background: url(../img/ic_del.png) no-repeat left 1px;}
+.facility_gray_box TABLE TD a.list_delete_button img {visibility: hidden;}
+
+/* Corporate events top */
+.reqests {width: 100%;}
+#reqests-scroller {position: relative; overflow: hidden;  height: 266px; 2padding-right: 100px;}
+#reqests-scroller ul {margin: 0;}
+#reqests-scroller ul li {width: 855px;}
+.reqests .jScrollPaneTrack {display: none;}
+.reqests A.jScrollArrowUp {right: 10px; top: 10px; width: 21px; height: 26px; background: url("../img/next-prev2.gif") repeat scroll left top transparent;}
+.reqests A.jScrollArrowDown {right: 10px; top: 40px; width: 21px; height: 26px; background: url("../img/next-prev2.gif") repeat scroll left bottom transparent;}
+
+/* General events top */
+div.acc_pl_box_cont .jcarousel-skin-tango .jcarousel-container {width: 935px; margin: 32px 0px 0 20px; padding: 0;}
+div.acc_pl_box_cont .jcarousel-skin-tango .jcarousel-clip-horizontal {}
+div.acc_pl_box_cont .jcarousel-skin-tango .jcarousel-container ul {height: 250px;}
+div.acc_pl_box_cont .jcarousel-skin-tango .jcarousel-container ul li.box {margin: 10px 20px 0 0; zoom: 1;}
+div.acc_pl_box_cont .jcarousel-skin-tango .jcarousel-item-horizontal {margin: 10px 0 0 20px;}
+div.acc_pl_box_cont .jcarousel-skin-tango .jcarousel-prev-horizontal {left: auto; right: 4px; top: -20px; width: 28px;}
+div.acc_pl_box_cont .jcarousel-skin-tango .jcarousel-next-horizontal {left: auto; right: 36px; top: -20px; width: 28px;}
+
+
+/* Popups */
+div.popup
+{
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	margin: 5px 20px 20px 25px;
+	/*padding: 20px;*/
+	min-width: 300px;
+	min-height: 98px;
+	background: #808080;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: #343333 0px 2px 3px;
+	-moz-box-shadow: #343333 0px 2px 3px;
+	box-shadow: 0px 2px 3px #343333;
+	behavior: url(css/PIE.htc);
+	/*[disabled]border:1px solid #A9A5A5;*/
+	font-size: 120%;
+	line-height: 1.2;
+}
+
+div.popup h2 {padding-bottom: 5px; text-align: left; font-size: 25px;}
+
+div.popup a.close {position: absolute; right: 13px; top: 11px; margin: 0;}
+
+div.popup-inner {
+	padding: 20px;
+}
+
+div.events-popup {width: 600px;}

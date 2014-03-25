@@ -1,0 +1,14 @@
+ul.tabs_listing {
+	list-style-type: none;
+	overflow: hidden;
+}
+ul.tabs_listing li {
+	list-style-type: none;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	position: absolute;
+}
+ul.tabs_listing li .box {
+	width: 100%;
+}

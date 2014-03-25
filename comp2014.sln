@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "comp2014", "D:\gitprojects\compliance\comp2014\", "{999B5565-2210-4EA9-BBD5-CA22C3808C63}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		ProjectReferences = "{73805F7D-480E-487E-BE1C-0993DF41FAB8}|BLCompliance.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/comp2014"
+		Debug.AspNetCompiler.PhysicalPath = "..\comp2014\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\comp2014\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/comp2014"
+		Release.AspNetCompiler.PhysicalPath = "..\comp2014\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\comp2014\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "49858"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLCompliance", "BLCompliance\BLCompliance.csproj", "{73805F7D-480E-487E-BE1C-0993DF41FAB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{999B5565-2210-4EA9-BBD5-CA22C3808C63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{999B5565-2210-4EA9-BBD5-CA22C3808C63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{999B5565-2210-4EA9-BBD5-CA22C3808C63}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{999B5565-2210-4EA9-BBD5-CA22C3808C63}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{73805F7D-480E-487E-BE1C-0993DF41FAB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73805F7D-480E-487E-BE1C-0993DF41FAB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73805F7D-480E-487E-BE1C-0993DF41FAB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73805F7D-480E-487E-BE1C-0993DF41FAB8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

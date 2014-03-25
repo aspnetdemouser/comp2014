@@ -1,0 +1,169 @@
+.jScrollPaneContainer
+{
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+}
+.jScrollPaneTrack
+{
+	position: absolute;
+	cursor: pointer;
+	right: 0;
+	top: 0;
+	height: 100%;
+	background: #3E3D3D;
+}
+.jScrollPaneDrag
+{
+	position: absolute;
+	background: #A7A7A7;
+	cursor: pointer;
+	overflow: hidden;
+	width: 6px !important;
+	right: 1px !important;
+	border: 1px solid #555555;
+	border-width: 0 1px;
+}
+.jScrollPaneDragTop
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+}
+.jScrollPaneDragBottom
+{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+}
+A.jScrollArrowUp
+{
+	display: block;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	text-indent: -2000px;
+	overflow: hidden;
+/*background-color: #666;*/
+	height: 12px;
+	width: 16px;
+	background: #3E3D3D url(../img/scroll_up.png) no-repeat center center;
+}
+A.jScrollArrowUp:hover
+{
+/*background-color: #f60;*/
+}
+A.jScrollArrowDown
+{
+	display: block;
+	position: absolute;
+	z-index: 1;
+	bottom: 0;
+	right: 0;
+	text-indent: -2000px;
+	overflow: hidden;
+/*background-color: #666;*/
+	height: 12px;
+	width: 16px;
+	background: #3E3D3D url(../img/scroll_down.png) no-repeat center center;
+}
+A.jScrollArrowDown:hover
+{
+/*background-color: #f60;*/
+}
+A.jScrollActiveArrowButton, A.jScrollActiveArrowButton:hover
+{
+/*background-color: #f00;*/
+}
+#scroll-list-page + .jScrollPaneTrack
+{
+	background: #4D4D4D;
+}
+#scroll-list-page + .jScrollPaneTrack .jScrollPaneDrag
+{
+	width: 6px !important;
+	left: 2px !important;
+	border: 3px solid #4D4D4D;
+	border-width: 0 5px;
+	/*[empty]background:;*/
+}
+#scroll-list-page + .jScrollPaneTrack + A.jScrollArrowUp
+{
+	background: #4D4D4D url(../img/next-prev2.gif) no-repeat top center;
+	height: 22px;
+	width: 40px;
+	border-top: 3px solid #4D4D4D;
+}
+#scroll-list-page + .jScrollPaneTrack + A + .jScrollArrowDown
+{
+	height: 22px;
+	width: 40px;
+	/*[disabled]top:28px;*/
+	background: #4D4D4D url(../img/next-prev2.gif) no-repeat center bottom;
+	border-bottom: 3px solid #4D4D4D;
+}
+#scroll-list-page TABLE
+{
+	/*[disabled]margin-top:-17px;*/
+}
+#scroll-list-small
+{
+}
+#scroll-list-small + .jScrollPaneTrack
+{
+	background: #4D4D4D;
+}
+#scroll-list-small + .jScrollPaneTrack .jScrollPaneDrag
+{
+	width: 6px !important;
+	left: 2px !important;
+	border: 3px solid #4D4D4D;
+	border-width: 0 5px;
+}
+#scroll-list-small + .jScrollPaneTrack + A.jScrollArrowUp
+{
+	background: #4D4D4D url(../img/next-prev2.gif) no-repeat top center;
+	height: 22px;
+	width: 40px;
+	border-top: 3px solid #4D4D4D;
+}
+#scroll-list-small + .jScrollPaneTrack + A + .jScrollArrowDown
+{
+	height: 22px;
+	width: 40px;
+	/*[disabled]top:28px;*/
+	background: #4D4D4D url(../img/next-prev2.gif) no-repeat center bottom;
+	border-bottom: 3px solid #4D4D4D;
+}
+#scroll-dd-window
+{
+}
+#scroll-dd-window + .jScrollPaneTrack
+{
+	background: #4D4D4D;
+}
+#scroll-dd-window + .jScrollPaneTrack .jScrollPaneDrag
+{
+	width: 6px !important;
+	left: 2px !important;
+	border: 3px solid #4D4D4D;
+	border-width: 0 5px;
+}
+#scroll-dd-window + .jScrollPaneTrack + A.jScrollArrowUp
+{
+	background: #4D4D4D url(../img/next-prev2.gif) no-repeat top center;
+	height: 22px;
+	width: 40px;
+	border-top: 3px solid #4D4D4D;
+}
+#scroll-dd-window + .jScrollPaneTrack + A + .jScrollArrowDown
+{
+	height: 22px;
+	width: 40px;
+	/*[disabled]top:28px;*/
+	background: #4D4D4D url(../img/next-prev2.gif) no-repeat center bottom;
+	border-bottom: 3px solid #4D4D4D;
+}

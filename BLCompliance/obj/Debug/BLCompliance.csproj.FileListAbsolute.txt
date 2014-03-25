@@ -1,0 +1,5 @@
+D:\gitprojects\compliance\comp2014\BLCompliance\bin\Debug\BLCompliance.dll
+D:\gitprojects\compliance\comp2014\BLCompliance\bin\Debug\BLCompliance.pdb
+D:\gitprojects\compliance\comp2014\BLCompliance\obj\Debug\ResolveAssemblyReference.cache
+D:\gitprojects\compliance\comp2014\BLCompliance\obj\Debug\BLCompliance.dll
+D:\gitprojects\compliance\comp2014\BLCompliance\obj\Debug\BLCompliance.pdb
