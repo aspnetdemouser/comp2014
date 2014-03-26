@@ -166,6 +166,8 @@ namespace BLCompliance
                           new SqlParameter("@last_name", SqlDbType.VarChar) { Value = contactinfo.LastName },
                           new SqlParameter("@city_name", SqlDbType.VarChar) { Value = contactinfo.City },
                           new SqlParameter("@state_name", SqlDbType.VarChar) { Value = contactinfo.State },
+                          new SqlParameter("@address_line1", SqlDbType.VarChar) { Value = contactinfo.AddressLine1 },
+                          new SqlParameter("@address_line2", SqlDbType.VarChar) { Value = contactinfo.AddressLine2 },
                           new SqlParameter("@zip_code", SqlDbType.VarChar) { Value = contactinfo.ZipCode },
                           new SqlParameter("@tele_phone", SqlDbType.VarChar) { Value = contactinfo.TelePhone },
                           new SqlParameter("@fax_number", SqlDbType.VarChar) { Value = contactinfo.FaxNumber },
