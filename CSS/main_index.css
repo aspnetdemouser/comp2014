@@ -6675,8 +6675,6 @@ LABEL.mandatory_selected
 	display: none;
 	padding: 0;
 	margin: 0;
-	color:Red;
-	font-size:large;
 }
 .error_mess, .submit_mess, .soldout
 {
