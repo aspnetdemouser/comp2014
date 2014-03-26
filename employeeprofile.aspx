@@ -190,11 +190,11 @@
                             runat="server" ErrorMessage="" ControlToValidate="txtposition"></asp:RequiredFieldValidator>
                     </div>
                     <div>
-                        <span>Employee Type<b class="madatorystar">*</b>:</span>
+                        <span>Employee Type:</span>
                         <asp:TextBox ID="txtEmployeeType" runat="server" size="30" MaxLength="200" autocomplete="off"
                             CssClass="mandatory"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="reqEmployeeType" ValidationGroup="emploeeprofile"
-                            runat="server" ErrorMessage="" ControlToValidate="txtEmployeeType"></asp:RequiredFieldValidator>
+                        <%--<asp:RequiredFieldValidator ID="reqEmployeeType" ValidationGroup="emploeeprofile"
+                            runat="server" ErrorMessage="" ControlToValidate="txtEmployeeType"></asp:RequiredFieldValidator>--%>
                     </div>
                     <div>
                         <span>Date of Hire<b class="madatorystar">*</b>:</span>
