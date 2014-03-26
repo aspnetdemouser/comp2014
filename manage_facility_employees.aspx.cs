@@ -93,7 +93,7 @@ public partial class manage_facility_employees : System.Web.UI.Page
             {
                 if (ctrl is Label)
                 {
-                    (ctrl as Label).Text = empRow.Licence_Number + " " + (empRow.Licence_Expiry.HasValue ? empRow.Licence_Expiry.Value.ToString("MMM dd yyyy") : string.Empty);
+                    (ctrl as Label).Text = empRow.Licence_Number + " " + (empRow.Licence_Expiry.HasValue ? empRow.Licence_Expiry.Value.ToString("MMM dd, yyyy") : string.Empty);
                 }
 
             }

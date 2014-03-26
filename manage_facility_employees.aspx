@@ -201,7 +201,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Date of Hire">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblDateOfHire" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.DateOfHire", "{0:MMM dd yyyy}") %>'></asp:Label>
+                                        <asp:Label ID="lblDateOfHire" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.DateOfHire", "{0:MMM dd, yyyy}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Licence # and Exp">
@@ -211,7 +211,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Date of Last Exclusion Check">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblDateLastExclusionCheck" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.DateLastExclusionCheck", "{0:MMM dd yyyy}") %>'></asp:Label>
+                                        <asp:Label ID="lblDateLastExclusionCheck" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.DateLastExclusionCheck", "{0:MMM dd, yyyy}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Action">
