@@ -150,14 +150,12 @@
                 <div align="center" class="form_err_message error_mess">
                     <br />
                     <span class="form_email_error">Value entered for e-mail is invalid<br />
-                    </span><span class="form_password_error" style="font-size: large; color: #ff0000">Passwords
-                        don't match !<br />
+                    </span><span class="form_password_error" style="font-size: large; color: #ff0000">Passwords don't match!<br />
                     </span><span class="form_mandatory_error">Please fill up missing fields below</span>
                 </div>
                 <br />
                 <div class="form_block Sign_In_Information Sign_In_Information_acc">
-                    <div class="title" align="center">
-                        1. Sign In Information</div>
+                    <div class="title" style="text-align:left;margin-left: 57px;">1. Sign In Information</div>
                     <div>
                         <span>E-mail:<b class="madatorystar">*</b></span>
                         <asp:TextBox ID="txtemailaddress" name="txtemailaddress" runat="server" autocomplete="off"
@@ -179,15 +177,9 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ValidationGroup="emploeeprofile"
                             runat="server" Display="None" ErrorMessage="" ControlToValidate="txtconfpassword"></asp:RequiredFieldValidator>
                     </div>
-                    <div style="text-align: left;">
-                        <span>Active :
-                            <asp:Label runat="server" ID="lblActive" Style="margin-top: 0px; margin-left: 7px;"></asp:Label></span>
-                        <asp:CheckBox runat="server" ID="chkActive" Style="margin-top: 3px;" Checked="true" />
-                    </div>
                     <br>
                     <br>
-                    <div class="title" align="center">
-                        2. Additional Information</div>
+                    <div class="title" style="text-align: left; margin-left: 57px;">2. Additional Information</div>
                     <div>
                         <span>Job Title<b class="madatorystar">*</b>:</span>
                         <asp:TextBox ID="txtposition" runat="server" size="30" MaxLength="200" autocomplete="off"
@@ -204,7 +196,7 @@
                     </div>
                     <div>
                         <span>Date of Hire<b class="madatorystar">*</b>:</span>
-                        <asp:TextBox ID="txtDATEHIRE" runat="server" size="30" autocomplete="off" CssClass="mandatory"></asp:TextBox>
+                        <asp:TextBox ID="txtDATEHIRE" runat="server" size="15" autocomplete="off" CssClass="mandatory"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ValidationGroup="emploeeprofile"
                             runat="server" ErrorMessage="" ControlToValidate="txtDATEHIRE"></asp:RequiredFieldValidator>
                     </div>
@@ -217,13 +209,13 @@
                     </div>
                     <div>
                         <span>License Exp.<b class="madatorystar">*</b>:</span>
-                        <asp:TextBox ID="txtLicenceExp" runat="server" size="30" autocomplete="off" CssClass="mandatory"></asp:TextBox>
+                        <asp:TextBox ID="txtLicenceExp" runat="server" size="15"  autocomplete="off" CssClass="mandatory"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ValidationGroup="emploeeprofile"
                             runat="server" ErrorMessage="" ControlToValidate="txtLicenceExp"></asp:RequiredFieldValidator>
                     </div>
                     <div>
                         <span>Date of Last Exclusion Check<b class="madatorystar">*</b>:</span>
-                        <asp:TextBox ID="txtEXCLUSSION" runat="server" size="30" autocomplete="off" CssClass="mandatory"></asp:TextBox>
+                        <asp:TextBox ID="txtEXCLUSSION" runat="server" size="15"  autocomplete="off" CssClass="mandatory"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ValidationGroup="emploeeprofile"
                             runat="server" ErrorMessage="" ControlToValidate="txtEXCLUSSION"></asp:RequiredFieldValidator>
                     </div>
@@ -233,8 +225,7 @@
                     </div>
                 </div>
                 <div class="form_block Personal_Information Personal_Information_acc">
-                    <div class="title" align="center">
-                        3. Contact Information</div>
+                   <div class="title" style="text-align: left; margin-left: 7px;">3. Contact Information</div>
                     <div>
                         <span>First Name<b class="madatorystar">*</b>:</span>
                         <asp:TextBox ID="txtFNAME" runat="server" size="30" MaxLength="50" autocomplete="off"
@@ -338,6 +329,11 @@
                         <span>Fax:</span>
                         <asp:TextBox ID="txtFAX" runat="server" size="30" MaxLength="50" autocomplete="off"
                             CssClass="_picker"></asp:TextBox>
+                    </div>
+                    <div style="text-align: left;">
+                        <span>Active :
+                            <asp:Label runat="server" ID="lblActive" Style="margin-top: 0px; margin-left: 7px;"></asp:Label></span>
+                        <asp:CheckBox runat="server" ID="chkActive" Style="margin-top: 3px;" Checked="true" />
                     </div>
                     <div class="spaser">
                     </div>

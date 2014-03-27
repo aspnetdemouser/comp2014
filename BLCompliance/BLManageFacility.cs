@@ -396,7 +396,8 @@ namespace BLCompliance
                           new SqlParameter("@licence_number", SqlDbType.VarChar) { Value = employee.Licence_Number },
                           new SqlParameter("@licence_expiry", SqlDbType.DateTime) { Value = employee.Licence_Expiry },
                           new SqlParameter("@date_last_exclusion_check", SqlDbType.DateTime) { Value = employee.DateLastExclusionCheck },
-                          new SqlParameter("@update_by", SqlDbType.Int) { Value = employee.create_by }
+                          new SqlParameter("@update_by", SqlDbType.Int) { Value = employee.create_by },
+                          new SqlParameter("@is_active_record", SqlDbType.Bit) { Value = employee.IsActiveRecord }
                         };
 
                 employeeid = CData.ExecuteScalar(CommandType.StoredProcedure, "sp_comp_tbl_employees_Update", parameters);

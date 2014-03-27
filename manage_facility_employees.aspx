@@ -71,102 +71,41 @@
                 <div class="edit_facility">
                     <fieldset id="FACILITY_FORM">
                         <div>
-                            <span>Facility Name<b class="madatorystar">*</b>:</span>
-                            <asp:TextBox ID="txtFacilityName" MaxLength="100" runat="server" CssClass="_picker"></asp:TextBox>
+                            <span>Facility Name</span><br />
+                            <span class="_picker" id="txtFacilityName" runat="server"></span>
                         </div>
                         <div>
-                            <span>Address Line 1</span>
-                            <asp:TextBox ID="txtAddressLine" MaxLength="255" runat="server" CssClass="_picker"></asp:TextBox>
+                            <span>Address Line 1</span><br />
+                            <span class="_picker" id="txtAddressLine1" runat="server"></span>
                         </div>
                         <div>
                             <span>Address Line 2</span>
-                            <asp:TextBox ID="txtAddressLine2" MaxLength="255" runat="server" CssClass="_picker"></asp:TextBox>
+                            <span class="_picker" id="txtAddressLine2" runat="server"></span>
                         </div>
                         <div>
-                            <span>City<b class="madatorystar">*</b>:</span>
-                            <asp:TextBox ID="txtCity" MaxLength="50" runat="server" CssClass="mandatory"></asp:TextBox>
+                            <span>City</span>
+                            <span class="_picker" id="txtCity" runat="server"></span>
                         </div>
                         <div class="st">
-                            <span>State:</span>
-                            <asp:DropDownList ID="ddlState" runat="server" CssClass="mandatory" size="1">
-                                <asp:ListItem Text="" Value=""></asp:ListItem>
-                                <asp:ListItem Value="AL">AL</asp:ListItem>
-                                <asp:ListItem Value="AK">AK</asp:ListItem>
-                                <asp:ListItem Value="AZ">AZ</asp:ListItem>
-                                <asp:ListItem Value="AR">AR</asp:ListItem>
-                                <asp:ListItem Value="CA">CA</asp:ListItem>
-                                <asp:ListItem Value="CO">CO</asp:ListItem>
-                                <asp:ListItem Value="CT">CT</asp:ListItem>
-                                <asp:ListItem Value="DE">DE</asp:ListItem>
-                                <asp:ListItem Value="DC">DC</asp:ListItem>
-                                <asp:ListItem Value="FL">FL</asp:ListItem>
-                                <asp:ListItem Value="GA">GA</asp:ListItem>
-                                <asp:ListItem Value="HI">HI</asp:ListItem>
-                                <asp:ListItem Value="ID">ID</asp:ListItem>
-                                <asp:ListItem Value="IL">IL</asp:ListItem>
-                                <asp:ListItem Value="IN">IN</asp:ListItem>
-                                <asp:ListItem Value="IA">IA</asp:ListItem>
-                                <asp:ListItem Value="KS">KS</asp:ListItem>
-                                <asp:ListItem Value="KY">KY</asp:ListItem>
-                                <asp:ListItem Value="LA">LA</asp:ListItem>
-                                <asp:ListItem Value="ME">ME</asp:ListItem>
-                                <asp:ListItem Value="MD">MD</asp:ListItem>
-                                <asp:ListItem Value="MA">MA</asp:ListItem>
-                                <asp:ListItem Value="MI">MI</asp:ListItem>
-                                <asp:ListItem Value="MN">MN</asp:ListItem>
-                                <asp:ListItem Value="MS">MS</asp:ListItem>
-                                <asp:ListItem Value="MO">MO</asp:ListItem>
-                                <asp:ListItem Value="MT">MT</asp:ListItem>
-                                <asp:ListItem Value="NE">NE</asp:ListItem>
-                                <asp:ListItem Value="NV">NV</asp:ListItem>
-                                <asp:ListItem Value="NH">NH</asp:ListItem>
-                                <asp:ListItem Value="NJ">NJ</asp:ListItem>
-                                <asp:ListItem Value="NM">NM</asp:ListItem>
-                                <asp:ListItem Value="NY">NY</asp:ListItem>
-                                <asp:ListItem Value="NC">NC</asp:ListItem>
-                                <asp:ListItem Value="ND">ND</asp:ListItem>
-                                <asp:ListItem Value="OH">OH</asp:ListItem>
-                                <asp:ListItem Value="OK">OK</asp:ListItem>
-                                <asp:ListItem Value="OR">OR</asp:ListItem>
-                                <asp:ListItem Value="PA">PA</asp:ListItem>
-                                <asp:ListItem Value="RI">RI</asp:ListItem>
-                                <asp:ListItem Value="SC">SC</asp:ListItem>
-                                <asp:ListItem Value="SD">SD</asp:ListItem>
-                                <asp:ListItem Value="TN">TN</asp:ListItem>
-                                <asp:ListItem Value="TX">TX</asp:ListItem>
-                                <asp:ListItem Value="UT">UT</asp:ListItem>
-                                <asp:ListItem Value="VT">VT</asp:ListItem>
-                                <asp:ListItem Value="VI">VI</asp:ListItem>
-                                <asp:ListItem Value="VA">VA</asp:ListItem>
-                                <asp:ListItem Value="WA">WA</asp:ListItem>
-                                <asp:ListItem Value="WV">WV</asp:ListItem>
-                                <asp:ListItem Value="WI">WI</asp:ListItem>
-                                <asp:ListItem Value="WY">WY</asp:ListItem>
-                                <asp:ListItem Value="AE">AE</asp:ListItem>
-                                <asp:ListItem Value="AP">AP</asp:ListItem>
-                            </asp:DropDownList>
+                            <span>State</span>
+                            <span class="_picker" id="ddlState" runat="server"></span>
+                           
                         </div>
                         <div class="zip">
-                            <span>Zip Code:</span>
-                            <asp:TextBox ID="txtZipCode" runat="server" MaxLength="10" CssClass="_picker"></asp:TextBox>
+                            <span>Zip Code</span>
+                             <span class="_picker" id="txtZipCode" runat="server"></span>
                         </div>
                         <div>
-                            <span>Country<b class="madatorystar">*</b>:</span>
-                            <asp:DropDownList ID="ddlCountry" runat="server">
-                                <asp:ListItem Value="USA">UNITED STATES</asp:ListItem>
-                            </asp:DropDownList>
+                            <span>Telephone</span>
+                            <span class="_picker" id="txtPhone" runat="server"></span>
                         </div>
                         <div>
-                            <span>Telephone:</span>
-                            <asp:TextBox ID="txtPhone" runat="server" MaxLength="50" CssClass="_picker"></asp:TextBox>
+                            <span>Fax</span>
+                            <span class="_picker" id="txtFax" runat="server"></span>
                         </div>
                         <div>
-                            <span>Fax:</span>
-                            <asp:TextBox ID="txtFax" runat="server" MaxLength="50" CssClass="_picker"></asp:TextBox>
-                        </div>
-                        <div>
-                            <span>E-mail:<b class="madatorystar">*</b></span>
-                            <asp:TextBox ID="txtEmail" runat="server" MaxLength="255" CssClass="mandatory mail"></asp:TextBox>
+                            <span>E-mail</span>
+                            <span class="_picker" id="txtEmail" runat="server"></span>
                         </div>
                         <div class="spacer" style="width: auto; float: none;">
                         </div>
