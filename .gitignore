@@ -1,6 +1,22 @@
+<<<<<<< HEAD
 BLCompliance/bin/Debug/BLCompliance.dll
 *.pdb
 *.dll
 *.suo
 comp2014.suo
 *.config
+=======
+*.suo
+*.dll
+*.dll
+*.pdb
+BLCompliance/obj/Debug/BLCompliance.pdb
+BLCompliance/obj/Debug/BLCompliance.pdb
+BLCompliance/obj/Debug/BLCompliance.dll
+BLCompliance/bin/Debug/BLCompliance.pdb
+BLCompliance/bin/Debug/BLCompliance.dll
+BLCompliance/bin/Debug/BLCompliance.dll
+>>>>>>> dd9e3a6afd4e7ed2a10673db4f755f871bc28114
+*.pdb
+*.pdb
+*.dll
