@@ -18,7 +18,9 @@ namespace BLCompliance.Model
 
         public string LastName { get; set; }
 
-        public string AddressLine { get; set; }
+        public string AddressLine1 { get; set; }
+
+        public string AddressLine2 { get; set; }
 
         public string City { get; set; }
 

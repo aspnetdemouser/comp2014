@@ -9,7 +9,7 @@ using BLCompliance;
 using System.Text;
 using System.Globalization;
 
-public partial class emploeeprofile : System.Web.UI.Page
+public partial class employeeprofile : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -125,8 +125,9 @@ public partial class emploeeprofile : System.Web.UI.Page
             txtFNAME.Text = contactInfo.FirstName;
             txtLNAME.Text = contactInfo.LastName;
             lblCurrentFullName.Text = contactInfo.FirstName + " " + contactInfo.LastName;
-            txtADDR1.Text = contactInfo.AddressLine;
-            lblCurrentAddress.Text = contactInfo.AddressLine;
+            txtADDR1.Text = contactInfo.AddressLine1;
+            txtADDR2.Text = contactInfo.AddressLine2;
+            lblCurrentAddress.Text = contactInfo.AddressLine1 + " " + contactInfo.AddressLine2;
             txtCITY.Text = contactInfo.City;
             ddlState.SelectedValue = contactInfo.State;
             lblCurrentStateCity.Text = contactInfo.City + " " + contactInfo.State;
@@ -170,7 +171,7 @@ public partial class emploeeprofile : System.Web.UI.Page
 
                 if (txtpassword.Text.Equals(txtconfpassword.Text) == false)
                 {
-                    lblErr.Text = "Passwords don't match";
+                    lblErr.Text = "Passwords don't match !";
                     return;
                 }
 
@@ -241,7 +242,8 @@ public partial class emploeeprofile : System.Web.UI.Page
                 objcont.LastName = txtLNAME.Text;
                 objcont.FirstName = txtFNAME.Text;
                 objcont.FaxNumber = txtFAX.Text;
-                objcont.AddressLine = txtADDR1.Text;
+                objcont.AddressLine1 = txtADDR1.Text;
+                objcont.AddressLine2 = txtADDR2.Text;
                 objcont.City = txtCITY.Text;
                 objcont.State = ddlState.SelectedValue;
                 objcont.ZipCode = txtZIPCODE.Text;
@@ -356,7 +358,7 @@ public partial class emploeeprofile : System.Web.UI.Page
 
                 if (txtpassword.Text.Equals(txtconfpassword.Text) == false)
                 {
-                    lblErr.Text = "Passwords don't match";
+                    lblErr.Text = "Passwords don't match !";
                     return;
                 }
 
@@ -429,8 +431,9 @@ public partial class emploeeprofile : System.Web.UI.Page
                 objContactInfo.EmployeeId = Objemployee.Id;
                 objContactInfo.LastName = txtLNAME.Text;
                 objContactInfo.FirstName = txtFNAME.Text;
-                objContactInfo.FaxNumber = txtFAX.Text;
-                objContactInfo.AddressLine = txtADDR1.Text;
+                objContactInfo.FaxNumber = txtFAX.Text;                
+                objContactInfo.AddressLine1 = txtADDR1.Text;
+                objContactInfo.AddressLine2 = txtADDR2.Text;
                 objContactInfo.City = txtCITY.Text;
                 objContactInfo.State = ddlState.SelectedValue;
                 objContactInfo.ZipCode = txtZIPCODE.Text;

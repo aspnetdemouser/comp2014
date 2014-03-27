@@ -41,7 +41,7 @@ public partial class login : System.Web.UI.Page
 
                     var bytes = Encoding.UTF8.GetBytes(employee.Id.ToString());
                     var base64 = Convert.ToBase64String(bytes);
-                    Response.Redirect("emploeeprofile.aspx?enc=" + base64);
+                    Response.Redirect("employeeprofile.aspx?enc=" + base64);
 
                 }
             }

@@ -53,9 +53,13 @@ namespace BLCompliance
                         if (!CheckNullOrBlank(dr, colName))
                             contactInfo.LastName = dr[colName].ToString();
 
-                        colName = "address_line";
+                        colName = "address_line1";
                         if (!CheckNullOrBlank(dr, colName))
-                            contactInfo.AddressLine = dr[colName].ToString();
+                            contactInfo.AddressLine1 = dr[colName].ToString();
+
+                        colName = "address_line2";
+                        if (!CheckNullOrBlank(dr, colName))
+                            contactInfo.AddressLine2 = dr[colName].ToString();
 
                         colName = "city_name";
                         if (!CheckNullOrBlank(dr, colName))
@@ -204,7 +208,8 @@ namespace BLCompliance
                             
                           new SqlParameter("@id", SqlDbType.Int) { Value = contactinfo.ContactInfoId },
                           new SqlParameter("@emp_id", SqlDbType.Int) { Value = contactinfo.EmployeeId },
-                          new SqlParameter("@address_line", SqlDbType.VarChar) { Value = contactinfo.AddressLine },
+                          new SqlParameter("@address_line1", SqlDbType.VarChar) { Value = contactinfo.AddressLine1 },
+                          new SqlParameter("@address_line2", SqlDbType.VarChar) { Value = contactinfo.AddressLine2 },
                           new SqlParameter("@first_name", SqlDbType.VarChar) { Value = contactinfo.FirstName },
                           new SqlParameter("@last_name", SqlDbType.VarChar) { Value = contactinfo.LastName },
                           new SqlParameter("@city_name", SqlDbType.VarChar) { Value = contactinfo.City },

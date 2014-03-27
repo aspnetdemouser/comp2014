@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.master" AutoEventWireup="true"
-    CodeFile="emploeeprofile.aspx.cs" Inherits="emploeeprofile" %>
+    CodeFile="employeeprofile.aspx.cs" Inherits="employeeprofile" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
@@ -8,7 +8,7 @@
     <script type="text/javascript" language="javascript">
         $(function () {
             $("#ContentPlaceHolder1_txtDATEHIRE").datepicker();
-            $("#ContentPlaceHolder1_txtLICENSE_EXP").datepicker();
+            $("#ContentPlaceHolder1_txtlicence_EXP").datepicker();
             $("#ContentPlaceHolder1_txtEXCLUSSION").datepicker();
 
         });
@@ -25,7 +25,7 @@
             var frm = $(".profile"); //pass general div id which is container for all controls
             $(".profile").find("IFRAME.mandatory_selected").contents().find("body").removeClass('mandatory_selected');
             $(".profile").find("INPUT, SELECT, TEXTAREA, LABEL, IFRAME").removeClass('mandatory_selected');
-            
+
             $(".profile").find(".form_err_message").hide();
 
             $("INPUT[name='FORM_VALIDATOR']").addClass('mandatory');
@@ -44,7 +44,7 @@
                     }
                 });
             }
-                       
+
 
             $(".profile").find(".form_err_message SPAN.form_email_error").hide();
             if (msg != '') {
@@ -56,15 +56,14 @@
             $(".profile").find(".form_mandatory_error").hide();
 
 
-            if ($(".PASSWORD1").length && $(".PASSWORD2").length && ($(".PASSWORD1").val() != $(".PASSWORD2").val())) 
-            {
+            if ($(".PASSWORD1").length && $(".PASSWORD2").length && ($(".PASSWORD1").val() != $(".PASSWORD2").val())) {
 
                 $(".profile").find(".PASSWORD1").addClass('mandatory_selected');
                 $(".profile").find(".PASSWORD2").addClass('mandatory_selected');
                 //$(".profile").find("DIV.form_err_message SPAN.form_password_error").show();
                 $(".profile").find(".form_password_error").show();
                 if (msg) msg += '<br>';
-                msg += 'Passwords do not match, please try again...';
+                msg += 'Passwords do not match, please try again...!';
             }
 
 
@@ -74,17 +73,17 @@
                 msg += 'Please fill up missing fields below';
                 $(".form_err_message SPAN.form_mandatory_error").show();
             }
-           
-            
+
+
 
             if (msg == '')
                 return true;
             $(".mandatory").not('[value!=""]').addClass('mandatory_selected');
             $(".mandatory_selected:first").focus();
             if (!$("DIV.form_err_message").length) {
-                $(".profile").prepend('<div class="form_err_message error_mesage">' + msg + '</div>');
+                $(".profile").prepend('<div class="form_err_message error_mesage" style="color: red;">' + msg + '</div>');
             }
-            
+
             $("DIV.form_err_message").show();
             if ($(".form_err_message").html() == '')
                 $(".form_err_message").html(msg);
@@ -97,7 +96,7 @@
     <div class="gray_box profile_gray_box profile_gray_box_officers">
         <div class="box_title" id="divAddNewEmployeeTitle" runat="server">
             <h2>
-                Add Emploee Profile</h2>
+                Add Employee Profile</h2>
         </div>
         <div class="box_title" id="divOfficerInfo" runat="server">
             <h2>
@@ -130,7 +129,7 @@
                         <asp:Literal ID="lblCurrentEmail" runat="server"></asp:Literal></a></span>
                 </div>
                 <div>
-                    <span><strong>Position:</strong></span> <span class="text">
+                    <span><strong>Job Title:</strong></span> <span class="text">
                         <asp:Literal ID="lblCurrentPosition" runat="server"></asp:Literal></span>
                 </div>
                 <div>
@@ -151,7 +150,7 @@
                 <div align="center" class="form_err_message error_mess">
                     <br />
                     <span class="form_email_error">Value entered for e-mail is invalid<br />
-                    </span><span class="form_password_error">Passwords don't match<br />
+                    </span><span class="form_password_error">Passwords don't match !<br />
                     </span><span class="form_mandatory_error">Please fill up missing fields below</span>
                 </div>
                 <br />
@@ -184,11 +183,18 @@
                     <div class="title" align="center">
                         2. Additional Information</div>
                     <div>
-                        <span>Position<b class="madatorystar">*</b>:</span>
+                        <span>Job Title<b class="madatorystar">*</b>:</span>
                         <asp:TextBox ID="txtposition" runat="server" size="30" MaxLength="200" autocomplete="off"
                             CssClass="mandatory"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ValidationGroup="emploeeprofile"
                             runat="server" ErrorMessage="" ControlToValidate="txtposition"></asp:RequiredFieldValidator>
+                    </div>
+                    <div>
+                        <span>Employee Type<b class="madatorystar">*</b>:</span>
+                        <asp:TextBox ID="txtEmployeeType" runat="server" size="30" MaxLength="200" autocomplete="off"
+                            CssClass="mandatory"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="reqEmployeeType" ValidationGroup="emploeeprofile"
+                            runat="server" ErrorMessage="" ControlToValidate="txtEmployeeType"></asp:RequiredFieldValidator>
                     </div>
                     <div>
                         <span>Date of Hire<b class="madatorystar">*</b>:</span>
@@ -197,17 +203,17 @@
                             runat="server" ErrorMessage="" ControlToValidate="txtDATEHIRE"></asp:RequiredFieldValidator>
                     </div>
                     <div>
-                        <span>Licence#<b class="madatorystar">*</b>:</span>
+                        <span>licence#<b class="madatorystar">*</b>:</span>
                         <asp:TextBox ID="txtLICENCE" runat="server" MaxLength="200" autocomplete="off" size="30"
                             CssClass="mandatory"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ValidationGroup="emploeeprofile"
                             runat="server" ErrorMessage="" ControlToValidate="txtLICENCE"></asp:RequiredFieldValidator>
                     </div>
                     <div>
-                        <span>Licence Exp<b class="madatorystar">*</b>:</span>
-                        <asp:TextBox ID="txtLICENSE_EXP" runat="server" autocomplete="off" CssClass="mandatory"></asp:TextBox>
+                        <span>licence Exp.<b class="madatorystar">*</b>:</span>
+                        <asp:TextBox ID="txtlicence_EXP" runat="server" autocomplete="off" CssClass="mandatory"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ValidationGroup="emploeeprofile"
-                            runat="server" ErrorMessage="" ControlToValidate="txtLICENSE_EXP"></asp:RequiredFieldValidator>
+                            runat="server" ErrorMessage="" ControlToValidate="txtlicence_EXP"></asp:RequiredFieldValidator>
                     </div>
                     <div>
                         <span>Date of Last Exclusion Check<b class="madatorystar">*</b>:</span>
@@ -238,8 +244,13 @@
                             runat="server" ErrorMessage="" ControlToValidate="txtLNAME"></asp:RequiredFieldValidator>
                     </div>
                     <div>
-                        <span>Address:</span>
+                        <span>Address Line 1:</span>
                         <asp:TextBox ID="txtADDR1" runat="server" size="30" MaxLength="200" autocomplete="off"
+                            CssClass="_picker"></asp:TextBox>
+                    </div>
+                    <div>
+                        <span>Address Line 2:</span>
+                        <asp:TextBox ID="txtADDR2" runat="server" size="30" MaxLength="200" autocomplete="off"
                             CssClass="_picker"></asp:TextBox>
                     </div>
                     <div>
@@ -249,7 +260,7 @@
                     </div>
                     <div>
                         <span>State/Province:</span>
-                        <asp:DropDownList ID="ddlState" runat="server" CssClass="mandatory" size="1" style="width:100px;">
+                        <asp:DropDownList ID="ddlState" runat="server" CssClass="mandatory" size="1" Style="width: 100px;">
                             <asp:ListItem Text="" Value=""></asp:ListItem>
                             <asp:ListItem Value="AL">AL</asp:ListItem>
                             <asp:ListItem Value="AK">AK</asp:ListItem>

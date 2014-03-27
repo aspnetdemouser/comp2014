@@ -2,7 +2,7 @@
     CodeFile="manage_facility_employees.aspx.cs" Inherits="manage_facility_employees" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <script type="text/javascript">
+    <script language="javascript" type="text/javascript">
         $(window).bind('load', function () {
             var headerChk = $(".chkHeader input");
             var itemChk = $(".chkItem input");
@@ -10,7 +10,7 @@
                 itemChk.each(function () { this.checked = headerChk[0].checked; })
             });
             itemChk.bind("click", function () { if ($(this).checked == false) headerChk[0].checked = false; });
-        });
+        });       
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -48,10 +48,10 @@
                 <div class="save">
                     <a>Save Facility</a></div>
                 <div class="add">
-                    <a href="emploeeprofile.aspx">Add Employee</a></div>
+                    <a href="employeeprofile.aspx">Add Employee</a></div>
                 <div class="remove">
-                    <asp:LinkButton runat="server" ID="imgRemoveEmp" Text="Remove Selected Employees"
-                        CssClass="RemoveEmployee" OnClientClick="return confirm(&#39;Delete is irreversible, are you sure?&#39;);"
+                    <asp:LinkButton runat="server" ID="imgRemoveEmp" Text="Deactivate Selected Employees"
+                        CssClass="RemoveEmployee" OnClientClick="return confirm(&#39;Are you sure you want to inactive this user?&#39;);"
                         OnClick="imgRemoveEmp_Click"></asp:LinkButton>
                     <%--<a href="http://compliance.dev.webstores.net/acc_bo/?section=facilities_employees_officer#"
                         onclick="deleteall(&#39;main_interface_form&#39;); return false;">Remove Selected
@@ -59,9 +59,12 @@
                 <div class="print">
                     <a href="">Print</a></div>
                 <div class="search_form">
-                    <asp:TextBox ID="search_text" runat="server" title="Enter your search criteria here"
-                        class="on_focus_replace" MaxLength="255" align="absmiddle" size="40"></asp:TextBox>
-                    <asp:Button ID="btnSearchSubmit" runat="server" Text=" " CssClass="find" OnClick="btnSearchSubmit_Click" />
+                    <asp:TextBox ID="search_text" runat="server" ToolTip="Enter your search criteria here"
+                        class="on_focus_replace" MaxLength="255" align="absmiddle" size="40" onblur="javascript:WaterMark(this, event);"
+                        onfocus="javascript:WaterMark(this, event);"></asp:TextBox>
+                    <asp:Button ID="btnSearchSubmit" runat="server" Text=" " CssClass="find" OnClick="btnSearchSubmit_Click" />&nbsp;<asp:ImageButton
+                        runat="server" ID="btnResetSearch" CssClass="ic_del" value="" Style="float: right;
+                        margin-top: 3px;" OnClick="btnResetSearch_Click" />
                 </div>
                 <div class="spaser">
                 </div>
@@ -72,8 +75,12 @@
                             <asp:TextBox ID="txtFacilityName" MaxLength="100" runat="server" CssClass="_picker"></asp:TextBox>
                         </div>
                         <div>
-                            <span>Address</span>
+                            <span>Address Line 1</span>
                             <asp:TextBox ID="txtAddressLine" MaxLength="255" runat="server" CssClass="_picker"></asp:TextBox>
+                        </div>
+                        <div>
+                            <span>Address Line 2</span>
+                            <asp:TextBox ID="txtAddressLine2" MaxLength="255" runat="server" CssClass="_picker"></asp:TextBox>
                         </div>
                         <div>
                             <span>City<b class="madatorystar">*</b>:</span>
@@ -194,7 +201,7 @@
                                             CommandName="editEmployee" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ContactName") %>'></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Position">
+                                <asp:TemplateField HeaderText="Job Title">
                                     <ItemTemplate>
                                         <asp:Label ID="lblPosition" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.Position") %>'></asp:Label>
                                     </ItemTemplate>
@@ -204,7 +211,7 @@
                                         <asp:Label ID="lblDateOfHire" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.DateOfHire", "{0:MMM dd, yyyy}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Licence # and Exp">
+                                <asp:TemplateField HeaderText="License # and Exp.">
                                     <ItemTemplate>
                                         <asp:Label ID="lblLicNumberAndExp" runat="server" Text=""></asp:Label>
                                     </ItemTemplate>
@@ -219,7 +226,7 @@
                                         <asp:ImageButton runat="server" ID="imgEdit" CssClass="ic_edit" value="" CommandName="Edit"
                                             Visible="false" />&nbsp;<asp:ImageButton runat="server" ID="imgDelete" CssClass="ic_del"
                                                 value="" CommandName="DeleteEmployee" CommandArgument='<%# DataBinder.Eval(Container, "DataItem.Id") %>'
-                                                OnClientClick="return confirm(&#39;Delete is irreversible, are you sure?&#39;);" />
+                                                OnClientClick="return confirm(&#39;Are you sure you want to inactive this user?&#39;);" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

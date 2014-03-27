@@ -19,7 +19,7 @@
             <div align="center" class="form_err_message error_mess">
                 <br/>
                 <span class="form_email_error">Value entered for e-mail is invalid<br/>
-                </span><span class="form_password_error">Passwords don't match<br/>
+                </span><span class="form_password_error">Passwords don't match !<br/>
                 </span><span class="form_mandatory_error">Please fill up missing fields below</span>
             </div>
             <div class="form_block login_form">

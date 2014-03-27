@@ -19,7 +19,7 @@ public partial class manage_facility_employees : System.Web.UI.Page
             {
                 var bytes = Encoding.UTF8.GetBytes(employee.Id.ToString());
                 var base64 = Convert.ToBase64String(bytes);
-                Response.Redirect("emploeeprofile.aspx?enc=" + base64);
+                Response.Redirect("employeeprofile.aspx?enc=" + base64);
             }
             else
             {
@@ -42,7 +42,8 @@ public partial class manage_facility_employees : System.Web.UI.Page
         Result result = BLContactInfo.GetEmployeeContactInfo(employee.EmailAddress, out contactInfo);
         if (result.ResultCode == 1 && contactInfo != null)
         {
-            txtAddressLine.Text = contactInfo.AddressLine;
+            txtAddressLine.Text = contactInfo.AddressLine1;
+            txtAddressLine2.Text = contactInfo.AddressLine2;
             lblCityStateZip.Text = string.Format("{0}, {1}, {2}", contactInfo.City, contactInfo.State, contactInfo.ZipCode);
             txtCity.Text = contactInfo.City;
             txtZipCode.Text = contactInfo.ZipCode;
@@ -108,7 +109,7 @@ public partial class manage_facility_employees : System.Web.UI.Page
             int selectedEmpId = int.Parse(e.CommandArgument.ToString());
             var bytes = Encoding.UTF8.GetBytes(selectedEmpId.ToString());
             var base64 = Convert.ToBase64String(bytes);
-            Response.Redirect("emploeeprofile.aspx?enc=" + base64);
+            Response.Redirect("employeeprofile.aspx?enc=" + base64);
 
         }
         else if (e.CommandName.ToLower() == "deleteemployee")
@@ -151,5 +152,11 @@ public partial class manage_facility_employees : System.Web.UI.Page
             BLCompliance.BLContactInfo.DeleteEmployees(ids, employee.Id);
             BindEmployees();
         }
+    }
+    protected void btnResetSearch_Click(object sender, ImageClickEventArgs e)
+    {
+        search_text.Text = string.Empty;
+        BindEmployees();
+
     }
 }
