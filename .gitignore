@@ -1,3 +1,6 @@
 BLCompliance/bin/Debug/BLCompliance.dll
 *.pdb
 *.dll
+*.suo
+comp2014.suo
+*.config
