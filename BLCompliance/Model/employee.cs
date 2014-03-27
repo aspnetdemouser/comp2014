@@ -47,6 +47,8 @@ namespace BLCompliance.Model
 
         public string ContactName { get; set; }
 
+        public string EmployeeTypeText { get; set; }
+
         public int create_by { get; set; }
 
      

@@ -56,6 +56,7 @@ namespace BLCompliance
 
                         employee.Id = int.Parse(dr["id"].ToString());
                         employee.EmailAddress = Convert.ToString(dr["email_address"]);
+                        employee.EmployeeTypeText = Convert.ToString(dr["employee_type_text"]);
                         employee.Password = Convert.ToString(dr["login_password"]);
                         string colName = "emp_type";
 
@@ -222,6 +223,7 @@ namespace BLCompliance
 
                         employee.Id = int.Parse(dr["id"].ToString());
                         employee.EmailAddress = Convert.ToString(dr["email_address"]);
+                        employee.EmployeeTypeText = Convert.ToString(dr["employee_type_text"]);
                         employee.Password = Convert.ToString(dr["login_password"]);
                         string colName = "emp_type";
 
@@ -337,6 +339,7 @@ namespace BLCompliance
                         {    
                           new SqlParameter("@email_address", SqlDbType.VarChar) { Value = employee.EmailAddress },
                           new SqlParameter("@login_password", SqlDbType.VarChar) { Value = employee.Password },
+                          new SqlParameter("@employee_type_text", SqlDbType.VarChar) { Value = employee.EmployeeTypeText },
                           new SqlParameter("@facility_id", SqlDbType.VarChar) { Value = employee.FacilityId },
                           new SqlParameter("@emp_type", SqlDbType.Int) { Value = employee.EmployeeType },
                           new SqlParameter("@position", SqlDbType.VarChar) { Value = employee.Position },
@@ -388,6 +391,7 @@ namespace BLCompliance
                           new SqlParameter("@id", SqlDbType.Int) { Value = employee.Id },
                           new SqlParameter("@position", SqlDbType.VarChar) { Value = employee.Position },
                           new SqlParameter("@password", SqlDbType.VarChar) { Value = employee.Password },
+                          new SqlParameter("@employee_type_text", SqlDbType.VarChar) { Value = employee.EmployeeTypeText },
                           new SqlParameter("@date_of_hire", SqlDbType.DateTime) { Value = employee.DateOfHire },
                           new SqlParameter("@licence_number", SqlDbType.VarChar) { Value = employee.Licence_Number },
                           new SqlParameter("@licence_expiry", SqlDbType.DateTime) { Value = employee.Licence_Expiry },

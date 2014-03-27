@@ -221,7 +221,7 @@
                                         <asp:Label ID="lblDateLastExclusionCheck" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.DateLastExclusionCheck", "{0:MMM dd, yyyy}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Action">
+                                <asp:TemplateField HeaderText="Action" Visible="false">
                                     <ItemTemplate>
                                         <asp:ImageButton runat="server" ID="imgEdit" CssClass="ic_edit" value="" CommandName="Edit"
                                             Visible="false" />&nbsp;<asp:ImageButton runat="server" ID="imgDelete" CssClass="ic_del"

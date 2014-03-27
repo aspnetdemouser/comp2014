@@ -72,6 +72,7 @@ public partial class employeeprofile : System.Web.UI.Page
             txtpassword.Text = employee.Password;
             txtconfpassword.Text = employee.Password;
             txtposition.Text = employee.Position;
+            txtEmployeeType.Text = employee.EmployeeTypeText;
             lblCurrentPosition.Text = employee.Position;
             lblCurrentEmail.Text = employee.EmailAddress;
 
@@ -89,17 +90,17 @@ public partial class employeeprofile : System.Web.UI.Page
             }
 
 
-            txtLICENCE.Text = employee.Licence_Number;
+            txtLicenceNo.Text = employee.Licence_Number;
 
             if (employee.Licence_Expiry.HasValue)
             {
                 try
                 {
-                    txtLICENSE_EXP.Text = Convert.ToDateTime(employee.Licence_Expiry).ToString("MM/dd/yyyy");
+                    txtLicenceExp.Text = Convert.ToDateTime(employee.Licence_Expiry).ToString("MM/dd/yyyy");
                 }
                 catch (Exception ex)
                 {
-                    txtLICENSE_EXP.Text = Convert.ToString(employee.Licence_Expiry);
+                    txtLicenceExp.Text = Convert.ToString(employee.Licence_Expiry);
                 }
             }
 
@@ -181,19 +182,20 @@ public partial class employeeprofile : System.Web.UI.Page
                 objEmployee.EmailAddress = txtemailaddress.Text.Trim();
                 objEmployee.Password = txtpassword.Text;
                 objEmployee.EmployeeType = 1;
+                objEmployee.EmployeeTypeText = txtEmployeeType.Text;
                 objEmployee.Position = txtposition.Text;
-                objEmployee.Licence_Number = txtLICENCE.Text;
+                objEmployee.Licence_Number = txtLicenceNo.Text;
                 objEmployee.IsDeleted = false;
                 objEmployee.IsActiveRecord = true;
 
-                if (!string.IsNullOrEmpty(txtLICENSE_EXP.Text.ToString()))
+                if (!string.IsNullOrEmpty(txtLicenceExp.Text.ToString()))
                 {
                     DateTime tempDate;
-                    if (DateTime.TryParseExact(txtLICENSE_EXP.Text.ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tempDate))
+                    if (DateTime.TryParseExact(txtLicenceExp.Text.ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tempDate))
                     {
                         objEmployee.Licence_Expiry = tempDate;
                     }
-                    else if (DateTime.TryParseExact(txtLICENSE_EXP.Text.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tempDate))
+                    else if (DateTime.TryParseExact(txtLicenceExp.Text.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tempDate))
                     {
                         objEmployee.Licence_Expiry = tempDate;
                     }
@@ -259,6 +261,7 @@ public partial class employeeprofile : System.Web.UI.Page
                     {
                         lblErr.Text = "Information updated.";
                         lblErr.ForeColor = System.Drawing.Color.WhiteSmoke;
+                        btnEmpUpdateInformation.Focus();
                     }
                     else
                     {
@@ -368,16 +371,17 @@ public partial class employeeprofile : System.Web.UI.Page
                 objEmployee.Password = txtpassword.Text;
                 objEmployee.EmployeeType = 1;
                 objEmployee.Position = txtposition.Text;
-                objEmployee.Licence_Number = txtLICENCE.Text;
+                objEmployee.EmployeeTypeText = txtEmployeeType.Text;
+                objEmployee.Licence_Number = txtLicenceNo.Text;
 
-                if (!string.IsNullOrEmpty(txtLICENSE_EXP.Text.ToString()))
+                if (!string.IsNullOrEmpty(txtLicenceExp.Text.ToString()))
                 {
                     DateTime tempDate;
-                    if (DateTime.TryParseExact(txtLICENSE_EXP.Text.ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tempDate))
+                    if (DateTime.TryParseExact(txtLicenceExp.Text.ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tempDate))
                     {
                         objEmployee.Licence_Expiry = tempDate;
                     }
-                    else if (DateTime.TryParseExact(txtLICENSE_EXP.Text.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tempDate))
+                    else if (DateTime.TryParseExact(txtLicenceExp.Text.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tempDate))
                     {
                         objEmployee.Licence_Expiry = tempDate;
                     }
