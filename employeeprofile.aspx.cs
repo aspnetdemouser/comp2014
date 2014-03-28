@@ -26,7 +26,17 @@ public partial class employeeprofile : System.Web.UI.Page
             {
                 loginEmp = Session["emp2014br2"] as employee;
                 if (loginEmp.EmployeeType == 2)
+                {
                     isLevel2 = true;
+                    lblActive.Visible = false;                    
+                    chkActive.Visible = true;
+                }
+                else
+                {
+                    lblActive.Visible = true;
+                    lblActive.Text = "Yes";
+                    chkActive.Visible = false;
+                }
             }
 
             if (GetSelectedEmployeeId() > 0)
@@ -75,7 +85,11 @@ public partial class employeeprofile : System.Web.UI.Page
             txtEmployeeType.Text = employee.EmployeeTypeText;
             lblCurrentPosition.Text = employee.Position;
             lblCurrentEmail.Text = employee.EmailAddress;
-
+            chkActive.Checked = employee.IsActiveRecord;
+            if (employee.IsActiveRecord)
+                lblActive.Text = "Yes";
+            else
+                lblActive.Text = "No";
             if (employee.DateOfHire.HasValue)
             {
                 try
@@ -137,6 +151,7 @@ public partial class employeeprofile : System.Web.UI.Page
             lblCurrentPhone.Text = contactInfo.TelePhone;
             lblCurrentFax.Text = contactInfo.FaxNumber;
             txtFAX.Text = contactInfo.FaxNumber;
+            
         }
 
 
@@ -186,7 +201,7 @@ public partial class employeeprofile : System.Web.UI.Page
                 objEmployee.Position = txtposition.Text;
                 objEmployee.Licence_Number = txtLicenceNo.Text;
                 objEmployee.IsDeleted = false;
-                objEmployee.IsActiveRecord = true;
+                objEmployee.IsActiveRecord = chkActive.Checked;
 
                 if (!string.IsNullOrEmpty(txtLicenceExp.Text.ToString()))
                 {
@@ -296,7 +311,7 @@ public partial class employeeprofile : System.Web.UI.Page
                     {
                         if (cph.FindControl(validatorObject.ControlToValidate) != null)
                         {
-                            
+
                             TextBox txt = cph.FindControl(validatorObject.ControlToValidate) as TextBox;
                             if (txt.ID.Contains("txtemailaddress"))
                             {
@@ -313,7 +328,7 @@ public partial class employeeprofile : System.Web.UI.Page
                             {
                                 txt.CssClass = "mandatory_selected";
                             }
-                            
+
                         }
                     }
                     else
@@ -417,7 +432,7 @@ public partial class employeeprofile : System.Web.UI.Page
                 }
 
                 objEmployee.IsDeleted = false;
-                objEmployee.IsActiveRecord = true;
+                objEmployee.IsActiveRecord = chkActive.Checked;
                 lblErr.Text = "";
                 //objemp.FacilityId = string.IsNullOrEmpty(Convert.ToString(Session[CommonConstants.CONST_SESSION_KEY_FACILITY_ID])) ? 0 : Convert.ToInt32(Session[CommonConstants.CONST_SESSION_KEY_FACILITY_ID]);
                 //objemp.create_by = string.IsNullOrEmpty(Convert.ToString(Session[CommonConstants.CONST_SESSION_KEY_EMPLOYEE_ID])) ? 0 : Convert.ToInt32(Session[CommonConstants.CONST_SESSION_KEY_EMPLOYEE_ID]);
@@ -435,7 +450,7 @@ public partial class employeeprofile : System.Web.UI.Page
                 objContactInfo.EmployeeId = Objemployee.Id;
                 objContactInfo.LastName = txtLNAME.Text;
                 objContactInfo.FirstName = txtFNAME.Text;
-                objContactInfo.FaxNumber = txtFAX.Text;                
+                objContactInfo.FaxNumber = txtFAX.Text;
                 objContactInfo.AddressLine1 = txtADDR1.Text;
                 objContactInfo.AddressLine2 = txtADDR2.Text;
                 objContactInfo.City = txtCITY.Text;
@@ -491,7 +506,7 @@ public partial class employeeprofile : System.Web.UI.Page
                             TextBox txt = cph.FindControl(validatorObject.ControlToValidate) as TextBox;
                             if (txt.ID.Contains("txtpassword") || txt.ID.Contains("txtconfpassword"))
                             {
-                                if(txt.ID.Contains("txtpassword"))
+                                if (txt.ID.Contains("txtpassword"))
                                     txt.CssClass = "mandatory_selected PASSWORD1";
                                 else
                                     txt.CssClass = "mandatory_selected PASSWORD2";
