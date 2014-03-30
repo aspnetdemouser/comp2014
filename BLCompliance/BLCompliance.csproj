@@ -42,12 +42,14 @@
   <ItemGroup>
     <Compile Include="BLContactInfo.cs" />
     <Compile Include="BLManageFacility.cs" />
+    <Compile Include="BLReportinginfo.cs" />
     <Compile Include="BLTrainingCourses.cs" />
     <Compile Include="CData.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="Model\employee.cs" />
     <Compile Include="Model\employee_contact_info.cs" />
+    <Compile Include="Model\reportinginfo.cs" />
     <Compile Include="Model\TrainingCourse.cs" />
     <Compile Include="Model\TraningCourseUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
