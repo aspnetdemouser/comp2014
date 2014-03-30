@@ -16,10 +16,14 @@
         <div class="cats_articles">
             <div class="category_menu">
                <asp:GridView ID="gvTraining" runat="server" AutoGenerateColumns="false" PageSize="25"
-                            AllowPaging="true" Width="100%" BorderStyle="None" 
+                            AllowPaging="true" Width="100%" BorderStyle="None"  PagerSettings-Mode="NextPreviousFirstLast"
+                            PagerSettings-Position="Top"
                              DataKeyNames="TrainingAssignmentId" 
-                    onrowdatabound="gvTraining_RowDataBound">
+                    onrowdatabound="gvTraining_RowDataBound" 
+                    onpageindexchanged="gvTraining_PageIndexChanged" 
+                    onpageindexchanging="gvTraining_PageIndexChanging">
                             <HeaderStyle CssClass="Header1" />
+                            <PagerStyle HorizontalAlign="Right" VerticalAlign="Top"  />
                             <AlternatingRowStyle CssClass="gray" />
                             <Columns>
                                 <asp:TemplateField HeaderText="Training assigned">

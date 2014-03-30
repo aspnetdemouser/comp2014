@@ -10,6 +10,44 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <TC:courses ID="trainingcoures1" runat="server" />
-    
+         <asp:GridView ID="gvTraining" runat="server" AutoGenerateColumns="false" PageSize="25"
+                            AllowPaging="true" Width="100%" BorderStyle="None"  PagerSettings-Mode="NextPreviousFirstLast"
+                            PagerSettings-Position="Top"
+                             DataKeyNames="TrainingAssignmentId" 
+                    onrowdatabound="gvTraining_RowDataBound" 
+                    onpageindexchanged="gvTraining_PageIndexChanged" 
+                    onpageindexchanging="gvTraining_PageIndexChanging">
+                            <HeaderStyle CssClass="Header1" />
+                            <PagerStyle HorizontalAlign="Right" VerticalAlign="Top"  />
+                            <AlternatingRowStyle CssClass="gray" />
+                            <Columns>
+                             <asp:TemplateField HeaderText="Employee name">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblEmpName" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.EmployeeName") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Training assigned">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblTraingAssigned" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.CourseName") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Date assigned">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblDateAssigned" runat="server"></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                 <asp:TemplateField HeaderText="Date due">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblDueDate" runat="server"></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                 <asp:TemplateField HeaderText="Completed">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblCompleted" runat="server"></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>  
     
 </asp:Content>

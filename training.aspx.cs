@@ -88,4 +88,27 @@ public partial class training : System.Web.UI.Page
 
         }
     }
+    protected void gvTraining_PageIndexChanged(object sender, EventArgs e)
+    {
+        
+        
+        
+        
+    }
+    protected void gvTraining_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvTraining.PageIndex = e.NewPageIndex;
+        if (Session["emp2014br2"] != null)
+        {
+            employee employee = Session["emp2014br2"] as employee;
+            if (employee.EmployeeType == 1)
+            {
+                BindEmployees(employee.Id);
+            }
+        }
+        else
+        {
+            Response.Redirect("login.aspx");
+        }
+    }
 }
