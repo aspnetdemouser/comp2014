@@ -102,7 +102,7 @@
 						<ul class="mega_menu" style="z-index: 20;">
 							<li class="	first" style="z-index: 20;"><a href="#">Dashboard</a></li>
 							<li class="" style="z-index: 20;"><a href="reporting.aspx">Reporting</a></li>
-							<li class="" style="z-index: 20;"><a href="#">Training</a></li>
+							<li class="" style="z-index: 20;"><a href="training.aspx">Training</a></li>
 							<li class="" style="z-index: 20;"><a href="#">Library</a></li>
 						</ul>
 					</div>

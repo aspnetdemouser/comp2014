@@ -230,7 +230,104 @@ namespace BLCompliance
             }
         }
 
+        /// <summary>
+        /// Get training assignments to me (logged in employee)
+        /// </summary>
+        /// <param name="employeeId"></param>
+        /// <param name="myTrainingAssignments"></param>
+        /// <returns></returns>
+        public static Result GetMyTrainingAssignmetns (int employeeId, out List<BLCompliance.Model.TraningCourseUsers> myTrainingAssignments)
+        {
+            myTrainingAssignments = new List<Model.TraningCourseUsers>();
+            Result result = new Result(0, false, "GetMyTrainingAssignmetns");
+
+            DataSet ds = null;
+
+            try
+            {
+                
+                SqlParameter[] prms = new SqlParameter[1];
+                prms[0] = new SqlParameter("@emp_id", SqlDbType.Int);
+                prms[0].Value = employeeId;
+
+
+                ds = CData.ExecuteDataset(CommandType.StoredProcedure, "sp_comp_get_training_assigments_to_me", prms);
+
+                if (ds != null && ds.Tables[0].Rows.Count > 0)
+                {
+
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        Model.TraningCourseUsers ta = new Model.TraningCourseUsers();
+                        PopulateTrainingAssignMentFromDataRow(ref ta, dr);
+                        myTrainingAssignments.Add(ta);
+                    }
+                    result.ResultCode = 1;
+                    result.ResultMessage = "Success";
+
+
+                }
+                else
+                {
+                    result.ResultMessage = "Courses Not Found";
+                    result.ResultCode = 1001;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+
+        private static void PopulateTrainingAssignMentFromDataRow(ref BLCompliance.Model.TraningCourseUsers trainingAssigment, DataRow dr)
+        {
+            trainingAssigment.CourseId = int.Parse(dr["course_id"].ToString());
+
+            string colName = "course_title";
+
+            if (!CheckNullOrBlank(dr, colName))
+                trainingAssigment.CourseName = dr[colName].ToString();
+
+            colName = "emp_name";
+            if (!CheckNullOrBlank(dr, colName))
+                trainingAssigment.EmployeeName = dr[colName].ToString();
+
+            colName = "emp_id";
+            trainingAssigment.EmployeeId = int.Parse(dr[colName].ToString());
+
+            colName = "ta_id";
+            trainingAssigment.TrainingAssignmentId = int.Parse(dr[colName].ToString());
+
+            colName = "completion_status";
+            if (!CheckNullOrBlank(dr, colName))
+                trainingAssigment.CompletionStatus = int.Parse(dr[colName].ToString());
+
+
+            colName = "date_assigned";
+            if (!CheckNullOrBlank(dr, colName))
+            {
+                DateTime tempData;
+                if (DateTime.TryParse(dr[colName].ToString(), out tempData))
+                {
+                    trainingAssigment.DateAssigned = tempData;
+                }
+            }
+
+            colName = "due_date";
+            if (!CheckNullOrBlank(dr, colName))
+            {
+                DateTime tempData;
+                if (DateTime.TryParse(dr[colName].ToString(), out tempData))
+                {
+                    trainingAssigment.DueDate = tempData;
+                }
+            }
+        }
     }
 }
+
+
 
 
