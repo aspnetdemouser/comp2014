@@ -17,6 +17,7 @@ public partial class controls_training_courses_listing : System.Web.UI.UserContr
             if (employee.EmployeeType == 2) // level 2
             {
                 BindCourses();
+                SetFacilityInfo(employee);
             }
             else
             {
@@ -42,5 +43,21 @@ public partial class controls_training_courses_listing : System.Web.UI.UserContr
     {
         rptData.CurrentPageIndex = e.NewPageIndex;
         BindCourses();
+    }
+    private void SetFacilityInfo(BLCompliance.Model.employee employee)
+    {
+        employee_contact_info contactInfo = null;
+        Result result = BLContactInfo.GetEmployeeContactInfo(employee.EmailAddress, out contactInfo);
+        if (result.ResultCode == 1 && contactInfo != null)
+        {
+            if (!string.IsNullOrEmpty(contactInfo.State))
+            {
+                lblInfo1.Text = string.Format("{0} - {1}, {2}", employee.FacilityName, contactInfo.City, contactInfo.State);
+            }
+            else
+            {
+                lblInfo1.Text = string.Format("{0} - {1}", "", employee.FacilityName, contactInfo.City);
+            }
+        }
     }
 }

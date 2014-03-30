@@ -48,10 +48,14 @@ public partial class ManageTraining : System.Web.UI.Page
 
             if (employee.EmployeeType == 2) //level 2 user
             {
+                
+
                 List<TraningCourseUsers> employeeList = new List<TraningCourseUsers>();
                 BLCompliance.BLTrainingCourses.GetAllTrainingAssignments(employee.Id, out employeeList);
                 gvTraining.DataSource = employeeList;
                 gvTraining.DataBind();
+                
+                SetFacilityInfo(employee);
             }
         }
     }
@@ -120,5 +124,30 @@ public partial class ManageTraining : System.Web.UI.Page
     {
         gvTraining.PageIndex = e.NewPageIndex;
         GetAllTrainingAssignmentList();
+    }
+
+    private void SetFacilityInfo(BLCompliance.Model.employee employee)
+    {
+        lblFacilityName.Text = employee.FacilityName;
+
+        employee_contact_info contactInfo = null;
+        Result result = BLContactInfo.GetEmployeeContactInfo(employee.EmailAddress, out contactInfo);
+        if (result.ResultCode == 1 && contactInfo != null)
+        {
+
+            if (!string.IsNullOrEmpty(contactInfo.State))
+            {
+                lblInfo1.Text = string.Format("{0} - {1}, {2}", employee.FacilityName, contactInfo.City, contactInfo.State);
+            }
+            else
+            {
+                lblInfo1.Text = string.Format("{0} - {1}", "", employee.FacilityName, contactInfo.City);
+            }
+
+            lblCityStateZip.Text = string.Format("{0}, {1}, {2}", contactInfo.City, contactInfo.State, contactInfo.ZipCode);
+            lblCountry.Text = contactInfo.CountryName;
+        }
+
+
     }
 }
