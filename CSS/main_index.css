@@ -6004,7 +6004,8 @@ TD.calendar_curr
 	margin: -8px 0 0 1px;
 	width: 220px;
 }
-/*.rep_calendar DIV.ui-datepicker-inline
+/* un hide this css hello */
+.rep_calendar DIV.ui-datepicker-inline
 {
 	width: 218px;
 	padding: 0;
@@ -6114,7 +6115,10 @@ DIV.ui-widget.ui-widget-content
 	background: #FFAC50;
 	color: #000;
 	border: 1px solid #DD7602;
-}*/
+}
+
+/* unhide css all */
+
 .rep_calendar DIV.ui-corner-all TABLE TH
 {
 	padding: 2px;

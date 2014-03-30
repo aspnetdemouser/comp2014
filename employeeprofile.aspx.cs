@@ -30,12 +30,17 @@ public partial class employeeprofile : System.Web.UI.Page
                     isLevel2 = true;
                     lblActive.Visible = false;                    
                     chkActive.Visible = true;
+                    lblProfile.Text = "Officer Profile";
                 }
                 else
                 {
                     lblActive.Visible = true;
                     lblActive.Text = "Yes";
                     chkActive.Visible = false;
+                    if (loginEmp.EmployeeType == 1)
+                    {
+                        lblProfile.Text = "User Profile";
+                    }
                 }
             }
 
@@ -61,6 +66,22 @@ public partial class employeeprofile : System.Web.UI.Page
         }
     }
 
+    protected void Page_PreInit(object sender, EventArgs e)
+    {
+        employee loginEmp = null;
+        if (Session["emp2014br2"] != null)
+        {
+            loginEmp = Session["emp2014br2"] as employee;
+        }
+        if (Request.QueryString["enc"] != null && null != loginEmp && loginEmp.EmployeeType == 1)
+        {
+            this.Page.MasterPageFile = "~/Firstlevel.master";
+        }
+        else
+        {
+            this.Page.MasterPageFile = "~/main.master";
+        }
+    }
     protected void LoadData(int EmpId, bool isLevel2)
     {
         BLCompliance.Model.employee employee;

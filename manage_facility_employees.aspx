@@ -42,9 +42,12 @@
                         &nbsp;</div>
                 </div>
             </div>
+            <span style="padding-left:0px;padding-top:0px;font-size:25px;"><asp:Literal ID="lblInfo1" runat="server"></asp:Literal> </span> 
             <div class="box_cont">
                 <div class="delim">
                 </div>
+                 
+                 
                 <div class="save">
                     <a>Save Facility</a></div>
                 <div class="add">
@@ -68,7 +71,7 @@
                 </div>
                 <div class="spaser">
                 </div>
-                <div class="edit_facility">
+                <%--<div class="edit_facility">
                     <fieldset id="FACILITY_FORM">
                         <div>
                             <span>Facility Name</span><br />
@@ -110,7 +113,7 @@
                         <div class="spacer" style="width: auto; float: none;">
                         </div>
                     </fieldset>
-                </div>
+                </div>--%>
                 <div class="spaser">
                 </div>
                 <div class="jScrollPaneContainer" style="height: 360px; width: 944px;">

@@ -100,7 +100,7 @@
         </div>
         <div class="box_title" id="divOfficerInfo" runat="server">
             <h2>
-                Officer
+                <asp:Label ID="lblProfile" runat="server"></asp:Label>
                 <asp:Literal ID="lblCurrentOfficerName" runat="server"></asp:Literal>
             </h2>
             <br>

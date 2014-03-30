@@ -11,7 +11,6 @@ $(function (e) {
     **/
     $('.jsLink, .jslink').live('click', function (e) {
         e.preventDefault();
-        alert("sss");
         $(this).blur();
     });
 });

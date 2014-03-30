@@ -42,23 +42,18 @@ public partial class manage_facility_employees : System.Web.UI.Page
         Result result = BLContactInfo.GetEmployeeContactInfo(employee.EmailAddress, out contactInfo);
         if (result.ResultCode == 1 && contactInfo != null)
         {
-            txtAddressLine1.InnerText = contactInfo.AddressLine1;
-            txtAddressLine2.InnerText = contactInfo.AddressLine2;
+
+            if (!string.IsNullOrEmpty(contactInfo.State))
+            {
+                lblInfo1.Text = string.Format("{0} - {1}, {2}", employee.FacilityName, contactInfo.City, contactInfo.State);
+            }
+            else
+            {
+                lblInfo1.Text = string.Format("{0} - {1}", "", employee.FacilityName, contactInfo.City);
+            }
+
             lblCityStateZip.Text = string.Format("{0}, {1}, {2}", contactInfo.City, contactInfo.State, contactInfo.ZipCode);
-            txtCity.InnerText = contactInfo.City;
-            txtZipCode.InnerText = contactInfo.ZipCode;
-            //ddlState.SelectedValue = contactInfo.State;
-            ddlState.InnerText = contactInfo.State;
-            txtEmail.InnerText = employee.EmailAddress;
-            //ddlCountry.SelectedValue = contactInfo.CountryName;
-
             lblCountry.Text = contactInfo.CountryName;
-
-            txtFax.InnerText = lblFax.Text = contactInfo.FaxNumber;
-            txtPhone.InnerText = lblPhone.Text = contactInfo.TelePhone;
-            txtFacilityName.InnerText = employee.FacilityName;
-
-
         }
 
 
