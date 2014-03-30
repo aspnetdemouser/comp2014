@@ -14,8 +14,8 @@
     <div class="box_cont">
         
         <div class="cats_articles">
-            <div class="category_menu">
-               <asp:GridView ID="gvTraining" runat="server" AutoGenerateColumns="false" PageSize="25"
+            <div class="facility_gray_box">
+               <asp:GridView ID="gvTraining" runat="server" AutoGenerateColumns="false" PageSize="25" HorizontalAlign="Right"
                             AllowPaging="true" Width="100%" BorderStyle="None"  PagerSettings-Mode="NextPreviousFirstLast"
                             PagerSettings-Position="Top"
                              DataKeyNames="TrainingAssignmentId" 
