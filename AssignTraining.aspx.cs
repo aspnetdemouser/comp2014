@@ -13,6 +13,10 @@ public partial class AssignTraining : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["emp2014br2"] == null)
+        {
+            Response.Redirect("login.aspx");
+        }
         if (!IsPostBack)
         {
             GetAllActiveTraining();
@@ -73,7 +77,7 @@ public partial class AssignTraining : System.Web.UI.Page
         else
         {
             lbltxt.Visible = true;
-            lbltxt.Text = "Please select atleast one in Listbox1 to move";
+            lbltxt.Text = "Please choose employee to move";
         }
     }
 
@@ -126,7 +130,7 @@ public partial class AssignTraining : System.Web.UI.Page
         else
         {
             lbltxt.Visible = true;
-            lbltxt.Text = "Please select atleast one in Listbox2 to move";
+            lbltxt.Text = "Please select employee to remove.";
         }
     }
 
@@ -152,30 +156,43 @@ public partial class AssignTraining : System.Web.UI.Page
     {
         var courseId = Convert.ToInt32(dlstTraining.SelectedValue);
 
-
+        if (HttpContext.Current.Session["emp2014br2"] == null)
+        {
+            Response.Redirect("login.aspx");
+        }
 
         if (courseId > 0)
         {
+
+            bool isMsgShow = false;
             foreach (ListItem itm2 in ListBox2.Items)
             {
                 var empLoggedIn = HttpContext.Current.Session["emp2014br2"] as employee;
                 BLTrainingCourses.AssignUserToCourse(courseId, Convert.ToInt32(itm2.Value), empLoggedIn.Id);
+                lbltxt.Text = "Training assigned successfully";
+                lbltxt.Visible = true;
+                isMsgShow = true;
             }
 
             foreach (ListItem itm1 in ListBox1.Items)
             {
                 var empLoggedIn = HttpContext.Current.Session["emp2014br2"] as employee;
                 BLTrainingCourses.UnAssignUserToCourse(courseId, Convert.ToInt32(itm1.Value), empLoggedIn.Id);
+                if (isMsgShow == false)
+                {
+                    lbltxt.Visible = true;
+                    lbltxt.Text = "Employee unassigned from course.";
+                }
             }
 
-            ListBox1.Items.Clear();
-            ListBox2.Items.Clear();
-            dlstTraining.SelectedIndex = 0;
+           // ListBox1.Items.Clear();
+           // ListBox2.Items.Clear();
+            //dlstTraining.SelectedIndex = 0;
         }
         else
         {
             lbltxt.Visible = true;
-            lbltxt.Text = "Please select atleast one training and user.";
+            lbltxt.Text = "Please select course.";
         }
     }
     protected void dlstTraining_SelectedIndexChanged(object sender, EventArgs e)
@@ -229,14 +246,14 @@ public partial class AssignTraining : System.Web.UI.Page
         if (result.ResultCode == 1 && contactInfo != null)
         {
 
-            if (!string.IsNullOrEmpty(contactInfo.State))
-            {
-                lblInfo1.Text = string.Format("{0} - {1}, {2}", employee.FacilityName, contactInfo.City, contactInfo.State);
-            }
-            else
-            {
-                lblInfo1.Text = string.Format("{0} - {1}", "", employee.FacilityName, contactInfo.City);
-            }
+            //if (!string.IsNullOrEmpty(contactInfo.State))
+            //{
+            //    lblInfo1.Text = string.Format("{0} - {1}, {2}", employee.FacilityName, contactInfo.City, contactInfo.State);
+            //}
+            //else
+            //{
+            //    lblInfo1.Text = string.Format("{0} - {1}", "", employee.FacilityName, contactInfo.City);
+            //}
 
             lblCityStateZip.Text = string.Format("{0}, {1}, {2}", contactInfo.City, contactInfo.State, contactInfo.ZipCode);
             lblCountry.Text = contactInfo.CountryName;

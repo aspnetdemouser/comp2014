@@ -48,50 +48,47 @@
                 </div>
                 <div class="spaser">
                 </div>
-                <div class="jScrollPaneContainer" style="height: 360px; width: 944px;">
-                    <div id="scroll-list-small" class="employee_list" style="height: 360px; width: 944px;
-                        padding: 0px;">
-                        <div class="spaser">
-                        </div>
-                        <span style="font-size: 28px; font-weight: normal; color: #CECECE; margin-left: 310px;">
-                            Training Assignments</span>
-                        <asp:GridView ID="gvTraining" runat="server" AutoGenerateColumns="false" PageSize="25"
-                            HorizontalAlign="Right" AllowPaging="true" Width="100%" BorderStyle="None" PagerSettings-Mode="NextPreviousFirstLast"
-                            PagerSettings-Position="Top" PagerStyle-HorizontalAlign="Center" DataKeyNames="TrainingAssignmentId"
-                            AlternatingRowStyle-CssClass="gray" OnRowDataBound="gvTraining_RowDataBound"
-                            OnPageIndexChanged="gvTraining_PageIndexChanged" OnPageIndexChanging="gvTraining_PageIndexChanging"
-                            PagerSettings-FirstPageText="First" PagerSettings-LastPageText="Last" PagerSettings-NextPageText="Next"
-                            PagerSettings-PreviousPageText="Previous">
-                            <HeaderStyle CssClass="Header1" />
-                            <Columns>
-                                <asp:TemplateField HeaderText="Employee name">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblEmpName" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.EmployeeName") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Training assigned">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblTraingAssigned" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.CourseName") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Date assigned">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblDateAssigned" runat="server"></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Date due">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblDueDate" runat="server"></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Completed">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblCompleted" runat="server"></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
+                <div class="jScrollPaneContainer" style="margin-left:10px;margin-right:5px;margin-top:5px;">
+                    <div class="spaser">
                     </div>
+                    <span style="font-size: 28px; font-weight: normal; color: #CECECE; margin-left: 310px;">
+                        Training Assignments</span>
+                    <asp:GridView ID="gvTraining" runat="server" AutoGenerateColumns="false" PageSize="25"
+                        HorizontalAlign="Right" AllowPaging="true" Width="100%" BorderStyle="None" PagerSettings-Mode="NextPreviousFirstLast"
+                        PagerSettings-Position="Top" PagerStyle-HorizontalAlign="Center" DataKeyNames="TrainingAssignmentId"
+                        AlternatingRowStyle-CssClass="gray" OnRowDataBound="gvTraining_RowDataBound"
+                        OnPageIndexChanged="gvTraining_PageIndexChanged" OnPageIndexChanging="gvTraining_PageIndexChanging"
+                        PagerSettings-FirstPageText="First" PagerSettings-LastPageText="Last" PagerSettings-NextPageText="Next"
+                        PagerSettings-PreviousPageText="Previous">
+                        <HeaderStyle CssClass="Header1" />
+                        <Columns>
+                            <asp:TemplateField HeaderText="Employee name">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblEmpName" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.EmployeeName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Training assigned">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblTraingAssigned" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.CourseName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Date assigned">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblDateAssigned" runat="server"></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Date due">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblDueDate" runat="server"></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Completed" ItemStyle-Width="70">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblCompleted" runat="server"></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
                 </div>
                 <div class="spaser">
                 </div>

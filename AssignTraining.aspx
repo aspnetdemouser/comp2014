@@ -33,28 +33,32 @@
                 </div>
             </div>
             <span style="padding-left: 0px; padding-top: 0px; font-size: 25px;">
-                <asp:Literal ID="lblInfo1" runat="server"></asp:Literal>
+                <asp:Literal ID="lblInfo1" runat="server">Assign Training</asp:Literal>
             </span>
-            
             <div class="box_cont form_block">
-             <div class="delim">
+                <div class="delim">
                 </div>
                 <div>
-                    <span>Select training :</span>
+                    <span></span>
+                    <asp:Label ID="lbltxt" runat="server" CssClass="error_mess" style="width:300px;"></asp:Label>
+                </div>
+                <div>
+                    <span style="font-size: 20px; vertical-align: text-top; width: auto; margin-left: 10px;">
+                        Select Course :</span>
                     <asp:DropDownList ID="dlstTraining" runat="server" CssClass="mandatory" size="1"
-                        Style="width: 300px;" OnSelectedIndexChanged="dlstTraining_SelectedIndexChanged"
+                        Style="width: 300px; margin-left: 10px;" OnSelectedIndexChanged="dlstTraining_SelectedIndexChanged"
                         AutoPostBack="True">
                     </asp:DropDownList>
                 </div>
-                <table>
+                <table cellpadding="3" cellspacing="5">
                     <tr>
-                        <td style="font-size: 15px; font-weight: normal;background-color:transparent !important;">
-                            Choose user
+                        <td style="font-size: 15px; font-weight: normal; background-color: transparent !important;">
+                            Choose Employee
                         </td>
-                        <td style="background-color:transparent !important;">
+                        <td style="background-color: transparent !important;">
                         </td>
-                        <td style="font-size: 15px; font-weight: normal;background-color:transparent !important;">
-                            Selected user
+                        <td style="font-size: 15px; font-weight: normal; background-color: transparent !important;">
+                            Selected Employee
                         </td>
                     </tr>
                     <tr>
@@ -74,23 +78,18 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="color: red; font-weight: bold; font-size: medium;" align="center">
-                            <asp:Label ID="lbltxt" runat="server"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
                         <td colspan="3">
                             &nbsp;
                         </td>
                     </tr>
                     <tr>
                         <td colspan="3" align="center">
-                            <asp:Button ID="btnSave" runat="server" Text="Save" Style="font-size: 15px; padding: 2px 15px;"
-                                OnClick="btnSave_Click" />
+                            <asp:Button ID="btnSave" runat="server" Text="Assign Training" Style="font-size: 15px;
+                                padding: 2px 15px;" OnClick="btnSave_Click" />
                         </td>
                     </tr>
                 </table>
             </div>
         </div>
-        </div>
+    </div>
 </asp:Content>
