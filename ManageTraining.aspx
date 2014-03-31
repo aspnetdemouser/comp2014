@@ -8,11 +8,27 @@
     <script src="JS/managetraining.js" type="text/javascript" language="javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <TC:courses ID="trainingcoures1" runat="server" />
+    <table>
+        <tr>
+            <td style="float: right; font-size: 15px;font-family: Arial,Helvetica,sans-serif;font-weight: normal;">
+                <div class="add">
+                    <a href="AssignTraining.aspx">Assign Training</a></div>
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <TC:courses ID="trainingcoures1" runat="server" />
+            </td>
+        </tr>
+    </table>
     <div class="facility_gray_box">
-       
-        <span style="font-size:28px;font-weight:normal;color:#CECECE;">
-            Training Assignments</span>
+        <span style="font-size: 28px; font-weight: normal; color: #CECECE;">Training Assignments</span>
         <div>
         </div>
         <asp:GridView ID="gvTraining" runat="server" AutoGenerateColumns="false" PageSize="25"
