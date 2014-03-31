@@ -42,12 +42,12 @@
                         &nbsp;</div>
                 </div>
             </div>
-            <span style="padding-left:0px;padding-top:0px;font-size:25px;"><asp:Literal ID="lblInfo1" runat="server"></asp:Literal> </span> 
+            <span style="padding-left: 0px; padding-top: 0px; font-size: 25px;">
+                <asp:Literal ID="lblInfo1" runat="server"></asp:Literal>
+            </span>
             <div class="box_cont">
                 <div class="delim">
                 </div>
-                 
-                 
                 <div class="save">
                     <a>Save Facility</a></div>
                 <div class="add">
@@ -71,6 +71,9 @@
                 </div>
                 <div class="spaser">
                 </div>
+                <div style="float: right;">
+                    <asp:CheckBox runat="server" ID="chkActive" AutoPostBack="True" Text="Active employees only"
+                        OnCheckedChanged="chkActive_CheckedChanged" Checked="True" /></div>
                 <%--<div class="edit_facility">
                     <fieldset id="FACILITY_FORM">
                         <div>
