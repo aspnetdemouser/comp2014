@@ -197,6 +197,7 @@ public partial class AssignTraining : System.Web.UI.Page
     }
     protected void dlstTraining_SelectedIndexChanged(object sender, EventArgs e)
     {
+        lbltxt.Text = "";
         GetUsersForAssignTraining();
         GetEmployeesUnderCourse();
     }

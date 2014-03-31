@@ -11,7 +11,7 @@ namespace BLCompliance
     public class BLManageFacility
     {
 
-        public static Result GetEmployees(int facility_id, string lastNameToSearch, out List<BLCompliance.Model.employee> employeeList)
+        public static Result GetEmployees(int facility_id, string lastNameToSearch, bool isActiveOnly, out List<BLCompliance.Model.employee> employeeList)
         {
             employeeList = new List<Model.employee>();
             Result result = new Result(0, false, "get employee fails");
@@ -20,7 +20,7 @@ namespace BLCompliance
 
             try
             {
-                SqlParameter[] prms = new SqlParameter[2];
+                SqlParameter[] prms = new SqlParameter[3];
                 prms[0] = new SqlParameter("@facility_id", SqlDbType.Int);
                 if (facility_id > 0)
                 {
@@ -33,7 +33,7 @@ namespace BLCompliance
 
 
                 prms[1] = new SqlParameter("@lastname", SqlDbType.VarChar);
-                if (lastNameToSearch.Trim() !="")
+                if (lastNameToSearch.Trim() != "")
                 {
                     prms[1].Value = lastNameToSearch;
                 }
@@ -41,6 +41,10 @@ namespace BLCompliance
                 {
                     prms[1].Value = System.DBNull.Value;
                 }
+
+                prms[2] = new SqlParameter("@is_active_only", SqlDbType.Bit);
+                prms[2].Value = isActiveOnly;
+
 
 
                 ds = CData.ExecuteDataset(CommandType.StoredProcedure, "sp_comp_tbl_employees_GetAll", prms);
@@ -397,7 +401,8 @@ namespace BLCompliance
                           new SqlParameter("@licence_expiry", SqlDbType.DateTime) { Value = employee.Licence_Expiry },
                           new SqlParameter("@date_last_exclusion_check", SqlDbType.DateTime) { Value = employee.DateLastExclusionCheck },
                           new SqlParameter("@update_by", SqlDbType.Int) { Value = employee.create_by },
-                          new SqlParameter("@is_active_record", SqlDbType.Bit) { Value = employee.IsActiveRecord }
+                          new SqlParameter("@is_active_record", SqlDbType.Bit) { Value = employee.IsActiveRecord },
+                          new SqlParameter("@is_deleted", SqlDbType.Bit) { Value = employee.IsDeleted }
                         };
 
                 employeeid = CData.ExecuteScalar(CommandType.StoredProcedure, "sp_comp_tbl_employees_Update", parameters);

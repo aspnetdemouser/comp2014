@@ -106,11 +106,21 @@ public partial class employeeprofile : System.Web.UI.Page
             txtEmployeeType.Text = employee.EmployeeTypeText;
             lblCurrentPosition.Text = employee.Position;
             lblCurrentEmail.Text = employee.EmailAddress;
-            chkActive.Checked = employee.IsActiveRecord;
-            if (employee.IsActiveRecord)
-                lblActive.Text = "Yes";
+            if (employee.IsDeleted.HasValue)
+            {
+                chkActive.Checked = !employee.IsDeleted.Value;
+            }
             else
+            {
+                chkActive.Checked = employee.IsActiveRecord;
+            }
+
+            if (employee.IsDeleted.HasValue && employee.IsDeleted.Value == true)
                 lblActive.Text = "No";
+            else
+                lblActive.Text = "Yes";
+
+
             if (employee.DateOfHire.HasValue)
             {
                 try
@@ -221,8 +231,8 @@ public partial class employeeprofile : System.Web.UI.Page
                 objEmployee.EmployeeTypeText = txtEmployeeType.Text;
                 objEmployee.Position = txtposition.Text;
                 objEmployee.Licence_Number = txtLicenceNo.Text;
-                objEmployee.IsDeleted = false;
-                objEmployee.IsActiveRecord = chkActive.Checked;
+                objEmployee.IsDeleted = !chkActive.Checked;
+                objEmployee.IsActiveRecord = true;
 
                 if (!string.IsNullOrEmpty(txtLicenceExp.Text.ToString()))
                 {

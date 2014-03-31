@@ -62,35 +62,19 @@ public partial class manage_facility_employees : System.Web.UI.Page
     private void BindEmployees()
     {
         List<employee> employeeList = new List<employee>();
-        BLCompliance.BLManageFacility.GetEmployees(0, "", out employeeList);
-        if (chkActive.Checked)
-        {
-            gvEmployees.DataSource = employeeList.FindAll(p => p.IsActiveRecord == chkActive.Checked);
-        }
-        else
-        {
-            gvEmployees.DataSource = employeeList;
-        }
+        BLCompliance.BLManageFacility.GetEmployees(0, search_text.Text.Trim(), chkActive.Checked, out employeeList);
+        gvEmployees.DataSource = employeeList;
         gvEmployees.DataBind();
-
-
     }
 
     protected void btnSearchSubmit_Click(object sender, EventArgs e)
     {
         //search by last name
-
-        List<employee> employeeList = new List<employee>();
-        BLCompliance.BLManageFacility.GetEmployees(0, search_text.Text.Trim(), out employeeList);
-        if (chkActive.Checked)
-        {
-            gvEmployees.DataSource = employeeList.FindAll(p => p.IsActiveRecord == chkActive.Checked);
-        }
-        else
-        {
-            gvEmployees.DataSource = employeeList;
-        }
-        gvEmployees.DataBind();
+        BindEmployees();
+        //List<employee> employeeList = new List<employee>();
+        //BLCompliance.BLManageFacility.GetEmployees(0, search_text.Text.Trim(), chkActive.Checked, out employeeList);
+        //gvEmployees.DataSource = employeeList;
+        //gvEmployees.DataBind();
 
     }
 
@@ -172,6 +156,15 @@ public partial class manage_facility_employees : System.Web.UI.Page
     }
     protected void chkActive_CheckedChanged(object sender, EventArgs e)
     {
+        BindEmployees();
+    }
+    protected void gvEmployees_PageIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void gvEmployees_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvEmployees.PageIndex = e.NewPageIndex;
         BindEmployees();
     }
 }

@@ -29,20 +29,27 @@ public partial class login : System.Web.UI.Page
 
             if (employee != null && result.ResultCode == 1)
             {
-                Session["emp2014br2"] = employee;
-
-                //level 2 user
-                if (employee.EmployeeType == 2)
+                if (employee.IsDeleted == false)
                 {
-                    Response.Redirect("manage_facility_employees.aspx");
+                    Session["emp2014br2"] = employee;
+
+                    //level 2 user
+                    if (employee.EmployeeType == 2)
+                    {
+                        Response.Redirect("manage_facility_employees.aspx");
+                    }
+                    else
+                    {
+
+                        var bytes = Encoding.UTF8.GetBytes(employee.Id.ToString());
+                        var base64 = Convert.ToBase64String(bytes);
+                        Response.Redirect("employeeprofile.aspx?enc=" + base64);
+
+                    }
                 }
                 else
                 {
-
-                    var bytes = Encoding.UTF8.GetBytes(employee.Id.ToString());
-                    var base64 = Convert.ToBase64String(bytes);
-                    Response.Redirect("employeeprofile.aspx?enc=" + base64);
-
+                    lblErr.Visible = true;
                 }
             }
             else

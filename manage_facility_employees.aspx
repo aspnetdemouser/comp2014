@@ -74,59 +74,27 @@
                 <div style="float: right;">
                     <asp:CheckBox runat="server" ID="chkActive" AutoPostBack="True" Text="Active employees only"
                         OnCheckedChanged="chkActive_CheckedChanged" Checked="True" /></div>
-                <%--<div class="edit_facility">
-                    <fieldset id="FACILITY_FORM">
-                        <div>
-                            <span>Facility Name</span><br />
-                            <span class="_picker" id="txtFacilityName" runat="server"></span>
-                        </div>
-                        <div>
-                            <span>Address Line 1</span><br />
-                            <span class="_picker" id="txtAddressLine1" runat="server"></span>
-                        </div>
-                        <div>
-                            <span>Address Line 2</span>
-                            <span class="_picker" id="txtAddressLine2" runat="server"></span>
-                        </div>
-                        <div>
-                            <span>City</span>
-                            <span class="_picker" id="txtCity" runat="server"></span>
-                        </div>
-                        <div class="st">
-                            <span>State</span>
-                            <span class="_picker" id="ddlState" runat="server"></span>
-                           
-                        </div>
-                        <div class="zip">
-                            <span>Zip Code</span>
-                             <span class="_picker" id="txtZipCode" runat="server"></span>
-                        </div>
-                        <div>
-                            <span>Telephone</span>
-                            <span class="_picker" id="txtPhone" runat="server"></span>
-                        </div>
-                        <div>
-                            <span>Fax</span>
-                            <span class="_picker" id="txtFax" runat="server"></span>
-                        </div>
-                        <div>
-                            <span>E-mail</span>
-                            <span class="_picker" id="txtEmail" runat="server"></span>
-                        </div>
-                        <div class="spacer" style="width: auto; float: none;">
-                        </div>
-                    </fieldset>
-                </div>--%>
+            
                 <div class="spaser">
                 </div>
-                <div class="jScrollPaneContainer" style="height: 360px; width: 944px;">
-                    <div id="scroll-list-small" class="employee_list" style="height: 360px; width: 944px;
-                        padding: 0px;">
+                <div class="jScrollPaneContainer"  style="margin-left:10px;margin-right:5px;margin-top:5px;">
+                    
                         <div class="spaser">
                         </div>
-                        <asp:GridView ID="gvEmployees" runat="server" AutoGenerateColumns="false" PageSize="25"
-                            AllowPaging="true" Width="100%" BorderStyle="None" OnRowDataBound="gvEmployees_RowDataBound"
-                            OnRowCommand="gvEmployees_RowCommand" DataKeyNames="Id">
+                        <asp:GridView ID="gvEmployees" runat="server" AutoGenerateColumns="false"
+                             PageSize="25"
+
+                            Width="100%" BorderStyle="None" OnRowDataBound="gvEmployees_RowDataBound"
+                            AllowPaging="true"
+                            OnRowCommand="gvEmployees_RowCommand" DataKeyNames="Id"
+                            PagerSettings-Mode="NextPreviousFirstLast"
+                            PagerSettings-Position="Top" PagerStyle-HorizontalAlign="Center" 
+                            PagerSettings-FirstPageText="First"
+                            PagerSettings-LastPageText="Last" 
+                            PagerSettings-NextPageText="Next"
+                            PagerSettings-PreviousPageText="Previous" 
+                            onpageindexchanged="gvEmployees_PageIndexChanged" onpageindexchanging="gvEmployees_PageIndexChanging"
+                            >
                             <HeaderStyle CssClass="Header1" />
                             <AlternatingRowStyle CssClass="gray" />
                             <Columns>
@@ -176,7 +144,7 @@
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
-                    </div>
+                    
                 </div>
                 <div class="spaser">
                 </div>
