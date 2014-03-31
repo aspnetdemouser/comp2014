@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.SqlClient;
+using BLCompliance.Model;
 
 namespace BLCompliance
 {
@@ -126,9 +127,6 @@ namespace BLCompliance
                     foreach (DataRow dr in ds.Tables[0].Rows)
                     {
                         Model.TraningCourseUsers user = new Model.TraningCourseUsers();
-
-
-
                         user.EmployeeId = int.Parse(dr["employeeid"].ToString());
                         user.CourseId = int.Parse(dr["course_id"].ToString());
 
@@ -169,7 +167,7 @@ namespace BLCompliance
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
             return result;
         }
@@ -210,6 +208,85 @@ namespace BLCompliance
             return result;
         }
 
+        public static Result UnAssignUserToCourse(int courseId, int employeeId, int user_by)
+        {
+            Result result = new Result(0, false, "Failed Assign User To Course");
+            try
+            {
+
+                SqlParameter[] prms = new SqlParameter[2];
+
+                prms[0] = new SqlParameter("@count_id", SqlDbType.Int);
+                prms[0].Value = courseId;
+
+                prms[1] = new SqlParameter("@emp_id", SqlDbType.Int);
+                prms[1].Value = employeeId;
+
+                CData.ExecuteNonQuery(CommandType.StoredProcedure, "sp_compliance_remove_assignments_from_course", prms);
+                result.ResultCode = 1;
+                result.ResultMessage = "Success";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public static Result GetEmployeesUnderCourse(int courseId, out List<BLCompliance.Model.TraningCourseUsers> assignedUsers)
+        {
+            Result result = new Result(0, false, "GetEmployeesUnderCourse");
+            assignedUsers = new List<TraningCourseUsers>();
+            try
+            {
+                SqlParameter[] prms = new SqlParameter[1];
+                prms[0] = new SqlParameter("@course_id", SqlDbType.Int);
+                prms[0].Value = courseId;
+
+                DataSet ds = CData.ExecuteDataset(CommandType.StoredProcedure, "sp_compliance_get_employees_under_course", prms);
+                if (ds != null && ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        Model.TraningCourseUsers user = new Model.TraningCourseUsers();
+                        user.EmployeeId = int.Parse(dr["employeeid"].ToString());
+                        user.CourseId = int.Parse(dr["course_id"].ToString());
+
+                        string colName = "firstname";
+
+                        if (!CheckNullOrBlank(dr, colName))
+                            user.EmployeeName = dr[colName].ToString();
+
+                        colName = "facility_id";
+                        if (!CheckNullOrBlank(dr, colName))
+                            user.FacilityId = int.Parse(dr[colName].ToString());
+
+                        colName = "lastname";
+                        if (!CheckNullOrBlank(dr, colName))
+                            user.EmployeeName = user.EmployeeName + " " + dr[colName].ToString();
+
+                        colName = "course_name";
+                        if (!CheckNullOrBlank(dr, colName))
+                            user.CourseName = dr[colName].ToString();
+
+                        colName = "email_address";
+                        if (!CheckNullOrBlank(dr, colName))
+                            user.EmailAddress = dr[colName].ToString();
+
+                        assignedUsers.Add(user);
+                    }
+                }
+
+                result.ResultCode = 1;
+                result.ResultMessage = "Success";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
         private static bool CheckNullOrBlank(DataRow dr, string ColName)
         {
             if (dr[ColName] == System.DBNull.Value)
@@ -236,7 +313,7 @@ namespace BLCompliance
         /// <param name="employeeId"></param>
         /// <param name="myTrainingAssignments"></param>
         /// <returns></returns>
-        public static Result GetMyTrainingAssignmetns (int employeeId, out List<BLCompliance.Model.TraningCourseUsers> myTrainingAssignments)
+        public static Result GetMyTrainingAssignmetns(int employeeId, out List<BLCompliance.Model.TraningCourseUsers> myTrainingAssignments)
         {
             myTrainingAssignments = new List<Model.TraningCourseUsers>();
             Result result = new Result(0, false, "GetMyTrainingAssignmetns");
@@ -245,7 +322,7 @@ namespace BLCompliance
 
             try
             {
-                
+
                 SqlParameter[] prms = new SqlParameter[1];
                 prms[0] = new SqlParameter("@emp_id", SqlDbType.Int);
                 prms[0].Value = employeeId;
@@ -299,7 +376,7 @@ namespace BLCompliance
                 SqlParameter[] prms = new SqlParameter[1];
                 prms[0] = new SqlParameter("@created_by", SqlDbType.Int);
                 prms[0].Value = employeeId;
-                
+
                 ds = CData.ExecuteDataset(CommandType.StoredProcedure, "sp_comp_get_training_assigments_to_manage", prms);
 
                 if (ds != null && ds.Tables[0].Rows.Count > 0)

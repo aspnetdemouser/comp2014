@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Web;
 using System.Web.UI.WebControls;
+using BLCompliance;
 using BLCompliance.Model;
 
 public partial class AssignTraining : System.Web.UI.Page
@@ -13,22 +15,22 @@ public partial class AssignTraining : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            GetCources();
+            GetAllActiveTraining();
         }
     }
 
     /// <summary>
     /// Method for get cource list.
     /// </summary>
-    private void GetCources()
+    private void GetAllActiveTraining()
     {
         List<TrainingCourse> courses;
         BLCompliance.BLTrainingCourses.GetAllActiveTrainingCourses(out courses);
-        ListBox1.DataSource = courses;
-        ListBox1.DataTextField = "course_title";
-        ListBox1.DataValueField = "course_id";
-        ListBox1.DataBind();
-
+        dlstTraining.DataSource = courses;
+        dlstTraining.DataTextField = "course_title";
+        dlstTraining.DataValueField = "course_id";
+        dlstTraining.DataBind();
+        dlstTraining.Items.Insert(0, new ListItem("-- Select --", "0"));
     }
 
     /// <summary>
@@ -139,6 +141,73 @@ public partial class AssignTraining : System.Web.UI.Page
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
+        var courseId = Convert.ToInt32(dlstTraining.SelectedValue);
 
+
+
+        if (courseId > 0)
+        {
+            foreach (ListItem itm2 in ListBox2.Items)
+            {
+                var empLoggedIn = HttpContext.Current.Session["emp2014br2"] as employee;
+                BLTrainingCourses.AssignUserToCourse(courseId, Convert.ToInt32(itm2.Value), empLoggedIn.Id);
+            }
+
+            foreach (ListItem itm1 in ListBox1.Items)
+            {
+                var empLoggedIn = HttpContext.Current.Session["emp2014br2"] as employee;
+                BLTrainingCourses.UnAssignUserToCourse(courseId, Convert.ToInt32(itm1.Value), empLoggedIn.Id);
+            }
+
+            ListBox1.Items.Clear();
+            ListBox2.Items.Clear();
+            dlstTraining.SelectedIndex = 0;
+        }
+        else
+        {
+            lbltxt.Visible = true;
+            lbltxt.Text = "Please select atleast one training and user.";
+        }
+    }
+    protected void dlstTraining_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        GetUsersForAssignTraining();
+        GetEmployeesUnderCourse();
+    }
+
+    private void GetUsersForAssignTraining()
+    {
+        var selectedId = Convert.ToInt32(dlstTraining.SelectedValue);
+        if (selectedId > 0)
+        {
+            List<TraningCourseUsers> users;
+            BLCompliance.BLTrainingCourses.GetUnAssingedUserList(selectedId, out users);
+            ListBox1.DataSource = users;
+            ListBox1.DataTextField = "EmployeeName";
+            ListBox1.DataValueField = "EmployeeId";
+            ListBox1.DataBind();
+        }
+        else
+        {
+            ListBox1.Items.Clear();
+        }
+    }
+
+    private void GetEmployeesUnderCourse()
+    {
+        var selectedId = Convert.ToInt32(dlstTraining.SelectedValue);
+        if (selectedId > 0)
+        {
+            List<TraningCourseUsers> users;
+            BLCompliance.BLTrainingCourses.GetEmployeesUnderCourse(selectedId, out users);
+            ListBox2.DataSource = users;
+            ListBox2.DataTextField = "EmployeeName";
+            ListBox2.DataValueField = "EmployeeId";
+            ListBox2.DataBind();
+        }
+        else
+        {
+            ListBox2.Items.Clear();
+        }
     }
 }

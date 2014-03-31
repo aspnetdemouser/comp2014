@@ -5,17 +5,24 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="content">
+        <div>
+            <span>Select training :</span>
+            <asp:DropDownList ID="dlstTraining" runat="server" CssClass="mandatory" 
+                size="1" Style="width: 100px;" 
+                onselectedindexchanged="dlstTraining_SelectedIndexChanged" AutoPostBack="True">
+            </asp:DropDownList>
+        </div>
         <table>
             <tr>
                 <td style="float: right; font-size: 15px; font-family: Arial,Helvetica,sans-serif;
                     font-weight: normal;">
-                    Choose cource
+                    Choose user
                 </td>
                 <td>
                 </td>
                 <td style="float: right; font-size: 15px; font-family: Arial,Helvetica,sans-serif;
                     font-weight: normal;">
-                    Selected cource
+                    Selected user
                 </td>
             </tr>
             <tr>
@@ -44,7 +51,7 @@
             </tr>
             <tr>
                 <td colspan="3" align="center">
-                    <asp:Button ID="btnSave" runat="server" Text="Save" onclick="btnSave_Click" />
+                    <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />
                 </td>
             </tr>
         </table>
