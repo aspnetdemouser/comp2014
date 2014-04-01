@@ -63,7 +63,14 @@ public partial class manage_facility_employees : System.Web.UI.Page
     {
         List<employee> employeeList = new List<employee>();
         BLCompliance.BLManageFacility.GetEmployees(0, "", out employeeList);
-        gvEmployees.DataSource = employeeList;
+        if (chkActive.Checked)
+        {
+            gvEmployees.DataSource = employeeList.FindAll(p => p.IsActiveRecord == chkActive.Checked);
+        }
+        else
+        {
+            gvEmployees.DataSource = employeeList;
+        }
         gvEmployees.DataBind();
 
 
@@ -75,7 +82,14 @@ public partial class manage_facility_employees : System.Web.UI.Page
 
         List<employee> employeeList = new List<employee>();
         BLCompliance.BLManageFacility.GetEmployees(0, search_text.Text.Trim(), out employeeList);
-        gvEmployees.DataSource = employeeList;
+        if (chkActive.Checked)
+        {
+            gvEmployees.DataSource = employeeList.FindAll(p => p.IsActiveRecord == chkActive.Checked);
+        }
+        else
+        {
+            gvEmployees.DataSource = employeeList;
+        }
         gvEmployees.DataBind();
 
     }
@@ -155,5 +169,9 @@ public partial class manage_facility_employees : System.Web.UI.Page
         search_text.Text = string.Empty;
         BindEmployees();
 
+    }
+    protected void chkActive_CheckedChanged(object sender, EventArgs e)
+    {
+        BindEmployees();
     }
 }
