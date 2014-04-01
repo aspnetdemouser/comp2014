@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.master" AutoEventWireup="true"
-    CodeFile="manage_facility_employees.aspx.cs" Inherits="manage_facility_employees" %>
+﻿<%@ page title="" language="C#" masterpagefile="~/main.master" CodeFile="manage_facility_employees.aspx.cs"  autoeventwireup="true" inherits="manage_facility_employees" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script language="javascript" type="text/javascript">
@@ -48,12 +47,11 @@
             <div class="box_cont">
                 <div class="delim">
                 </div>
-                <div class="save">
-                    <a>Save Facility</a></div>
+                
                 <div class="add">
                     <a href="employeeprofile.aspx">Add Employee</a></div>
                 <div class="remove">
-                    <asp:LinkButton runat="server" ID="imgRemoveEmp" Text="Deactivate Selected Employees"
+                    <asp:LinkButton runat="server" ID="imgRemoveEmp" Text="Deactivate Selected Employees" 
                         CssClass="RemoveEmployee" OnClientClick="return confirm(&#39;Are you sure you want to inactive this user?&#39;);"
                         OnClick="imgRemoveEmp_Click"></asp:LinkButton>
                     <%--<a href="http://compliance.dev.webstores.net/acc_bo/?section=facilities_employees_officer#"
@@ -62,7 +60,7 @@
                 <div class="print">
                     <a href="">Print</a></div>
                 <div class="search_form">
-                    <asp:TextBox ID="search_text" runat="server" ToolTip="Enter your search criteria here"
+                    <asp:TextBox ID="search_text" runat="server" ToolTip="Enter your search criteria here" PlaceHolder ="Enter last name to search"
                         class="on_focus_replace" MaxLength="255" align="absmiddle" size="40" onblur="javascript:WaterMark(this, event);"
                         onfocus="javascript:WaterMark(this, event);"></asp:TextBox>
                     <asp:Button ID="btnSearchSubmit" runat="server" Text=" " CssClass="find" OnClick="btnSearchSubmit_Click" />&nbsp;<asp:ImageButton
@@ -71,7 +69,7 @@
                 </div>
                 <div class="spaser">
                 </div>
-                <div style="float: right;">
+                <div style="float: left;margin-left:22px;">
                     <asp:CheckBox runat="server" ID="chkActive" AutoPostBack="True" Text="Active employees only"
                         OnCheckedChanged="chkActive_CheckedChanged" Checked="True" /></div>
             

@@ -1,5 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.master" AutoEventWireup="true"
-    CodeFile="employeeprofile.aspx.cs" Inherits="employeeprofile" MaintainScrollPositionOnPostback="true" %>
+﻿<%@ page title="" language="C#" masterpagefile="~/main.master" CodeFile="employeeprofile.aspx.cs" autoeventwireup="true" inherits="employeeprofile" 
+maintainscrollpositiononpostback="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
@@ -155,9 +155,9 @@
                 </div>
                 <br />
                 <div class="form_block Sign_In_Information Sign_In_Information_acc">
-                    <div class="title" style="text-align:left;margin-left: 57px;">1. Sign In Information</div>
+                    <div class="title" style="text-align:left;margin-left: 58px;">1. Sign In Information</div>
                     <div>
-                        <span>Username:<b class="madatorystar">*</b></span>
+                        <span>User Name:<b class="madatorystar">*</b></span>
                         <asp:TextBox ID="txtemailaddress" name="txtemailaddress" runat="server" autocomplete="off"
                             MaxLength="250" CssClass="mandatory" size="30"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="req1" ValidationGroup="emploeeprofile" runat="server"
@@ -179,7 +179,7 @@
                     </div>
                     <br>
                     <br>
-                    <div class="title" style="text-align: left; margin-left: 57px;">2. Additional Information</div>
+                    <div class="title" style="text-align: left; margin-left: 58px;">2. Additional Information</div>
                     <div>
                         <span>Job Title<b class="madatorystar">*</b>:</span>
                         <asp:TextBox ID="txtposition" runat="server" size="30" MaxLength="200" autocomplete="off"
@@ -225,7 +225,7 @@
                     </div>
                 </div>
                 <div class="form_block Personal_Information Personal_Information_acc">
-                   <div class="title" style="text-align: left; margin-left: 7px;">3. Contact Information</div>
+                   <div class="title" style="text-align: left; margin-left: -4px;">3. Contact Information</div>
                     <div>
                         <span>First Name<b class="madatorystar">*</b>:</span>
                         <asp:TextBox ID="txtFNAME" runat="server" size="30" MaxLength="50" autocomplete="off"
