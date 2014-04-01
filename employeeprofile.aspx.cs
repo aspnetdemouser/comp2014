@@ -171,7 +171,7 @@ public partial class employeeprofile : System.Web.UI.Page
             txtPHONE.Text = contactInfo.TelePhone;
             lblCurrentPhone.Text = contactInfo.TelePhone;
             lblCurrentFax.Text = contactInfo.FaxNumber;
-            txtFAX.Text = contactInfo.FaxNumber;
+            //txtFAX.Text = contactInfo.FaxNumber;
             
         }
 
@@ -279,7 +279,7 @@ public partial class employeeprofile : System.Web.UI.Page
                 objcont.EmployeeId = GetSelectedEmployeeId();
                 objcont.LastName = txtLNAME.Text;
                 objcont.FirstName = txtFNAME.Text;
-                objcont.FaxNumber = txtFAX.Text;
+                objcont.FaxNumber = string.Empty;
                 objcont.AddressLine1 = txtADDR1.Text;
                 objcont.AddressLine2 = txtADDR2.Text;
                 objcont.City = txtCITY.Text;
@@ -471,7 +471,7 @@ public partial class employeeprofile : System.Web.UI.Page
                 objContactInfo.EmployeeId = Objemployee.Id;
                 objContactInfo.LastName = txtLNAME.Text;
                 objContactInfo.FirstName = txtFNAME.Text;
-                objContactInfo.FaxNumber = txtFAX.Text;
+                objContactInfo.FaxNumber = string.Empty;
                 objContactInfo.AddressLine1 = txtADDR1.Text;
                 objContactInfo.AddressLine2 = txtADDR2.Text;
                 objContactInfo.City = txtCITY.Text;

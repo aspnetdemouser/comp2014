@@ -93,7 +93,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="gray_box profile_gray_box profile_gray_box_officers">
+    <div class="gray_box profile_gray_box profile_gray_box_officers_profile">
         <div class="box_title" id="divAddNewEmployeeTitle" runat="server">
             <h2>
                 Add Employee Profile</h2>
@@ -157,9 +157,9 @@
                 <div class="form_block Sign_In_Information Sign_In_Information_acc">
                     <div class="title" style="text-align:left;margin-left: 57px;">1. Sign In Information</div>
                     <div>
-                        <span>E-mail:<b class="madatorystar">*</b></span>
+                        <span>Username:<b class="madatorystar">*</b></span>
                         <asp:TextBox ID="txtemailaddress" name="txtemailaddress" runat="server" autocomplete="off"
-                            MaxLength="250" CssClass="mandatory email validateemail" size="30"></asp:TextBox>
+                            MaxLength="250" CssClass="mandatory" size="30"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="req1" ValidationGroup="emploeeprofile" runat="server"
                             Display="None" ErrorMessage="" ControlToValidate="txtemailaddress"></asp:RequiredFieldValidator>
                     </div>
@@ -317,7 +317,7 @@
                     </div>
                     <div>
                         <span>Zip Code:</span>
-                        <asp:TextBox ID="txtZIPCODE" runat="server" size="4" MaxLength="10" autocomplete="off"
+                        <asp:TextBox ID="txtZIPCODE" runat="server" size="8" MaxLength="10" autocomplete="off"
                             CssClass="_picker"></asp:TextBox>
                     </div>
                     <div>
@@ -325,11 +325,11 @@
                         <asp:TextBox ID="txtPHONE" runat="server" size="30" MaxLength="50" autocomplete="off"
                             CssClass="_picker"></asp:TextBox>
                     </div>
-                    <div>
+                  <%--  <div>
                         <span>Fax:</span>
                         <asp:TextBox ID="txtFAX" runat="server" size="30" MaxLength="50" autocomplete="off"
                             CssClass="_picker"></asp:TextBox>
-                    </div>
+                    </div>--%>
                     <div style="text-align: left;">
                         <span>Active :
                             <asp:Label runat="server" ID="lblActive" Style="margin-top: 0px; margin-left: 7px;"></asp:Label></span>

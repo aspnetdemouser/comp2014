@@ -1733,6 +1733,11 @@ width: 62px;
 .profile_gray_box_officers
 {
 	height: 800px;
+	
+}
+.profile_gray_box_officers_profile
+{
+	height: 100%;
 }
 .profile_gray_box .box_title H2
 {

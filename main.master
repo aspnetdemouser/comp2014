@@ -15,12 +15,10 @@
     <link href="CSS/comments.css" type="text/css" rel="stylesheet" />
     <link rel="STYLESHEET" type="text/css" href="CSS/main_index.css" />
     <link rel="STYLESHEET" type="text/css" href="CSS/extra.css" />
-
     <!--Old JS functions for backword compatibility-->
     <script src="JS/functions.js" type="text/javascript" language="javascript"></script>
     <script src="JS/AJAX.js" type="text/javascript" language="javascript"></script>
     <%--<script src="JS/jquery.min.js" type="text/javascript" language="javascript"></script>--%>
-
     <!--Jquery UI Core (used for dialogs)-->
     <script src="JS/jquery-ui.min.js" type="text/javascript" language="javascript"></script>
     <script src="JS/jquery.extends.js" type="text/javascript" language="javascript"></script>
@@ -77,7 +75,6 @@
                     <div class="spaser" style="height: 1px;">
                     </div>
                     <div class="logo">
-                        <a href="http://www.google.com/"></a>
                     </div>
                     <!--Main search div starts here-->
                     <div class="header_search">
@@ -85,14 +82,15 @@
                         </div>
                         <div class="top_welcome">
                             Welcome
-                            <asp:Literal ID="lblFacilityName" runat="server"></asp:Literal> 
-                            - Officer <asp:Literal ID="lblEmpName" runat="server"></asp:Literal>
+                            <asp:Literal ID="lblFacilityName" runat="server"></asp:Literal>
+                            - Officer
+                            <asp:Literal ID="lblEmpName" runat="server"></asp:Literal>
                             !
                         </div>
                         <ul class="top_icons">
                             <li class=""><a href="#">Inbox</a></li>
-                            <li class=""><asp:LinkButton runat="server" ID="lnkProfileC" 
-                                    onclick="lnkProfileC_Click">Profile</asp:LinkButton></li>
+                            <li class="">
+                                <asp:LinkButton runat="server" ID="lnkProfileC" OnClick="lnkProfileC_Click">Profile</asp:LinkButton></li>
                             <li><a href="#">Help</a></li>
                             <li class="logout"><a class="after_logout_return" href="logout.aspx">Logout</a></li>
                         </ul>
@@ -103,7 +101,8 @@
                             <li class="" style="z-index: 20;"><a href="#">Tracking</a></li>
                             <li class="" style="z-index: 20;"><a href="ManageTraining.aspx">Training</a></li>
                             <li class="" style="z-index: 20;"><a href="#">Library</a></li>
-                            <li class="last	sel" style="z-index: 20;"><a href="manage_facility_employees.aspx">Facility Employees</a></li>
+                            <li class="last	sel" style="z-index: 20;"><a href="manage_facility_employees.aspx">
+                                Facility Employees</a></li>
                         </ul>
                     </div>
                     <div class="spaser">

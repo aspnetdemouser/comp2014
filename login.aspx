@@ -15,19 +15,19 @@
                 Please Log In</h2>
             <form id="login_form" name="login_form">
             <div align="center" runat="server" id="lblErr" visible="false" class="error_mess">
-                You've entered wrong login (e-mail) or password. Please try again</div>
+                You've entered wrong login (user name) or password. Please try again</div>
             <div align="center" class="form_err_message error_mess">
                 <br/>
-                <span class="form_email_error">Value entered for e-mail is invalid<br/>
+                <span class="form_email_error">Value entered for user name is invalid<br/>
                 </span><span class="form_password_error">Passwords don't match !<br/>
                 </span><span class="form_mandatory_error">Please fill up missing fields below</span>
             </div>
             <div class="form_block login_form">
                 <div class="email">
-                    <span>E-mail:<b class="madatorystar">*</b></span>
-                    <asp:TextBox ID="txtEmail" runat="server" MaxLength="255" size="25" CssClass="mandatory email validateemail"></asp:TextBox>
+                    <span>User name:<b class="madatorystar">*</b></span>
+                    <asp:TextBox ID="txtEmail" runat="server" MaxLength="255" size="25" CssClass="mandatory"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="validateEmail" ControlToValidate="txtEmail" runat="server"
-                        ValidationGroup="login" Display="Dynamic" ErrorMessage="Email is required"></asp:RequiredFieldValidator>
+                        ValidationGroup="login" Display="Dynamic" ErrorMessage="Username is required"></asp:RequiredFieldValidator>
                 </div>
                 <div class="pass">
                     <span>Password:<b class="madatorystar">*</b></span>
