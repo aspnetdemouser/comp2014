@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.master" CodeFile="employeeprofile.aspx.cs"
-    AutoEventWireup="true" Inherits="employeeprofile" MaintainScrollPositionOnPostback="true" %>
+    AutoEventWireup="true" Inherits="employeeprofile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
@@ -32,18 +32,7 @@
 
             var msg = '';
 
-
-            /*check email by css */
-            if ($(".validateemail").length) {
-                email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-                $(".validateemail").each(function () {
-                    if (($(this).val() != '') && !email_filter.test($(this).val())) {
-                        $(this).addClass('mandatory_selected');
-                        if (msg == '')
-                            msg = 'Entered e-mail is wrong';
-                    }
-                });
-            }
+                   
 
 
             $(".profile").find(".form_err_message SPAN.form_email_error").hide();
@@ -100,20 +89,19 @@
         </div>
         <div class="box_title" id="divOfficerInfo" runat="server">
             <h2>
-                <asp:Label ID="lblProfile" runat="server"></asp:Label>
-                <asp:Literal ID="lblCurrentOfficerName" runat="server"></asp:Literal>
+                <asp:Label ID="lblProfile" runat="server" style="font-size:25px; !important"></asp:Label>
             </h2>
-            <br/>
+            <br />
             <div class="form_block carrent_acc">
-                <div class="title" align="center" style="height:100% !important">
-                    <asp:Literal ID="lblCurrentFullName2" runat="server"></asp:Literal></div>
+                <div class="title" align="center">
+                    <span id="namespan" runat="server" style="text-transform: capitalize"></span>
+                </div>
                 <div class="spaser">
                 </div>
             </div>
         </div>
         <div class="box_cont">
             <div class="profile">
-                <%--<form id="profile_form" name="profile_form" action="#">--%>
                 <div align="center" class="form_err_message error_mess">
                     <br />
                     <span class="form_email_error">Value entered for e-mail is invalid<br />
@@ -121,21 +109,21 @@
                         don't match!<br />
                     </span><span class="form_mandatory_error">Please fill up missing fields below</span>
                 </div>
+                <div style="float:right;margin-top:20px;">
+                    <span></span>
+                    <asp:Label ID="lblErr" runat="server" CssClass="error_mess" Style="width: 300px;"></asp:Label>
+                </div>
                 <br />
                 <div class="form_block Sign_In_Information Sign_In_Information_acc">
                     <div class="title" style="text-align: left; margin-left: 58px;">
                         1. Sign In Information</div>
                     <div>
-                        <span>User Name:<b class="madatorystar">*</b>
-                            <p style="margin-left:240px;width:300px;vertical-align: top;">
-                        <asp:HyperLink ID="lnkActions" runat="server" Text="Disciplinary Actions"></asp:HyperLink>
-                        </p>
-                        </span>
+                        <span>User Name:<b class="madatorystar">*</b> <b style="position: absolute; margin-left: 200px;
+                            width: 300px; vertical-align: top;">
+                            <asp:HyperLink ID="lnkActions" runat="server" Text="Disciplinary Actions"></asp:HyperLink>
+                        </b></span>
                         <asp:TextBox ID="txtemailaddress" name="txtemailaddress" runat="server" autocomplete="off"
                             MaxLength="250" CssClass="mandatory" size="30"></asp:TextBox>
-                        
-                    
-                        
                         <asp:RequiredFieldValidator ID="req1" ValidationGroup="emploeeprofile" runat="server"
                             Display="None" ErrorMessage="" ControlToValidate="txtemailaddress"></asp:RequiredFieldValidator>
                     </div>
@@ -322,7 +310,6 @@
                             Style="font-size: 15px; padding: 2px 15px;" OnClick="btnEmpCreatInformation_Click" />
                         <asp:Button runat="server" ID="btnEmpUpdateInformation" Text="Update Profile" CssClass="submit_button_new"
                             Style="font-size: 15px; padding: 2px 15px;" OnClick="btnEmpUpdateInformation_Click" />
-                        <asp:Label ID="lblErr" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="Medium"></asp:Label>
                     </center>
                 </div>
                 <div class="spaser">

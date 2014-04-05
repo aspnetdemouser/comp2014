@@ -53,7 +53,7 @@
                     </div>
                     <span style="font-size: 28px; font-weight: normal; color: #CECECE; margin-left: 310px;">
                         Training Assignments</span>
-                    <asp:GridView ID="gvTraining" runat="server" AutoGenerateColumns="false" PageSize="25"
+                    <asp:GridView ID="gvTraining" runat="server" AutoGenerateColumns="false" PageSize="15"
                         HorizontalAlign="Right" AllowPaging="true" Width="100%" BorderStyle="None" PagerSettings-Mode="NextPreviousFirstLast"
                         PagerSettings-Position="Top" PagerStyle-HorizontalAlign="Center" DataKeyNames="TrainingAssignmentId"
                         AlternatingRowStyle-CssClass="gray" OnRowDataBound="gvTraining_RowDataBound"

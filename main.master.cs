@@ -14,8 +14,35 @@ public partial class main : System.Web.UI.MasterPage
     {
         if (Session["emp2014br2"] != null)
         {
+
             employee employee = Session["emp2014br2"] as employee;
             SetFacilityInfo(employee);
+        }
+    }
+
+    public string fs_selected
+    {
+        get
+        {
+           return hdnFS.Value;
+        }
+
+        set
+        {
+            hdnFS.Value = value;
+        }
+    }
+
+    public string ts_selected
+    {
+        get
+        {
+            return hdnTS.Value;
+        }
+
+        set
+        {
+            hdnTS.Value = value;
         }
     }
 
@@ -28,7 +55,7 @@ public partial class main : System.Web.UI.MasterPage
         {
             lblEmpName.Text = contactInfo.FirstName;
         }
-       
+
     }
     protected void lnkProfileC_Click(object sender, EventArgs e)
     {

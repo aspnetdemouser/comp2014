@@ -9,6 +9,20 @@ using BLCompliance.Model;
 
 public partial class ManageTraining : System.Web.UI.Page
 {
+    protected void Page_PreInit(object sender, EventArgs e)
+    {
+
+        Control ht = this.Master.FindControl("hdnTS");
+        if (ht != null)
+        {
+            if (ht is HiddenField)
+            {
+                HiddenField ht1 = ht as HiddenField;
+                ht1.Value = "sel";
+            }
+        }
+
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["emp2014br2"] == null) // if logged in

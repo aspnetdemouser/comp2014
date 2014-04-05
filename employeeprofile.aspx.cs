@@ -28,12 +28,13 @@ public partial class employeeprofile : System.Web.UI.Page
                 if (loginEmp.EmployeeType == 2)
                 {
                     isLevel2 = true;
-                    lblActive.Visible = false;                    
+                    lblActive.Visible = false;
                     chkActive.Visible = true;
                     lblProfile.Text = "Employee Profile";
                 }
                 else
                 {
+                    lnkActions.Visible = false;
                     lblActive.Visible = true;
                     lblActive.Text = "Yes";
                     chkActive.Visible = false;
@@ -66,7 +67,7 @@ public partial class employeeprofile : System.Web.UI.Page
             }
         }
     }
-
+   
     protected void Page_PreInit(object sender, EventArgs e)
     {
         employee loginEmp = null;
@@ -81,6 +82,15 @@ public partial class employeeprofile : System.Web.UI.Page
         else
         {
             this.Page.MasterPageFile = "~/main.master";
+        }
+        Control hf = this.Master.FindControl("hdnFS");
+        if (hf != null)
+        {
+            if (hf is HiddenField)
+            {
+                HiddenField hf1 = hf as HiddenField;
+                hf1.Value = "sel";
+            }
         }
     }
     protected void LoadData(int EmpId, bool isLevel2)
@@ -106,7 +116,7 @@ public partial class employeeprofile : System.Web.UI.Page
             txtposition.Text = employee.Position;
             txtEmployeeType.Text = employee.EmployeeTypeText;
             //lblCurrentPosition.Text = employee.Position;
-          //  lblCurrentEmail.Text = employee.EmailAddress;
+            //  lblCurrentEmail.Text = employee.EmailAddress;
             if (employee.IsDeleted.HasValue)
             {
                 chkActive.Checked = !employee.IsDeleted.Value;
@@ -171,8 +181,8 @@ public partial class employeeprofile : System.Web.UI.Page
             ViewState["ContactInfoId"] = contactInfo.ContactInfoId;
             txtFNAME.Text = contactInfo.FirstName;
             txtLNAME.Text = contactInfo.LastName;
-            lblCurrentFullName2.Text =  contactInfo.FirstName  + " " + contactInfo.LastName;
-            //lblCurrentFullName.Text = contactInfo.FirstName + " " + contactInfo.LastName;
+            namespan.InnerHtml = contactInfo.FirstName + " " + contactInfo.LastName;
+
             txtADDR1.Text = contactInfo.AddressLine1;
             txtADDR2.Text = contactInfo.AddressLine2;
             //lblCurrentAddress.Text = contactInfo.AddressLine1 + " " + contactInfo.AddressLine2;
@@ -184,7 +194,7 @@ public partial class employeeprofile : System.Web.UI.Page
             //lblCurrentPhone.Text = contactInfo.TelePhone;
             //lblCurrentFax.Text = contactInfo.FaxNumber;
             //txtFAX.Text = contactInfo.FaxNumber;
-            
+
         }
 
 
@@ -226,7 +236,7 @@ public partial class employeeprofile : System.Web.UI.Page
                 }
 
                 BLCompliance.Model.employee objEmployee = new BLCompliance.Model.employee();
-                BLCompliance.Model.employee_contact_info objcont = new BLCompliance.Model.employee_contact_info();
+                BLCompliance.Model.employee_contact_info contactInformation = new BLCompliance.Model.employee_contact_info();
                 objEmployee.Id = GetSelectedEmployeeId();
                 objEmployee.EmailAddress = txtemailaddress.Text.Trim();
                 objEmployee.Password = txtpassword.Text;
@@ -283,34 +293,36 @@ public partial class employeeprofile : System.Web.UI.Page
                 //objemp.FacilityId = string.IsNullOrEmpty(Convert.ToString(Session[CommonConstants.CONST_SESSION_KEY_FACILITY_ID])) ? 0 : Convert.ToInt32(Session[CommonConstants.CONST_SESSION_KEY_FACILITY_ID]);
                 //objemp.create_by = string.IsNullOrEmpty(Convert.ToString(Session[CommonConstants.CONST_SESSION_KEY_EMPLOYEE_ID])) ? 0 : Convert.ToInt32(Session[CommonConstants.CONST_SESSION_KEY_EMPLOYEE_ID]);
                 objEmployee.FacilityId = ObjSessionEmp.FacilityId;
-                objEmployee.create_by = ObjSessionEmp.create_by;
+                objEmployee.create_by = ObjSessionEmp.Id;
+                objEmployee.update_by = ObjSessionEmp.Id;
 
                 BLCompliance.Model.employee Objemployee;
 
                 BLCompliance.Result resultEmpInfo = BLCompliance.BLManageFacility.UpdateEmployeeInfo(objEmployee, out Objemployee);
-                objcont.ContactInfoId = string.IsNullOrEmpty(Convert.ToString(ViewState["ContactInfoId"])) ? 0 : Convert.ToInt32(ViewState["ContactInfoId"]);
-                objcont.EmployeeId = GetSelectedEmployeeId();
-                objcont.LastName = txtLNAME.Text;
-                objcont.FirstName = txtFNAME.Text;
-                objcont.FaxNumber = string.Empty;
-                objcont.AddressLine1 = txtADDR1.Text;
-                objcont.AddressLine2 = txtADDR2.Text;
-                objcont.City = txtCITY.Text;
-                objcont.State = ddlState.SelectedValue;
-                objcont.ZipCode = txtZIPCODE.Text;
-                objcont.IsActiveRecord = true;
-                objcont.TelePhone = txtPHONE.Text;
-                objcont.create_by = ObjSessionEmp.create_by;
+                contactInformation.ContactInfoId = string.IsNullOrEmpty(Convert.ToString(ViewState["ContactInfoId"])) ? 0 : Convert.ToInt32(ViewState["ContactInfoId"]);
+                contactInformation.EmployeeId = GetSelectedEmployeeId();
+                contactInformation.LastName = txtLNAME.Text;
+                contactInformation.FirstName = txtFNAME.Text;
+                contactInformation.FaxNumber = string.Empty;
+                contactInformation.AddressLine1 = txtADDR1.Text;
+                contactInformation.AddressLine2 = txtADDR2.Text;
+                contactInformation.City = txtCITY.Text;
+                contactInformation.State = ddlState.SelectedValue;
+                contactInformation.ZipCode = txtZIPCODE.Text;
+                contactInformation.IsActiveRecord = true;
+                contactInformation.TelePhone = txtPHONE.Text;
+                contactInformation.create_by = ObjSessionEmp.Id;
+                contactInformation.update_by = ObjSessionEmp.Id;
+                
 
                 if (Objemployee != null && resultEmpInfo.ResultCode == 1)
                 {
                     BLCompliance.Model.employee_contact_info Objcontactinfo;
-                    BLCompliance.Result resultContactInfo = BLCompliance.BLContactInfo.UpdateContactInfo(objcont, out Objcontactinfo);
+                    BLCompliance.Result resultContactInfo = BLCompliance.BLContactInfo.UpdateContactInfo(contactInformation, out Objcontactinfo);
                     if (Objcontactinfo != null && resultContactInfo.ResultCode == 1)
                     {
                         lblErr.Text = "Information updated.";
-                        lblErr.ForeColor = System.Drawing.Color.WhiteSmoke;
-                        btnEmpUpdateInformation.Focus();
+                        lblErr.Focus();
                     }
                     else
                     {
@@ -414,6 +426,15 @@ public partial class employeeprofile : System.Web.UI.Page
                     return;
                 }
 
+                Result userNameChecking = BLCompliance.BLManageFacility.CheckUserNameIsValid(txtemailaddress.Text.Trim());
+                if (userNameChecking.ResultCode == 2)
+                {
+                    lblErr.Text = userNameChecking.ResultMessage;
+                    lblErr.Focus();
+                    return;
+                }
+
+
                 BLCompliance.Model.employee objEmployee = new BLCompliance.Model.employee();
                 BLCompliance.Model.employee_contact_info objContactInfo = new BLCompliance.Model.employee_contact_info();
                 objEmployee.EmailAddress = txtemailaddress.Text.Trim();
@@ -471,7 +492,7 @@ public partial class employeeprofile : System.Web.UI.Page
                 //objemp.FacilityId = string.IsNullOrEmpty(Convert.ToString(Session[CommonConstants.CONST_SESSION_KEY_FACILITY_ID])) ? 0 : Convert.ToInt32(Session[CommonConstants.CONST_SESSION_KEY_FACILITY_ID]);
                 //objemp.create_by = string.IsNullOrEmpty(Convert.ToString(Session[CommonConstants.CONST_SESSION_KEY_EMPLOYEE_ID])) ? 0 : Convert.ToInt32(Session[CommonConstants.CONST_SESSION_KEY_EMPLOYEE_ID]);
                 objEmployee.FacilityId = ObjSessionEmp.FacilityId;
-                objEmployee.create_by = ObjSessionEmp.create_by;
+                objEmployee.create_by = ObjSessionEmp.Id;
                 BLCompliance.Model.employee Objemployee;
                 BLCompliance.Result resultEmpInfo = BLCompliance.BLManageFacility.InsertEmployeeInfo(objEmployee, out Objemployee);
 
@@ -492,7 +513,7 @@ public partial class employeeprofile : System.Web.UI.Page
                 objContactInfo.ZipCode = txtZIPCODE.Text;
                 objContactInfo.IsActiveRecord = true;
                 objContactInfo.TelePhone = txtPHONE.Text;
-                objContactInfo.create_by = ObjSessionEmp.create_by;
+                objContactInfo.create_by = ObjSessionEmp.Id;
                 // objcont.create_by = string.IsNullOrEmpty(Convert.ToString(Session[CommonConstants.CONST_SESSION_KEY_EMPLOYEE_ID])) ? 0 : Convert.ToInt32(Session[CommonConstants.CONST_SESSION_KEY_EMPLOYEE_ID]);
 
                 if (Objemployee != null && resultEmpInfo.ResultCode == 1)

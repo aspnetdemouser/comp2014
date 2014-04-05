@@ -219,7 +219,7 @@ namespace BLCompliance
                           new SqlParameter("@zip_code", SqlDbType.VarChar) { Value = contactinfo.ZipCode },
                           new SqlParameter("@tele_phone", SqlDbType.VarChar) { Value = contactinfo.TelePhone },
                           new SqlParameter("@fax_number", SqlDbType.VarChar) { Value = contactinfo.FaxNumber },
-                          new SqlParameter("@update_by", SqlDbType.Int) { Value = contactinfo.create_by }
+                          new SqlParameter("@update_by", SqlDbType.Int) { Value = contactinfo.update_by }
                         };
 
                 Contactid = CData.ExecuteScalar(CommandType.StoredProcedure, "sp_comp_tbl_contact_info_Update", parameters);

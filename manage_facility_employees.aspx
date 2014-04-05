@@ -66,7 +66,7 @@
                         <div class="spaser">
                         </div>
                         <asp:GridView ID="gvEmployees" runat="server" AutoGenerateColumns="false"
-                             PageSize="25"
+                             PageSize="15"
 
                             Width="100%" BorderStyle="None" OnRowDataBound="gvEmployees_RowDataBound"
                             AllowPaging="true"

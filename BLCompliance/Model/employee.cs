@@ -51,6 +51,8 @@ namespace BLCompliance.Model
 
         public int create_by { get; set; }
 
+        public int update_by { get; set; }
+
      
 
     }

@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.master" AutoEventWireup="true"
-    CodeFile="AddDisciplinaryAction.aspx.cs" Inherits="AddDisciplinaryAction" %>
+﻿<%@ page title="" language="C#" masterpagefile="~/main.master" autoeventwireup="true" CodeFile="AddDisciplinaryAction.aspx.cs" inherits="AddDisciplinaryAction" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
@@ -97,6 +96,11 @@
             return false;
         }
     </script>
+    <style type ="text/css">
+        .form_block div textarea {
+            margin-left:5px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="content">
@@ -127,6 +131,7 @@
                         &nbsp;</div>
                 </div>
             </div>
+            <br />
             <span style="padding-left: 0px; padding-top: 0px; font-size: 25px;">
                 <asp:Literal ID="lblInfo1" runat="server">Add Disciplinary Action</asp:Literal>
             </span>
@@ -150,7 +155,7 @@
                         </asp:DropDownList>
                     </div>
                     <div>
-                        <span>Infraction <b class="madatorystar">*</b>:</span>
+                        <span>Infraction: <b class="madatorystar">*</b></span>
                         <asp:TextBox ID="txtInfraction" runat="server" TextMode="MultiLine" Rows="2" Columns="40"
                             MaxLength="200" autocomplete="off" CssClass="mandatory txtInfraction"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="req1" runat="server" ControlToValidate="txtInfraction"
@@ -159,7 +164,7 @@
                     <div class="spaser" style="height: 15px;">
                     </div>
                     <div>
-                        <span>Date of action<b class="madatorystar">*</b>:</span>
+                        <span>Date of action:<b class="madatorystar">*</b></span>
                         <asp:TextBox ID="txtDateOfAction" runat="server" size="15" autocomplete="off" CssClass="txtDateOfActionCSS mandatory"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="req2" ValidationGroup="grpValidation" runat="server"
                             ErrorMessage="" ControlToValidate="txtDateOfAction"></asp:RequiredFieldValidator>
@@ -167,7 +172,7 @@
                     <div class="spaser" style="height: 15px;">
                     </div>
                     <div>
-                        <span>Description <b class="madatorystar">*</b>:</span>
+                        <span>Description: <b class="madatorystar">*</b></span>
                         <asp:TextBox ID="txtDesc" runat="server" TextMode="MultiLine" Rows="6" Columns="40"
                             MaxLength="500" autocomplete="off" CssClass="txtDesc mandatory"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="req3" ValidationGroup="grpValidation" runat="server"

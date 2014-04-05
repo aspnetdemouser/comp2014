@@ -5,12 +5,27 @@ using System.Web;
 using System.Web.UI.WebControls;
 using BLCompliance;
 using BLCompliance.Model;
+using System.Web.UI;
+
 
 public partial class AssignTraining : System.Web.UI.Page
 {
     private ArrayList arraylist1 = new ArrayList();
     private ArrayList arraylist2 = new ArrayList();
+    protected void Page_PreInit(object sender, EventArgs e)
+    {
 
+        Control ht = this.Master.FindControl("hdnTS");
+        if (ht != null)
+        {
+            if (ht is HiddenField)
+            {
+                HiddenField ht1 = ht as HiddenField;
+                ht1.Value = "sel";
+            }
+        }
+
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["emp2014br2"] == null)
@@ -24,10 +39,16 @@ public partial class AssignTraining : System.Web.UI.Page
             if (Session["emp2014br2"] != null)
             {
                 employee employee = Session["emp2014br2"] as employee;
+
                 if (employee.EmployeeType == 2)
                 {
                     SetFacilityInfo(employee);
                 }
+                else
+                {
+                    Response.Redirect("login.aspx");
+                }
+
             }
         }
     }

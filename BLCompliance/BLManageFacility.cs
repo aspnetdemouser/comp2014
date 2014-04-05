@@ -400,7 +400,7 @@ namespace BLCompliance
                           new SqlParameter("@licence_number", SqlDbType.VarChar) { Value = employee.Licence_Number },
                           new SqlParameter("@licence_expiry", SqlDbType.DateTime) { Value = employee.Licence_Expiry },
                           new SqlParameter("@date_last_exclusion_check", SqlDbType.DateTime) { Value = employee.DateLastExclusionCheck },
-                          new SqlParameter("@update_by", SqlDbType.Int) { Value = employee.create_by },
+                          new SqlParameter("@update_by", SqlDbType.Int) { Value = employee.update_by },
                           new SqlParameter("@is_active_record", SqlDbType.Bit) { Value = employee.IsActiveRecord },
                           new SqlParameter("@is_deleted", SqlDbType.Bit) { Value = employee.IsDeleted }
                         };
@@ -426,6 +426,42 @@ namespace BLCompliance
             {
                 throw ex;
             }
+            return result;
+        }
+        /// <summary>
+        /// returns 1 is username is valid and unique else 2
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public static Result CheckUserNameIsValid(string userName)
+        {
+            Result result = new Result();
+            result.ResultCode = 0;
+            result.ResultMessage = "Unknown";
+
+            SqlParameter[] prms = new SqlParameter[1];
+            prms[0] = new SqlParameter("@username", SqlDbType.VarChar);
+            prms[0].Value = userName;
+
+            object recordCnt = CData.ExecuteScalar(CommandType.StoredProcedure, "sp_comp_check_username_is_valid", prms);
+            
+            if (recordCnt != null)
+            {
+                int intCount = 0;
+                int.TryParse(recordCnt.ToString(), out intCount);
+
+                if (intCount > 0)
+                {
+                    result.ResultCode = 2;
+                    result.ResultMessage = "Username already exist.";
+                }
+                else
+                {
+                    result.ResultCode = 1;
+                    result.ResultMessage = "Username is unique.";
+                }
+            }
+
             return result;
         }
         #endregion

@@ -40,6 +40,8 @@ namespace BLCompliance.Model
 
         public DateTime? Update_date { get; set; }
 
-        public int create_by { get; set; } 
+        public int create_by { get; set; }
+        public int update_by { get; set; } 
     }
 }
+

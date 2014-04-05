@@ -99,11 +99,13 @@
                         <ul class="mega_menu" style="z-index: 20;">
                             <li class="	first" style="z-index: 20;"><a href="#">Dashboard</a></li>
                             <li class="" style="z-index: 20;"><a href="#">Tracking</a></li>
-                            <li class="" style="z-index: 20;"><a href="ManageTraining.aspx">Training</a></li>
+                            <li class="<%= ts_selected %>" style="z-index: 20;"><a href="ManageTraining.aspx">Training</a></li>
                             <li class="" style="z-index: 20;"><a href="#">Library</a></li>
-                            <li class="last	sel" style="z-index: 20;"><a href="manage_facility_employees.aspx">
+                            <li class="last <%= fs_selected %>" style="z-index: 20;"><a href="manage_facility_employees.aspx">
                                 Facility Employees</a></li>
                         </ul>
+                        <asp:HiddenField ID="hdnFS" runat="server" />
+                        <asp:HiddenField ID="hdnTS" runat="server" />
                     </div>
                     <div class="spaser">
                     </div>

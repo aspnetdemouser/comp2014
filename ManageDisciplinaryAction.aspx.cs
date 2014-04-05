@@ -10,6 +10,20 @@ using BLCompliance;
 
 public partial class ManageDisciplinaryAction : System.Web.UI.Page
 {
+    protected void Page_PreInit(object sender, EventArgs e)
+    {
+
+        Control hf = this.Master.FindControl("hdnFS");
+        if (hf != null)
+        {
+            if (hf is HiddenField)
+            {
+                HiddenField hf1 = hf as HiddenField;
+                hf1.Value = "sel";
+            }
+        }
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["emp2014br2"] == null) // if logged in
@@ -97,6 +111,10 @@ public partial class ManageDisciplinaryAction : System.Web.UI.Page
                 gvTraining.DataSource = actionList;
                 gvTraining.DataBind();
                 SetFacilityInfo(employee);
+            }
+            else
+            {
+                Response.Redirect("login.aspx");
             }
         }
     }
