@@ -40,7 +40,7 @@
                 </div>
                 <div>
                     <span></span>
-                    <asp:Label ID="lbltxt" runat="server" CssClass="error_mess" style="width:300px;"></asp:Label>
+                    <asp:Label ID="lbltxt" runat="server" CssClass="error_mess" Style="width: 300px;"></asp:Label>
                 </div>
                 <div>
                     <span style="font-size: 20px; vertical-align: text-top; width: auto; margin-left: 10px;">

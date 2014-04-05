@@ -43,14 +43,14 @@ public partial class manage_facility_employees : System.Web.UI.Page
         if (result.ResultCode == 1 && contactInfo != null)
         {
 
-            if (!string.IsNullOrEmpty(contactInfo.State))
-            {
-                lblInfo1.Text = string.Format("{0} - {1}, {2}", employee.FacilityName, contactInfo.City, contactInfo.State);
-            }
-            else
-            {
-                lblInfo1.Text = string.Format("{0} - {1}", "", employee.FacilityName, contactInfo.City);
-            }
+            //if (!string.IsNullOrEmpty(contactInfo.State))
+            //{
+            //    lblInfo1.Text = string.Format("{0} - {1}, {2}", employee.FacilityName, contactInfo.City, contactInfo.State);
+            //}
+            //else
+            //{
+            //    lblInfo1.Text = string.Format("{0} - {1}", "", employee.FacilityName, contactInfo.City);
+            //}
 
             lblCityStateZip.Text = string.Format("{0}, {1}, {2}", contactInfo.City, contactInfo.State, contactInfo.ZipCode);
             lblCountry.Text = contactInfo.CountryName;

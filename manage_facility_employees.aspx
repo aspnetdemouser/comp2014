@@ -19,7 +19,7 @@
                 <h2>
                     <asp:Literal ID="lblFacilityName" runat="server"></asp:Literal>
                 </h2>
-                <br>
+                <br/>
                 <div class="cats_articles">
                     <div class="facillity_info">
                         <div>
@@ -27,23 +27,11 @@
                             <asp:Literal ID="lblCityStateZip" runat="server"></asp:Literal><br />
                             <asp:Literal ID="lblCountry" runat="server"></asp:Literal>
                         </div>
-                        <div>
-                            Tel:
-                            <asp:Literal ID="lblPhone" runat="server"></asp:Literal>
-                            <br>
-                            Fax:
-                            <asp:Literal ID="lblFax" runat="server"></asp:Literal></div>
-                        <div>
-                            <a href="#"></a>
-                        </div>
                     </div>
                     <div class="spaser" style="height: 1px;">
                         &nbsp;</div>
                 </div>
             </div>
-            <span style="padding-left: 0px; padding-top: 0px; font-size: 25px;">
-                <asp:Literal ID="lblInfo1" runat="server"></asp:Literal>
-            </span>
             <div class="box_cont">
                 <div class="delim">
                 </div>
@@ -54,9 +42,7 @@
                     <asp:LinkButton runat="server" ID="imgRemoveEmp" Text="Deactivate Selected Employees" 
                         CssClass="RemoveEmployee" OnClientClick="return confirm(&#39;Are you sure you want to inactive this user?&#39;);"
                         OnClick="imgRemoveEmp_Click"></asp:LinkButton>
-                    <%--<a href="http://compliance.dev.webstores.net/acc_bo/?section=facilities_employees_officer#"
-                        onclick="deleteall(&#39;main_interface_form&#39;); return false;">Remove Selected
-                        Empoyees</a>--%></div>
+                    </div>
                 <div class="print">
                     <a href="">Print</a></div>
                 <div class="search_form">

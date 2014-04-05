@@ -30,7 +30,7 @@ public partial class employeeprofile : System.Web.UI.Page
                     isLevel2 = true;
                     lblActive.Visible = false;                    
                     chkActive.Visible = true;
-                    lblProfile.Text = "Officer Profile";
+                    lblProfile.Text = "Employee Profile";
                 }
                 else
                 {
@@ -39,7 +39,7 @@ public partial class employeeprofile : System.Web.UI.Page
                     chkActive.Visible = false;
                     if (loginEmp.EmployeeType == 1)
                     {
-                        lblProfile.Text = "User Profile";
+                        lblProfile.Text = "Employee Profile";
                     }
                 }
             }
@@ -58,6 +58,7 @@ public partial class employeeprofile : System.Web.UI.Page
                 btnEmpCreatInformation.Visible = true;
                 divAddNewEmployeeTitle.Visible = true;
                 divOfficerInfo.Visible = false;
+                lnkActions.Visible = false;
                 if (isLevel2)
                 {
                     txtconfpassword.TextMode = txtpassword.TextMode = TextBoxMode.SingleLine;
@@ -104,8 +105,8 @@ public partial class employeeprofile : System.Web.UI.Page
             txtconfpassword.Text = employee.Password;
             txtposition.Text = employee.Position;
             txtEmployeeType.Text = employee.EmployeeTypeText;
-            lblCurrentPosition.Text = employee.Position;
-            lblCurrentEmail.Text = employee.EmailAddress;
+            //lblCurrentPosition.Text = employee.Position;
+          //  lblCurrentEmail.Text = employee.EmailAddress;
             if (employee.IsDeleted.HasValue)
             {
                 chkActive.Checked = !employee.IsDeleted.Value;
@@ -170,17 +171,18 @@ public partial class employeeprofile : System.Web.UI.Page
             ViewState["ContactInfoId"] = contactInfo.ContactInfoId;
             txtFNAME.Text = contactInfo.FirstName;
             txtLNAME.Text = contactInfo.LastName;
-            lblCurrentFullName.Text = contactInfo.FirstName + " " + contactInfo.LastName;
+            lblCurrentFullName2.Text =  contactInfo.FirstName  + " " + contactInfo.LastName;
+            //lblCurrentFullName.Text = contactInfo.FirstName + " " + contactInfo.LastName;
             txtADDR1.Text = contactInfo.AddressLine1;
             txtADDR2.Text = contactInfo.AddressLine2;
-            lblCurrentAddress.Text = contactInfo.AddressLine1 + " " + contactInfo.AddressLine2;
+            //lblCurrentAddress.Text = contactInfo.AddressLine1 + " " + contactInfo.AddressLine2;
             txtCITY.Text = contactInfo.City;
             ddlState.SelectedValue = contactInfo.State;
-            lblCurrentStateCity.Text = contactInfo.City + " " + contactInfo.State;
+            //lblCurrentStateCity.Text = contactInfo.City + " " + contactInfo.State;
             txtZIPCODE.Text = contactInfo.ZipCode;
             txtPHONE.Text = contactInfo.TelePhone;
-            lblCurrentPhone.Text = contactInfo.TelePhone;
-            lblCurrentFax.Text = contactInfo.FaxNumber;
+            //lblCurrentPhone.Text = contactInfo.TelePhone;
+            //lblCurrentFax.Text = contactInfo.FaxNumber;
             //txtFAX.Text = contactInfo.FaxNumber;
             
         }
@@ -194,6 +196,7 @@ public partial class employeeprofile : System.Web.UI.Page
 
         if (Request.QueryString["enc"] != null)
         {
+            lnkActions.NavigateUrl = "ManageDisciplinaryAction.aspx?enc=" + Request.QueryString["enc"].ToString();
             byte[] data = Convert.FromBase64String(Request.QueryString["enc"].ToString());
             string decodedString = Encoding.UTF8.GetString(data);
             int.TryParse(decodedString, out employeeId);

@@ -121,7 +121,7 @@ namespace BLCompliance
 
                 ds = CData.ExecuteDataset(CommandType.StoredProcedure, "sp_compliance_get_training_users_to_assign_to_course", prms);
 
-                if (ds != null && ds.Tables[0].Rows.Count > 0)
+                if (ds != null && ds.Tables.Count >0 && ds.Tables[0].Rows.Count > 0)
                 {
 
                     foreach (DataRow dr in ds.Tables[0].Rows)

@@ -34,7 +34,7 @@ namespace BLCompliance
 
                 ds = CData.ExecuteDataset(CommandType.StoredProcedure, "sp_comp_tbl_contact_info_SelectRow", prms);
 
-                if (ds != null && ds.Tables[0].Rows.Count > 0)
+                if (ds != null && (ds.Tables.Count > 0) && ds.Tables[0].Rows.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count == 1)
                     {

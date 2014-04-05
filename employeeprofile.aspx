@@ -1,5 +1,5 @@
-﻿<%@ page title="" language="C#" masterpagefile="~/main.master" CodeFile="employeeprofile.aspx.cs" autoeventwireup="true" inherits="employeeprofile" 
-maintainscrollpositiononpostback="true" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.master" CodeFile="employeeprofile.aspx.cs"
+    AutoEventWireup="true" Inherits="employeeprofile" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
@@ -103,43 +103,10 @@ maintainscrollpositiononpostback="true" %>
                 <asp:Label ID="lblProfile" runat="server"></asp:Label>
                 <asp:Literal ID="lblCurrentOfficerName" runat="server"></asp:Literal>
             </h2>
-            <br>
+            <br/>
             <div class="form_block carrent_acc">
-                <div class="title" align="center">
-                    Current profile:</div>
-                <div class="auto">
-                    <span><strong>Full name:</strong></span> <span class="text">
-                        <asp:Literal ID="lblCurrentFullName" runat="server"></asp:Literal>
-                    </span>
-                    <div class="spaser">
-                    </div>
-                </div>
-                <div class="auto">
-                    <span><strong>Address:</strong></span> <span class="text">
-                        <asp:Literal ID="lblCurrentAddress" runat="server"></asp:Literal>
-                        <br />
-                        <asp:Literal ID="lblCurrentStateCity" runat="server"></asp:Literal><br />
-                        <asp:Literal ID="lblCurrentZip" runat="server"></asp:Literal>
-                    </span>
-                    <div class="spaser">
-                    </div>
-                </div>
-                <div>
-                    <span><strong>Email:</strong></span> <span class="text long"><a>
-                        <asp:Literal ID="lblCurrentEmail" runat="server"></asp:Literal></a></span>
-                </div>
-                <div>
-                    <span><strong>Job Title:</strong></span> <span class="text">
-                        <asp:Literal ID="lblCurrentPosition" runat="server"></asp:Literal></span>
-                </div>
-                <div>
-                    <span><strong>Tel:</strong></span> <span class="text">
-                        <asp:Literal ID="lblCurrentPhone" runat="server"></asp:Literal></span>
-                </div>
-                <div>
-                    <span><strong>Fax:</strong></span> <span class="text">
-                        <asp:Literal ID="lblCurrentFax" runat="server"></asp:Literal></span>
-                </div>
+                <div class="title" align="center" style="height:100% !important">
+                    <asp:Literal ID="lblCurrentFullName2" runat="server"></asp:Literal></div>
                 <div class="spaser">
                 </div>
             </div>
@@ -150,16 +117,25 @@ maintainscrollpositiononpostback="true" %>
                 <div align="center" class="form_err_message error_mess">
                     <br />
                     <span class="form_email_error">Value entered for e-mail is invalid<br />
-                    </span><span class="form_password_error" style="font-size: large; color: #ff0000">Passwords don't match!<br />
+                    </span><span class="form_password_error" style="font-size: large; color: #ff0000">Passwords
+                        don't match!<br />
                     </span><span class="form_mandatory_error">Please fill up missing fields below</span>
                 </div>
                 <br />
                 <div class="form_block Sign_In_Information Sign_In_Information_acc">
-                    <div class="title" style="text-align:left;margin-left: 58px;">1. Sign In Information</div>
+                    <div class="title" style="text-align: left; margin-left: 58px;">
+                        1. Sign In Information</div>
                     <div>
-                        <span>User Name:<b class="madatorystar">*</b></span>
+                        <span>User Name:<b class="madatorystar">*</b>
+                            <p style="margin-left:240px;width:300px;vertical-align: top;">
+                        <asp:HyperLink ID="lnkActions" runat="server" Text="Disciplinary Actions"></asp:HyperLink>
+                        </p>
+                        </span>
                         <asp:TextBox ID="txtemailaddress" name="txtemailaddress" runat="server" autocomplete="off"
                             MaxLength="250" CssClass="mandatory" size="30"></asp:TextBox>
+                        
+                    
+                        
                         <asp:RequiredFieldValidator ID="req1" ValidationGroup="emploeeprofile" runat="server"
                             Display="None" ErrorMessage="" ControlToValidate="txtemailaddress"></asp:RequiredFieldValidator>
                     </div>
@@ -179,7 +155,8 @@ maintainscrollpositiononpostback="true" %>
                     </div>
                     <br>
                     <br>
-                    <div class="title" style="text-align: left; margin-left: 58px;">2. Additional Information</div>
+                    <div class="title" style="text-align: left; margin-left: 58px;">
+                        2. Additional Information</div>
                     <div>
                         <span>Job Title<b class="madatorystar">*</b>:</span>
                         <asp:TextBox ID="txtposition" runat="server" size="30" MaxLength="200" autocomplete="off"
@@ -209,13 +186,13 @@ maintainscrollpositiononpostback="true" %>
                     </div>
                     <div>
                         <span>License Exp.<b class="madatorystar">*</b>:</span>
-                        <asp:TextBox ID="txtLicenceExp" runat="server" size="15"  autocomplete="off" CssClass="mandatory"></asp:TextBox>
+                        <asp:TextBox ID="txtLicenceExp" runat="server" size="15" autocomplete="off" CssClass="mandatory"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ValidationGroup="emploeeprofile"
                             runat="server" ErrorMessage="" ControlToValidate="txtLicenceExp"></asp:RequiredFieldValidator>
                     </div>
                     <div>
                         <span>Date of Last Exclusion Check<b class="madatorystar">*</b>:</span>
-                        <asp:TextBox ID="txtEXCLUSSION" runat="server" size="15"  autocomplete="off" CssClass="mandatory"></asp:TextBox>
+                        <asp:TextBox ID="txtEXCLUSSION" runat="server" size="15" autocomplete="off" CssClass="mandatory"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ValidationGroup="emploeeprofile"
                             runat="server" ErrorMessage="" ControlToValidate="txtEXCLUSSION"></asp:RequiredFieldValidator>
                     </div>
@@ -225,7 +202,8 @@ maintainscrollpositiononpostback="true" %>
                     </div>
                 </div>
                 <div class="form_block Personal_Information Personal_Information_acc">
-                   <div class="title" style="text-align: left; margin-left: -4px;">3. Contact Information</div>
+                    <div class="title" style="text-align: left; margin-left: -4px;">
+                        3. Contact Information</div>
                     <div>
                         <span>First Name<b class="madatorystar">*</b>:</span>
                         <asp:TextBox ID="txtFNAME" runat="server" size="30" MaxLength="50" autocomplete="off"
@@ -325,7 +303,7 @@ maintainscrollpositiononpostback="true" %>
                         <asp:TextBox ID="txtPHONE" runat="server" size="30" MaxLength="50" autocomplete="off"
                             CssClass="_picker"></asp:TextBox>
                     </div>
-                  <%--  <div>
+                    <%--  <div>
                         <span>Fax:</span>
                         <asp:TextBox ID="txtFAX" runat="server" size="30" MaxLength="50" autocomplete="off"
                             CssClass="_picker"></asp:TextBox>
