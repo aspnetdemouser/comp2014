@@ -53,7 +53,7 @@ public partial class main : System.Web.UI.MasterPage
         Result result = BLContactInfo.GetEmployeeContactInfo(employee.EmailAddress, out contactInfo);
         if (result.ResultCode == 1 && contactInfo != null)
         {
-            lblEmpName.Text = contactInfo.FirstName;
+            lblEmpName.Text = contactInfo.FirstName + " " + contactInfo.LastName;
         }
 
     }

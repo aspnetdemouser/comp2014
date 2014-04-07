@@ -96,6 +96,12 @@
                 <div class="title" align="center">
                     <span id="namespan" runat="server" style="text-transform: capitalize"></span>
                 </div>
+
+                <div style="font-size:14px;padding-top:20px;" >
+                <span>
+                <asp:HyperLink ID="lnkActions" runat="server" Text="Disciplinary Actions"></asp:HyperLink>
+                </span>
+                </div>
                 <div class="spaser">
                 </div>
             </div>
@@ -118,10 +124,11 @@
                     <div class="title" style="text-align: left; margin-left: 58px;">
                         1. Sign In Information</div>
                     <div>
-                        <span>User Name:<b class="madatorystar">*</b> <b style="position: absolute; margin-left: 200px;
+                        <span>User Name:<b class="madatorystar">*</b> 
+                        <%--<b style="position: absolute; margin-left: 200px;
                             width: 300px; vertical-align: top;">
                             <asp:HyperLink ID="lnkActions" runat="server" Text="Disciplinary Actions"></asp:HyperLink>
-                        </b></span>
+                        </b>--%></span>
                         <asp:TextBox ID="txtemailaddress" name="txtemailaddress" runat="server" autocomplete="off"
                             MaxLength="250" CssClass="mandatory" size="30"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="req1" ValidationGroup="emploeeprofile" runat="server"
