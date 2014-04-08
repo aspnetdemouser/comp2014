@@ -48,8 +48,8 @@ public partial class ManageTraining : System.Web.UI.Page
     public static BLCompliance.Result AssignCourseToUser(int empId, int courseId)
     {
         Result result = new Result();
-        BLCompliance.Model.employee empLoggedIn = HttpContext.Current.Session["emp2014br2"] as BLCompliance.Model.employee;
-        BLCompliance.BLTrainingCourses.AssignUserToCourse(courseId, empId, empLoggedIn.Id);
+        //BLCompliance.Model.employee empLoggedIn = HttpContext.Current.Session["emp2014br2"] as BLCompliance.Model.employee;
+        //BLCompliance.BLTrainingCourses.AssignUserToCourse(courseId, empId, empLoggedIn.Id);
         return result;
     }
 

@@ -37,10 +37,12 @@ public partial class AddDisciplinaryAction : System.Web.UI.Page
             if (Session["emp2014br2"] != null)
             {
                 employee employee = Session["emp2014br2"] as employee;
-                if (employee.EmployeeType == 2)
+                
+                if (employee.EmployeeType != 2) //not level 2
                 {
-                    SetFacilityInfo(employee);
+                    lnkActions.Visible = false;
                 }
+                
 
                 if (Request.QueryString["enc"] != null)
                 {
@@ -49,6 +51,7 @@ public partial class AddDisciplinaryAction : System.Web.UI.Page
                     {
                         ddlEmpName.SelectedValue = selectedEmpId.ToString();
                     }
+                    SetNavigateUrl();
                 }
                 else if (Request.QueryString["edit"] != null)
                 {
@@ -57,6 +60,7 @@ public partial class AddDisciplinaryAction : System.Web.UI.Page
                     if (idToFind > 0)
                     {
                         EditRecord(idToFind);
+                        SetNavigateUrl();
                     }
                 }
             }
@@ -74,6 +78,11 @@ public partial class AddDisciplinaryAction : System.Web.UI.Page
             txtDateOfAction.Text = action.DateOfAction.ToString("MM/dd/yyyy");
             txtInfraction.Text = action.Infraction.Replace("<br/>", Environment.NewLine);
             txtDesc.Text = action.ActionDescription.Replace("<br/>", Environment.NewLine);
+            txtEmpName.Text = ddlEmpName.SelectedItem.Text;
+            ddlEmpName.Visible = false;
+            txtEmpName.Visible = true;
+            txtEmpName.ReadOnly = true;
+
         }
     }
     protected int GetSelectedEmployeeId()
@@ -100,27 +109,29 @@ public partial class AddDisciplinaryAction : System.Web.UI.Page
         return recordId;
     }
 
-    private void SetFacilityInfo(BLCompliance.Model.employee employee)
+    private void SetEmployeeInfo(int selectedEmployeeId)
     {
-        lblFacilityName.Text = employee.FacilityName;
         employee_contact_info contactInfo = null;
-        Result result = BLContactInfo.GetEmployeeContactInfo(employee.EmailAddress, out contactInfo);
+        Result result = BLContactInfo.GetEmployeeContactInfo(selectedEmployeeId, out contactInfo);
         if (result.ResultCode == 1 && contactInfo != null)
         {
-                  
-            lblCityStateZip.Text = string.Format("{0}, {1}, {2}", contactInfo.City, contactInfo.State, contactInfo.ZipCode);
-            lblCountry.Text = contactInfo.CountryName;
+            namespan.InnerText = contactInfo.FirstName + " " + contactInfo.LastName;
+        }
+        if (Request.QueryString["enc"] != null)
+        {
+            lnkActions.NavigateUrl = "ManageDisciplinaryAction.aspx?enc=" + Request.QueryString["enc"].ToString();
+            lnkEmployeeInfo.NavigateUrl = "employeeprofile.aspx?enc=" + Request.QueryString["enc"].ToString();
         }
     }
 
     private void BindEmployees()
     {
         List<employee> employeeList = new List<employee>();
-        BLCompliance.BLManageFacility.GetEmployees(0,"", true, out employeeList);
-        
+        BLCompliance.BLManageFacility.GetEmployees(0, "", true, out employeeList);
+
         employee empDummy = new employee();
-        empDummy.Id=0;
-        empDummy.ContactName="";
+        empDummy.Id = 0;
+        empDummy.ContactName = "";
         employeeList.Insert(0, empDummy);
 
         ddlEmpName.DataSource = employeeList;
@@ -136,7 +147,7 @@ public partial class AddDisciplinaryAction : System.Web.UI.Page
         if (Session["emp2014br2"] != null)
         {
             employee employee = Session["emp2014br2"] as employee;
-           
+
             int createBy = employee.Id;
             int updateBy = employee.Id;
 
@@ -149,7 +160,7 @@ public partial class AddDisciplinaryAction : System.Web.UI.Page
                 lbltxt.Text = "Please fill all required inputs.";
                 return;
             }
-            
+
             int selectedEmpId = int.Parse(ddlEmpName.SelectedValue);
 
             if (string.IsNullOrEmpty(infraction) || string.IsNullOrEmpty(description) || string.IsNullOrEmpty(dateOfAction))
@@ -179,6 +190,18 @@ public partial class AddDisciplinaryAction : System.Web.UI.Page
                 {
                     lbltxt.Text = "Disciplinary action added successfully.";
 
+                    btnAddAction.Visible = btnCancel.Visible = false;
+                    ddlEmpName.Visible = txtDateOfAction.Visible = txtDesc.Visible = txtInfraction.Visible = false;
+                    txtInfraction.Width = 1;
+                    txtDesc.Width = 1;
+                    lit_readonly_emp_name.Text = ddlEmpName.SelectedItem.Text;
+                    lit_readonly_date_of_action.Text = txtDateOfAction.Text;
+                    lit_readonly_infraction.Text = txtInfraction.Text;
+                    lit_readonly_action_taken.Text = txtDesc.Text;
+                    txtEmpName.Visible = false;
+                    lit_readonly_action_taken.Visible = lit_readonly_date_of_action.Visible = lit_readonly_emp_name.Visible = lit_readonly_infraction.Visible = true;
+
+
                 }
             }
             else
@@ -188,9 +211,19 @@ public partial class AddDisciplinaryAction : System.Web.UI.Page
                 {
                     BLDisciplinaryAction.UpdateDisciplinaryActions(idToFind, selectedEmpId, infraction.Replace(Environment.NewLine, "<br/>"), dtAction, description.Replace(Environment.NewLine, "<br/>"), updateBy);
                     lbltxt.Text = "Disciplinary action updated successfully.";
+                    btnAddAction.Visible = btnCancel.Visible = false;
+                    txtInfraction.Width = 1;
+                    txtDesc.Width = 1;
+                    ddlEmpName.Visible = txtDateOfAction.Visible = txtDesc.Visible = txtInfraction.Visible = false;
+                    lit_readonly_emp_name.Text =  ddlEmpName.SelectedItem.Text;
+                    lit_readonly_date_of_action.Text = txtDateOfAction.Text;
+                    lit_readonly_infraction.Text = txtInfraction.Text;
+                    lit_readonly_action_taken.Text = txtDesc.Text;
+                    lit_readonly_action_taken.Visible = lit_readonly_date_of_action.Visible = lit_readonly_emp_name.Visible = lit_readonly_infraction.Visible = true;
+                    txtEmpName.Visible = false;
                 }
             }
-            
+
         }
         else
         {
@@ -219,4 +252,46 @@ public partial class AddDisciplinaryAction : System.Web.UI.Page
             }
         }
     }
+
+    private void SetNavigateUrl()
+    {
+        if (Request.QueryString["enc"] != null)
+        {
+            try
+            {
+                SetEmployeeInfo(GetSelectedEmployeeId());
+            }
+            catch (Exception exsetting2)
+            {
+
+            }
+
+        }
+        else
+        {
+            if (Request.QueryString["edit"] != null)
+            {
+                var bytes = Encoding.UTF8.GetBytes(ddlEmpName.SelectedValue.ToString());
+                var base64 = Convert.ToBase64String(bytes);
+                lnkActions.NavigateUrl = "ManageDisciplinaryAction.aspx?enc=" + base64;
+
+                try
+                {
+                    SetEmployeeInfo(int.Parse(ddlEmpName.SelectedValue.ToString()));
+                }
+                catch (Exception exsetting2)
+                {
+
+                }
+                lnkActions.NavigateUrl = "ManageDisciplinaryAction.aspx?enc=" + base64;
+                lnkEmployeeInfo.NavigateUrl = "employeeprofile.aspx?enc=" + base64;
+
+            }
+            else
+            {
+                lnkActions.NavigateUrl = "manage_facility_employees.aspx";
+            }
+        }
+    }
+
 }

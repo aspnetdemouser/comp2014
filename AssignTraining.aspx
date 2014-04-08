@@ -2,6 +2,20 @@
     CodeFile="AssignTraining.aspx.cs" Inherits="AssignTraining" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <script language="javascript" type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script language="javascript" type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script type="text/javascript" language="javascript">
+        $(function () {
+            $("#<%= txtDueDate.ClientID %>").datepicker();
+        });
+    </script>
+    <style type="text/css">
+        .style1
+        {
+            font-size: small;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="content">
@@ -17,15 +31,6 @@
                             <asp:Literal ID="lblAddress1" runat="server"></asp:Literal><br />
                             <asp:Literal ID="lblCityStateZip" runat="server"></asp:Literal><br />
                             <asp:Literal ID="lblCountry" runat="server"></asp:Literal>
-                        </div>
-                        <div>
-                            Tel:
-                            <asp:Literal ID="lblPhone" runat="server"></asp:Literal>
-                            <br>
-                            Fax:
-                            <asp:Literal ID="lblFax" runat="server"></asp:Literal></div>
-                        <div>
-                            <a href="#"></a>
                         </div>
                     </div>
                     <div class="spaser" style="height: 1px;">
@@ -43,14 +48,19 @@
                     <asp:Label ID="lbltxt" runat="server" CssClass="error_mess" Style="width: 300px;"></asp:Label>
                 </div>
                 <div>
-                    <span style="font-size: 20px; vertical-align: text-top; width: auto; margin-left: 10px;">
-                        Select Course :</span>
+                    <span style="color: #CDCDCD;font-size: 15px; vertical-align: text-top; width: auto; margin-left: 10px;">
+                        Training Assigned :</span>
                     <asp:DropDownList ID="dlstTraining" runat="server" CssClass="mandatory" size="1"
                         Style="width: 300px; margin-left: 10px;" OnSelectedIndexChanged="dlstTraining_SelectedIndexChanged"
                         AutoPostBack="True">
                     </asp:DropDownList>
                 </div>
                 <table cellpadding="3" cellspacing="5">
+                <tr>
+                    <td colspan="3" style="background-color: transparent !important;">
+                     &nbsp;
+                    </td>
+                    </tr>
                     <tr>
                         <td style="font-size: 15px; font-weight: normal; background-color: transparent !important;">
                             Choose Employee
@@ -61,9 +71,11 @@
                             Selected Employee
                         </td>
                     </tr>
+                    
                     <tr>
                         <td>
-                            <asp:ListBox ID="ListBox1" runat="server" Style="font-size: 15px;" Width="300" Height="200">
+                            <asp:ListBox ID="ListBox1" runat="server" Style="font-size: 15px;" Width="300" 
+                                Height="200" onselectedindexchanged="ListBox1_SelectedIndexChanged">
                             </asp:ListBox>
                         </td>
                         <td>
@@ -78,13 +90,18 @@
                         </td>
                     </tr>
                     <tr>
+                        <td colspan="3" >
+                             Due Date&nbsp;<asp:TextBox ID="txtDueDate" runat="server" size="15" autocomplete="off" CssClass="GeneralInputBox"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
                         <td colspan="3">
                             &nbsp;
                         </td>
                     </tr>
                     <tr>
                         <td colspan="3" align="center">
-                            <asp:Button ID="btnSave" runat="server" Text="Assign Training" Style="font-size: 15px;
+                            <asp:Button ID="btnSave" runat="server" Text="Assign Training" CssClass="submit_button_new" Style="font-size: 15px;
                                 padding: 2px 15px;" OnClick="btnSave_Click" />
                         </td>
                     </tr>

@@ -81,11 +81,8 @@
                         <div class="spaser" style="height: 5px;">
                         </div>
                         <div class="top_welcome">
-                            Welcome
-                            <asp:Literal ID="lblFacilityName" runat="server"></asp:Literal>
-                            - Officer
-                            <asp:Literal ID="lblEmpName" runat="server"></asp:Literal>
-                            !
+                            <asp:Label ID="lblEmpName" runat="server" style="text-transform:capitalize"></asp:Label> | 
+                            <asp:Label ID="lblFacilityName" runat="server" style="text-transform:capitalize"></asp:Label>
                         </div>
                         <ul class="top_icons">
                             <li class=""><a href="#">Inbox</a></li>

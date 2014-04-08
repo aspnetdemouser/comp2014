@@ -6047,7 +6047,7 @@ TD.calendar_curr
 	width: 16px;
 	height: 14px;
 	text-decoration: none;
-	background: url(../Images/ui-icons_222222_256x240) no-repeat left;
+	background: url(../Images/arr-next-prev.gif) no-repeat left;
 }
 .ui-datepicker-header .ui-datepicker-next
 {
@@ -8010,4 +8010,18 @@ ul.reqests.index LI.color_event DIV.anonse {background: url("../Images/ic_cal.pn
 {
     background: url("../Images/ic_add.png") no-repeat scroll 96% 4px rgba(0, 0, 0, 0);    padding: 5px 32px 5px 0;    text-decoration: none;color: #FF9A00;font-family: Arial,Helvetica,sans-serif;
     font-size: 13px;    font-weight: normal;
+}
+
+
+.GeneralInputBox
+{
+	margin-left: 5px;
+	background: #757575;
+	border: 1px solid #C6C6C6;
+	padding: 3px;
+	color: #FFF;
+	font-size: 13px;
+	/*[disabled]width:168px;*/
+	vertical-align: middle;
+	/*[disabled]margin:0 0 0 2px;*/
 }

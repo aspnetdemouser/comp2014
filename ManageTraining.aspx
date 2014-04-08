@@ -22,15 +22,6 @@
                             <asp:Literal ID="lblCityStateZip" runat="server"></asp:Literal><br />
                             <asp:Literal ID="lblCountry" runat="server"></asp:Literal>
                         </div>
-                        <div>
-                            Tel:
-                            <asp:Literal ID="lblPhone" runat="server"></asp:Literal>
-                            <br>
-                            Fax:
-                            <asp:Literal ID="lblFax" runat="server"></asp:Literal></div>
-                        <div>
-                            <a href="#"></a>
-                        </div>
                     </div>
                     <div class="spaser" style="height: 1px;">
                         &nbsp;</div>

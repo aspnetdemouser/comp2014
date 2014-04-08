@@ -73,29 +73,19 @@ public partial class ManageDisciplinaryAction : System.Web.UI.Page
         GetActionList();
     }
 
-    private void SetFacilityInfo(BLCompliance.Model.employee employee)
+    private void SetEmployeeInfo(int selectedEmployeeId)
     {
-        lblFacilityName.Text = employee.FacilityName;
-
         employee_contact_info contactInfo = null;
-        Result result = BLContactInfo.GetEmployeeContactInfo(employee.EmailAddress, out contactInfo);
+        Result result = BLContactInfo.GetEmployeeContactInfo(selectedEmployeeId, out contactInfo);
         if (result.ResultCode == 1 && contactInfo != null)
         {
-
-            if (!string.IsNullOrEmpty(contactInfo.State))
-            {
-                lblInfo1.Text = string.Format("{0} - {1}, {2}", employee.FacilityName, contactInfo.City, contactInfo.State);
-            }
-            else
-            {
-                lblInfo1.Text = string.Format("{0} - {1}", "", employee.FacilityName, contactInfo.City);
-            }
-
-            lblCityStateZip.Text = string.Format("{0}, {1}, {2}", contactInfo.City, contactInfo.State, contactInfo.ZipCode);
-            lblCountry.Text = contactInfo.CountryName;
+            namespan.InnerText = contactInfo.FirstName + " " + contactInfo.LastName;
         }
-
-
+        if (Request.QueryString["enc"] != null)
+        {
+            lnkActions.NavigateUrl = "ManageDisciplinaryAction.aspx?enc=" + Request.QueryString["enc"].ToString();
+            lnkEmployeeInfo.NavigateUrl = "employeeprofile.aspx?enc=" + Request.QueryString["enc"].ToString();
+        }
     }
 
     private void GetActionList()
@@ -106,11 +96,14 @@ public partial class ManageDisciplinaryAction : System.Web.UI.Page
             employee employee = Session["emp2014br2"] as employee;
             if (employee.EmployeeType == 2) //level 2 user
             {
+                int selectedEmpoyeeId = 0;
+                selectedEmpoyeeId = GetSelectedEmployeeId();
                 List<DisciplinaryAction> actionList = new List<DisciplinaryAction>();
-                BLCompliance.BLDisciplinaryAction.GetDisciplinaryActions(GetSelectedEmployeeId(), out actionList);
+                BLCompliance.BLDisciplinaryAction.GetDisciplinaryActions(selectedEmpoyeeId, out actionList);
                 gvTraining.DataSource = actionList;
                 gvTraining.DataBind();
-                SetFacilityInfo(employee);
+                
+                SetEmployeeInfo(selectedEmpoyeeId);
             }
             else
             {

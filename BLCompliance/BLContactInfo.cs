@@ -12,6 +12,60 @@ namespace BLCompliance
     /// </summary>
     public class BLContactInfo
     {
+        public static Result GetEmployeeContactInfo(int employeeId, out BLCompliance.Model.employee_contact_info contactInfo)
+        {
+            contactInfo = null;
+            Result result = new Result(0, false, "Get Contact Information fails");
+
+            DataSet ds = null;
+            if (employeeId <=0)
+            {
+                result.ResultMessage = "Not Sufficient Information Provided.";
+                result.ResultCode = 500;
+                return result;
+            }
+
+            try
+            {
+                SqlParameter[] prms = new SqlParameter[1];
+                prms[0] = new SqlParameter("@emp_id", SqlDbType.Int);
+                prms[0].Value = employeeId;
+                
+                ds = CData.ExecuteDataset(CommandType.StoredProcedure, "sp_comp_contact_info_by_emp_id", prms);
+
+                if (ds != null && (ds.Tables.Count > 0) && ds.Tables[0].Rows.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count == 1)
+                    {
+                        contactInfo = new Model.employee_contact_info();
+
+                        DataRow dr = ds.Tables[0].Rows[0];
+    
+                        FillModelFromDataRow(dr, ref contactInfo);
+
+                        result.ResultCode = 1;
+                        result.ResultMessage = "Success";
+                    }
+                    else
+                    {
+                        result.ResultMessage = "More than one record found.";
+                        result.ResultCode = 1002;
+                    }
+
+                }
+                else
+                {
+                    result.ResultMessage = "Employee Not Found";
+                    result.ResultCode = 1001;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
         public static Result GetEmployeeContactInfo(string emailAddress, out BLCompliance.Model.employee_contact_info contactInfo)
         {
             contactInfo = null;
@@ -41,74 +95,7 @@ namespace BLCompliance
                         contactInfo = new Model.employee_contact_info();
 
                         DataRow dr = ds.Tables[0].Rows[0];
-
-                        contactInfo.ContactInfoId = int.Parse(dr["id"].ToString());
-
-
-                        string colName = "first_name";
-                        if (!CheckNullOrBlank(dr, colName))
-                            contactInfo.FirstName = dr[colName].ToString();
-
-                        colName = "last_name";
-                        if (!CheckNullOrBlank(dr, colName))
-                            contactInfo.LastName = dr[colName].ToString();
-
-                        colName = "address_line1";
-                        if (!CheckNullOrBlank(dr, colName))
-                            contactInfo.AddressLine1 = dr[colName].ToString();
-
-                        colName = "address_line2";
-                        if (!CheckNullOrBlank(dr, colName))
-                            contactInfo.AddressLine2 = dr[colName].ToString();
-
-                        colName = "city_name";
-                        if (!CheckNullOrBlank(dr, colName))
-                            contactInfo.City = dr[colName].ToString();
-
-                        colName = "state_name";
-                        if (!CheckNullOrBlank(dr, colName))
-                            contactInfo.State = dr[colName].ToString();
-
-                        colName = "country_name";
-                        if (!CheckNullOrBlank(dr, colName))
-                            contactInfo.CountryName = dr[colName].ToString();
-
-                        colName = "zip_code";
-                        if (!CheckNullOrBlank(dr, colName))
-                            contactInfo.ZipCode = dr[colName].ToString();
-
-                        colName = "tele_phone";
-                        if (!CheckNullOrBlank(dr, colName))
-                            contactInfo.TelePhone = dr[colName].ToString();
-
-                        colName = "fax_number";
-                        if (!CheckNullOrBlank(dr, colName))
-                            contactInfo.FaxNumber = dr[colName].ToString();
-
-                        colName = "is_active_record";
-                        if (!CheckNullOrBlank(dr, colName))
-                            contactInfo.IsActiveRecord = Convert.ToBoolean(dr[colName].ToString());
-
-                        colName = "update_date";
-                        if (!CheckNullOrBlank(dr, colName))
-                        {
-                            DateTime tempData;
-                            if (DateTime.TryParse(dr[colName].ToString(), out tempData))
-                            {
-                                contactInfo.Update_date = tempData;
-                            }
-                        }
-
-                        colName = "create_date";
-                        if (!CheckNullOrBlank(dr, colName))
-                        {
-                            DateTime tempData;
-                            if (DateTime.TryParse(dr[colName].ToString(), out tempData))
-                            {
-                                contactInfo.Create_date = tempData;
-                            }
-                        }
-
+                        FillModelFromDataRow(dr, ref contactInfo);
                         result.ResultCode = 1;
                         result.ResultMessage = "Success";
                     }
@@ -286,6 +273,97 @@ namespace BLCompliance
                 throw ex;
             }
             
+        }
+
+        private static void FillModelFromDataRow(DataRow dr, ref Model.employee_contact_info contactInfo)
+        {
+            contactInfo.ContactInfoId = int.Parse(dr["id"].ToString());
+
+
+            string colName = "first_name";
+            if (!CheckNullOrBlank(dr, colName))
+                contactInfo.FirstName = dr[colName].ToString();
+
+            colName = "last_name";
+            if (!CheckNullOrBlank(dr, colName))
+                contactInfo.LastName = dr[colName].ToString();
+
+            colName = "address_line1";
+            if (!CheckNullOrBlank(dr, colName))
+                contactInfo.AddressLine1 = dr[colName].ToString();
+
+            colName = "address_line2";
+            if (!CheckNullOrBlank(dr, colName))
+                contactInfo.AddressLine2 = dr[colName].ToString();
+
+            colName = "city_name";
+            if (!CheckNullOrBlank(dr, colName))
+                contactInfo.City = dr[colName].ToString();
+
+            colName = "state_name";
+            if (!CheckNullOrBlank(dr, colName))
+                contactInfo.State = dr[colName].ToString();
+
+            colName = "country_name";
+            if (!CheckNullOrBlank(dr, colName))
+                contactInfo.CountryName = dr[colName].ToString();
+
+            colName = "zip_code";
+            if (!CheckNullOrBlank(dr, colName))
+                contactInfo.ZipCode = dr[colName].ToString();
+
+            colName = "tele_phone";
+            if (!CheckNullOrBlank(dr, colName))
+                contactInfo.TelePhone = dr[colName].ToString();
+
+            colName = "fax_number";
+            if (!CheckNullOrBlank(dr, colName))
+                contactInfo.FaxNumber = dr[colName].ToString();
+
+            colName = "is_active_record";
+            if (!CheckNullOrBlank(dr, colName))
+                contactInfo.IsActiveRecord = Convert.ToBoolean(dr[colName].ToString());
+
+            colName = "update_date";
+            if (!CheckNullOrBlank(dr, colName))
+            {
+                DateTime tempData;
+                if (DateTime.TryParse(dr[colName].ToString(), out tempData))
+                {
+                    contactInfo.Update_date = tempData;
+                }
+            }
+
+            colName = "create_date";
+            if (!CheckNullOrBlank(dr, colName))
+            {
+                DateTime tempData;
+                if (DateTime.TryParse(dr[colName].ToString(), out tempData))
+                {
+                    contactInfo.Create_date = tempData;
+                }
+            }
+
+            colName = "create_by";
+            if (!CheckNullOrBlank(dr, colName))
+            {
+                int created_by_temp = 0;
+                if (int.TryParse(dr[colName].ToString(), out created_by_temp))
+                {
+                    contactInfo.create_by = created_by_temp;
+                }
+            }
+
+            colName = "update_by";
+            if (!CheckNullOrBlank(dr, colName))
+            {
+                int update_by_temp = 0;
+                if (int.TryParse(dr[colName].ToString(), out update_by_temp))
+                {
+                    contactInfo.update_by = update_by_temp;
+                }
+            }
+
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.master" CodeFile="employeeprofile.aspx.cs"
+﻿<%@ Page Title="Employee profile" Language="C#" MasterPageFile="~/main.master" CodeFile="employeeprofile.aspx.cs"
     AutoEventWireup="true" Inherits="employeeprofile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -32,7 +32,7 @@
 
             var msg = '';
 
-                   
+
 
 
             $(".profile").find(".form_err_message SPAN.form_email_error").hide();
@@ -89,18 +89,22 @@
         </div>
         <div class="box_title" id="divOfficerInfo" runat="server">
             <h2>
-                <asp:Label ID="lblProfile" runat="server" style="font-size:25px; !important"></asp:Label>
+                <asp:Label ID="lblProfile" runat="server" Style="font-size: 25px; !important"></asp:Label>
             </h2>
             <br />
             <div class="form_block carrent_acc">
-                <div class="title" align="center">
+                <div class="title" align="center" style="height: 50px;">
                     <span id="namespan" runat="server" style="text-transform: capitalize"></span>
                 </div>
-
-                <div style="font-size:14px;padding-top:20px;" >
-                <span>
-                <asp:HyperLink ID="lnkActions" runat="server" Text="Disciplinary Actions"></asp:HyperLink>
-                </span>
+                <div style="font-size: 14px; padding-top: 20px;">
+                    <span>
+                        <asp:HyperLink ID="lnkEmployeeInfo" runat="server" Text="Employee Info"></asp:HyperLink>
+                    </span>
+                </div>
+                <div style="font-size: 14px; padding-top: 20px;">
+                    <span>
+                        <asp:HyperLink ID="lnkActions" runat="server" Text="Disciplinary Actions"></asp:HyperLink>
+                    </span>
                 </div>
                 <div class="spaser">
                 </div>
@@ -115,7 +119,7 @@
                         don't match!<br />
                     </span><span class="form_mandatory_error">Please fill up missing fields below</span>
                 </div>
-                <div style="float:right;margin-top:20px;">
+                <div style="float: right; margin-top: 20px;">
                     <span></span>
                     <asp:Label ID="lblErr" runat="server" CssClass="error_mess" Style="width: 300px;"></asp:Label>
                 </div>
@@ -124,11 +128,7 @@
                     <div class="title" style="text-align: left; margin-left: 58px;">
                         1. Sign In Information</div>
                     <div>
-                        <span>User Name:<b class="madatorystar">*</b> 
-                        <%--<b style="position: absolute; margin-left: 200px;
-                            width: 300px; vertical-align: top;">
-                            <asp:HyperLink ID="lnkActions" runat="server" Text="Disciplinary Actions"></asp:HyperLink>
-                        </b>--%></span>
+                        <span>User Name:<b class="madatorystar">*</b></span>
                         <asp:TextBox ID="txtemailaddress" name="txtemailaddress" runat="server" autocomplete="off"
                             MaxLength="250" CssClass="mandatory" size="30"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="req1" ValidationGroup="emploeeprofile" runat="server"

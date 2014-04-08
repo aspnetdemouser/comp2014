@@ -207,6 +207,7 @@ public partial class employeeprofile : System.Web.UI.Page
         if (Request.QueryString["enc"] != null)
         {
             lnkActions.NavigateUrl = "ManageDisciplinaryAction.aspx?enc=" + Request.QueryString["enc"].ToString();
+            lnkEmployeeInfo.NavigateUrl = "employeeprofile.aspx?enc=" + Request.QueryString["enc"].ToString();
             byte[] data = Convert.FromBase64String(Request.QueryString["enc"].ToString());
             string decodedString = Encoding.UTF8.GetString(data);
             int.TryParse(decodedString, out employeeId);

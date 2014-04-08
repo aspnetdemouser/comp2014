@@ -172,7 +172,7 @@ namespace BLCompliance
             return result;
         }
 
-        public static Result AssignUserToCourse(int courseId, int employeeId, int user_by)
+        public static Result AssignUserToCourse(int courseId, int employeeId, int user_by, DateTime dueDate)
         {
             Result result = new Result(0, false, "Failed Assign User To Course");
             try
@@ -195,7 +195,14 @@ namespace BLCompliance
                 prms[4].Value = System.DBNull.Value;
 
                 prms[5] = new SqlParameter("@due_date", SqlDbType.DateTime);
-                prms[5].Value = System.DBNull.Value;
+                if (dueDate == DateTime.MinValue)
+                {
+                    prms[5].Value = System.DBNull.Value;
+                }
+                else
+                {
+                    prms[5].Value = dueDate;
+                }
 
                 CData.ExecuteNonQuery(CommandType.StoredProcedure, "sp_compliance_assign_user_to_training_course", prms);
                 result.ResultCode = 1;
@@ -272,6 +279,16 @@ namespace BLCompliance
                         colName = "email_address";
                         if (!CheckNullOrBlank(dr, colName))
                             user.EmailAddress = dr[colName].ToString();
+
+                        colName = "due_date";
+                        if (!CheckNullOrBlank(dr, colName))
+                        {
+                            DateTime tempData;
+                            if (DateTime.TryParse(dr[colName].ToString(), out tempData))
+                            {
+                                user.DueDate = tempData;
+                            }
+                        }
 
                         assignedUsers.Add(user);
                     }

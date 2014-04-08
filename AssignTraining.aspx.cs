@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using BLCompliance;
 using BLCompliance.Model;
 using System.Web.UI;
+using System.Globalization;
 
 
 public partial class AssignTraining : System.Web.UI.Page
@@ -185,11 +186,35 @@ public partial class AssignTraining : System.Web.UI.Page
         if (courseId > 0)
         {
 
+            if (txtDueDate.Text.Trim() == "")
+            {
+                lbltxt.Visible = true;
+                lbltxt.Text = "Please select due date.";
+                return;
+            }
+
             bool isMsgShow = false;
+
+            DateTime dueDate = DateTime.MinValue;
+            if (!string.IsNullOrEmpty(txtDueDate.Text.ToString()))
+            {
+                DateTime tempDate;
+
+                if (DateTime.TryParseExact(txtDueDate.Text.ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tempDate))
+                {
+                    dueDate = tempDate;
+                }
+                else if (DateTime.TryParseExact(txtDueDate.Text.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tempDate))
+                {
+                    dueDate = tempDate;
+                }
+            }
+
+
             foreach (ListItem itm2 in ListBox2.Items)
             {
                 var empLoggedIn = HttpContext.Current.Session["emp2014br2"] as employee;
-                BLTrainingCourses.AssignUserToCourse(courseId, Convert.ToInt32(itm2.Value), empLoggedIn.Id);
+                BLTrainingCourses.AssignUserToCourse(courseId, Convert.ToInt32(itm2.Value), empLoggedIn.Id, dueDate);
                 lbltxt.Text = "Training assigned successfully";
                 lbltxt.Visible = true;
                 isMsgShow = true;
@@ -243,15 +268,24 @@ public partial class AssignTraining : System.Web.UI.Page
 
     private void GetEmployeesUnderCourse()
     {
+        txtDueDate.Text = "";
         var selectedId = Convert.ToInt32(dlstTraining.SelectedValue);
         if (selectedId > 0)
         {
             List<TraningCourseUsers> users;
             BLCompliance.BLTrainingCourses.GetEmployeesUnderCourse(selectedId, out users);
+            
             ListBox2.DataSource = users;
             ListBox2.DataTextField = "EmployeeName";
             ListBox2.DataValueField = "EmployeeId";
             ListBox2.DataBind();
+            if (users.Count > 0)
+            {
+                if (users[0].DueDate.HasValue)
+                {
+                    txtDueDate.Text = users[0].DueDate.Value.ToString("MM/dd/yyyy");
+                }
+            }
         }
         else
         {
@@ -281,6 +315,10 @@ public partial class AssignTraining : System.Web.UI.Page
             lblCountry.Text = contactInfo.CountryName;
         }
 
+
+    }
+    protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
+    {
 
     }
 }
