@@ -9,8 +9,7 @@
         $(function () {
 
             $("#<%=txtDateOfAction.ClientID %>").datepicker();
-
-
+                        
         });
         $(function () {
             /*  submit button common */
@@ -82,8 +81,9 @@
             }
 
 
-            if (msg == '')
+            if (msg == '') {
                 return true;
+            }
 
             $(".mandatory_selected:first").focus();
             if (!$("DIV.form_err_message").length) {
@@ -153,11 +153,10 @@
                         <asp:DropDownList ID="ddlEmpName" runat="server" CssClass="ddlEmpName mandatory"
                             size="1" Style="width: 345px;">
                         </asp:DropDownList>
-                        <asp:TextBox ID="txtEmpName" runat="server" Visible="false" ReadOnly="true"></asp:TextBox>
                         <asp:Label ID="lit_readonly_emp_name" runat="server" Style="text-align: left; margin-left: 10px;"></asp:Label>
                     </div>
                     <div>
-                        <span>Infraction: <b class="madatorystar">*</b></span>
+                        <span>Infraction: <asp:Literal ID="star1" runat="server"><b class="madatorystar">*</b></asp:Literal></span>
                         <asp:TextBox ID="txtInfraction" runat="server" TextMode="MultiLine" Rows="2" Columns="40"
                             MaxLength="200" autocomplete="off" CssClass="mandatory txtInfraction"></asp:TextBox>
                         <asp:Label ID="lit_readonly_infraction" runat="server" Style="text-align: left; margin-left: 10px;"></asp:Label>
@@ -167,7 +166,7 @@
                     <div class="spaser" style="height: 15px;">
                     </div>
                     <div>
-                        <span>Date of action:<b class="madatorystar">*</b></span>
+                        <span>Date of action: <asp:Literal ID="star2" runat="server"><b class="madatorystar">*</b></asp:Literal> </span>
                         <asp:TextBox ID="txtDateOfAction" runat="server" size="15" autocomplete="off" CssClass="txtDateOfActionCSS mandatory"></asp:TextBox>
                         <asp:Label ID="lit_readonly_date_of_action" runat="server" Style="text-align: left;
                             margin-left: 10px;"></asp:Label>
@@ -177,7 +176,7 @@
                     <div class="spaser" style="height: 15px;">
                     </div>
                     <div>
-                        <span>Action Taken: <b class="madatorystar">*</b></span>
+                        <span>Action Taken: <asp:Literal ID="star3" runat="server"><b class="madatorystar">*</b></asp:Literal></span>
                         <asp:TextBox ID="txtDesc" runat="server" TextMode="MultiLine" Rows="6" Columns="40"
                             MaxLength="500" autocomplete="off" CssClass="txtDesc mandatory"></asp:TextBox>
                         <asp:Literal ID="lit_readonly_action_taken" runat="server"></asp:Literal>
@@ -191,8 +190,12 @@
                     <center>
                         <asp:Button runat="server" ID="btnAddAction" Text="Submit" CssClass="submit_button_new"
                             Style="font-size: 15px; padding: 2px 15px; margin-left: 200px;" OnClick="btnAddAction_Click" />
-                        <asp:Button runat="server" ID="btnCancel" Text="Cancel" CssClass="cancel_new" Style="font-size: 15px;
+                            <asp:Button runat="server" ID="btnEdit" Text="Edit" 
+                            Style="font-size: 15px; padding: 2px 15px; margin-left: 200px;" 
+                            onclick="btnEdit_Click"  Visible="false" />
+                        <asp:Button runat="server" ID="btnCancel" Text="Back to List" CssClass="cancel_new" Style="font-size: 15px;
                             padding: 2px 15px; margin-left: 30px;" OnClick="btnCancel_Click" />
+                            <asp:HiddenField ID="hdnRecordId" runat="server" Value="" />
                     </center>
                 </div>
             </div>

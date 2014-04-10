@@ -37,12 +37,12 @@ public partial class AddDisciplinaryAction : System.Web.UI.Page
             if (Session["emp2014br2"] != null)
             {
                 employee employee = Session["emp2014br2"] as employee;
-                
+
                 if (employee.EmployeeType != 2) //not level 2
                 {
                     lnkActions.Visible = false;
                 }
-                
+
 
                 if (Request.QueryString["enc"] != null)
                 {
@@ -78,10 +78,11 @@ public partial class AddDisciplinaryAction : System.Web.UI.Page
             txtDateOfAction.Text = action.DateOfAction.ToString("MM/dd/yyyy");
             txtInfraction.Text = action.Infraction.Replace("<br/>", Environment.NewLine);
             txtDesc.Text = action.ActionDescription.Replace("<br/>", Environment.NewLine);
-            txtEmpName.Text = ddlEmpName.SelectedItem.Text;
+            lit_readonly_emp_name.Text = ddlEmpName.SelectedItem.Text;
             ddlEmpName.Visible = false;
-            txtEmpName.Visible = true;
-            txtEmpName.ReadOnly = true;
+            //txtEmpName.Visible = true;
+            lit_readonly_emp_name.Visible = true; //now we are showing in edit mode label
+            //txtEmpName.ReadOnly = true;
 
         }
     }
@@ -190,7 +191,7 @@ public partial class AddDisciplinaryAction : System.Web.UI.Page
                 {
                     lbltxt.Text = "Disciplinary action added successfully.";
 
-                    btnAddAction.Visible = btnCancel.Visible = false;
+                    btnAddAction.Visible = false;
                     ddlEmpName.Visible = txtDateOfAction.Visible = txtDesc.Visible = txtInfraction.Visible = false;
                     txtInfraction.Width = 1;
                     txtDesc.Width = 1;
@@ -198,10 +199,12 @@ public partial class AddDisciplinaryAction : System.Web.UI.Page
                     lit_readonly_date_of_action.Text = txtDateOfAction.Text;
                     lit_readonly_infraction.Text = txtInfraction.Text;
                     lit_readonly_action_taken.Text = txtDesc.Text;
-                    txtEmpName.Visible = false;
+                    //txtEmpName.Visible = false;
                     lit_readonly_action_taken.Visible = lit_readonly_date_of_action.Visible = lit_readonly_emp_name.Visible = lit_readonly_infraction.Visible = true;
-
-
+                    hdnRecordId.Value = insertId.ToString();
+                    btnEdit.Visible = true;
+                    star1.Visible = star2.Visible = star3.Visible = false;
+                    btnCancel.Visible = true;
                 }
             }
             else
@@ -209,18 +212,21 @@ public partial class AddDisciplinaryAction : System.Web.UI.Page
                 int idToFind = GetRecordId();
                 if (idToFind > 0)
                 {
+                    hdnRecordId.Value = idToFind.ToString();
                     BLDisciplinaryAction.UpdateDisciplinaryActions(idToFind, selectedEmpId, infraction.Replace(Environment.NewLine, "<br/>"), dtAction, description.Replace(Environment.NewLine, "<br/>"), updateBy);
                     lbltxt.Text = "Disciplinary action updated successfully.";
-                    btnAddAction.Visible = btnCancel.Visible = false;
+                    btnAddAction.Visible =  false;
                     txtInfraction.Width = 1;
                     txtDesc.Width = 1;
                     ddlEmpName.Visible = txtDateOfAction.Visible = txtDesc.Visible = txtInfraction.Visible = false;
-                    lit_readonly_emp_name.Text =  ddlEmpName.SelectedItem.Text;
+                    lit_readonly_emp_name.Text = ddlEmpName.SelectedItem.Text;
                     lit_readonly_date_of_action.Text = txtDateOfAction.Text;
                     lit_readonly_infraction.Text = txtInfraction.Text;
                     lit_readonly_action_taken.Text = txtDesc.Text;
                     lit_readonly_action_taken.Visible = lit_readonly_date_of_action.Visible = lit_readonly_emp_name.Visible = lit_readonly_infraction.Visible = true;
-                    txtEmpName.Visible = false;
+                    star1.Visible = star2.Visible = star3.Visible = false;
+                    btnCancel.Visible = btnEdit.Visible = true;
+                   // txtEmpName.Visible = false;
                 }
             }
 
@@ -294,4 +300,16 @@ public partial class AddDisciplinaryAction : System.Web.UI.Page
         }
     }
 
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        int recordId = 0;
+
+        int.TryParse(hdnRecordId.Value, out recordId);
+        if (recordId > 0)
+        {
+            var bytes = Encoding.UTF8.GetBytes(recordId.ToString());
+            var base64 = Convert.ToBase64String(bytes);
+            Response.Redirect("AddDisciplinaryAction.aspx?edit=" + base64);
+        }
+    }
 }
