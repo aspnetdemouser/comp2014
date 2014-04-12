@@ -7,6 +7,7 @@ namespace BLCompliance.Model
 {
     public class employee
     {
+            
 
         /// <summary>
         /// Unique Id for Employee
@@ -53,7 +54,9 @@ namespace BLCompliance.Model
 
         public int update_by { get; set; }
 
-     
+        public employee_contact_info EmployeeContact
+        {
+            get; set; }
 
     }
 }

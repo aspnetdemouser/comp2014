@@ -180,4 +180,37 @@ public partial class manage_facility_employees : System.Web.UI.Page
         gvEmployees.PageIndex = e.NewPageIndex;
         BindEmployees();
     }
+    protected void lnkPrint_Click(object sender, EventArgs e)
+    {
+        var ids = string.Empty;
+        var recCount = gvEmployees.Rows.Count;
+        var selectCount = 0;
+        foreach (GridViewRow row in gvEmployees.Rows)
+        {
+            if (row.RowType == DataControlRowType.DataRow)
+            {
+                var chkBoxRows = (CheckBox)row.FindControl("chkboxSelectEmp");
+                if (chkBoxRows.Checked)
+                {
+                    ids += gvEmployees.DataKeys[row.RowIndex].Value + ",";
+                    selectCount++;
+                }
+
+            }
+        }
+        if (selectCount == recCount)
+        {
+            Page.ClientScript.RegisterClientScriptBlock(Page.GetType(), "alert1", "javascript:alert('All employees are not allowed to print.');", true);
+        }
+        else if (string.IsNullOrEmpty(ids))
+        {
+            Page.ClientScript.RegisterClientScriptBlock(Page.GetType(), "alert2", "javascript:alert('Please select employee to print.');", true);
+        }
+        else
+        {
+            ids = ids.Substring(0, (ids.Length - 1));
+            Session["EmpIdForPrint"] = ids;
+            Response.Redirect("~/SelectFieldsForPrint.aspx");
+        }
+    }
 }

@@ -175,7 +175,123 @@ namespace BLCompliance
             }
             return result;
         }
-        private static bool CheckNullOrBlank(DataRow dr, string ColName)
+
+        public static Result GetEmployeeDetailsForPrint(string ids, string fields, out List<employee> employeeList)
+        {
+            Result result = new Result(0, false, "get employee fails");
+            employeeList = new List<employee>();
+            DataSet ds = null;
+            try
+            {
+                SqlParameter[] prms = new SqlParameter[2];
+                prms[0] = new SqlParameter("@ids", SqlDbType.VarChar);
+                prms[0].Value = ids;
+
+                prms[1] = new SqlParameter("@fields", SqlDbType.VarChar);
+                prms[1].Value = fields;
+
+                ds = CData.ExecuteDataset(CommandType.StoredProcedure, "sp_comp_tbl_employees_print", prms);
+
+                if (ds != null && ds.Tables[0].Rows.Count > 0)
+                {
+
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        employee employee = new employee();
+                        employee.EmployeeContact = new employee_contact_info();
+
+                        string colName = "email_address";
+                        if (dr.Table.Columns.Contains(colName))
+                            employee.EmailAddress = Convert.ToString(dr[colName]);
+
+                        colName = "address_line1";
+                        if (dr.Table.Columns.Contains(colName))
+                            employee.EmployeeContact.AddressLine1 = Convert.ToString(dr[colName]);
+
+                        colName = "address_line2";
+                        if (dr.Table.Columns.Contains(colName))
+                            employee.EmployeeContact.AddressLine2 = Convert.ToString(dr[colName]);
+
+                        colName = "Tele_Phone";
+                        if (dr.Table.Columns.Contains(colName))
+                            employee.EmployeeContact.TelePhone = Convert.ToString(dr[colName]);
+
+                            colName = "employee_type_text";
+                        if (dr.Table.Columns.Contains(colName))
+                            employee.EmployeeTypeText = Convert.ToString(dr[colName]);
+
+                        colName = "emp_type";
+                        if (dr.Table.Columns.Contains(colName))
+                            employee.EmployeeType = int.Parse(dr[colName].ToString());
+
+                        colName = "position";
+                        if (dr.Table.Columns.Contains(colName))
+                            employee.Position = dr[colName].ToString();
+
+                        colName = "name";
+                        if (dr.Table.Columns.Contains(colName))
+                            employee.ContactName = dr[colName].ToString();
+
+                        colName = "licence_number";
+                        if (dr.Table.Columns.Contains(colName))
+                            employee.Licence_Number = dr[colName].ToString();
+
+                        colName = "position";
+                        if (dr.Table.Columns.Contains(colName))
+                            employee.Position = dr[colName].ToString();
+
+                        colName = "date_of_hire";
+                        if (dr.Table.Columns.Contains(colName))
+                        {
+                            DateTime tempData;
+                            if (DateTime.TryParse(dr[colName].ToString(), out tempData))
+                            {
+                                employee.DateOfHire = tempData;
+                            }
+                        }
+
+                        colName = "licence_expiry";
+                        if (dr.Table.Columns.Contains(colName))
+                        {
+                            DateTime tempData;
+                            if (DateTime.TryParse(dr[colName].ToString(), out tempData))
+                            {
+                                employee.Licence_Expiry = tempData;
+                            }
+                        }
+
+                        colName = "date_last_exclusion_check";
+                        if (dr.Table.Columns.Contains(colName))
+                        {
+                            DateTime tempData;
+                            if (DateTime.TryParse(dr[colName].ToString(), out tempData))
+                            {
+                                employee.DateLastExclusionCheck = tempData;
+                            }
+                        }
+
+                        employeeList.Add(employee);
+                    }
+                    result.ResultCode = 1;
+                    result.ResultMessage = "Success";
+
+
+                }
+                else
+                {
+                    result.ResultMessage = "Employee Not Found";
+                    result.ResultCode = 1001;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        private static
+             bool CheckNullOrBlank(DataRow dr, string ColName)
         {
             if (dr[ColName] == System.DBNull.Value)
             {
@@ -194,7 +310,6 @@ namespace BLCompliance
                 return false;
             }
         }
-
 
         #region "kg date - 21-march-2014"
         public static Result GetEmployeeById(Int32 EmployeeId, out BLCompliance.Model.employee employee)
@@ -217,7 +332,7 @@ namespace BLCompliance
 
                 ds = CData.ExecuteDataset(CommandType.StoredProcedure, "sp_comp_tbl_employees_GetByid", prms);
 
-                if (ds != null &&  ds.Tables.Count> 0 && ds.Tables[0].Rows.Count > 0)
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count == 1)
                     {
@@ -444,7 +559,7 @@ namespace BLCompliance
             prms[0].Value = userName;
 
             object recordCnt = CData.ExecuteScalar(CommandType.StoredProcedure, "sp_comp_check_username_is_valid", prms);
-            
+
             if (recordCnt != null)
             {
                 int intCount = 0;
