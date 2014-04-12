@@ -314,9 +314,9 @@
                     </div>
                     <center>
                         <asp:Button runat="server" ID="btnEmpCreatInformation" Text="Create Profile" CssClass="submit_button_new"
-                            Style="font-size: 15px; padding: 2px 15px;" OnClick="btnEmpCreatInformation_Click" />
+                            Style="font-size: 15px; padding: 2px 15px;border: 1px solid #C6C6C6;font-size: 13px; color: #FFFFFF;font-family: arial;background: none repeat scroll 0 0 #757575;" OnClick="btnEmpCreatInformation_Click" />
                         <asp:Button runat="server" ID="btnEmpUpdateInformation" Text="Update Profile" CssClass="submit_button_new"
-                            Style="font-size: 15px; padding: 2px 15px;" OnClick="btnEmpUpdateInformation_Click" />
+                            Style="font-size: 15px; padding: 2px 15px;border: 1px solid #C6C6C6;font-size: 13px; color: #FFFFFF;font-family: arial;background: none repeat scroll 0 0 #757575;" OnClick="btnEmpUpdateInformation_Click" />
                     </center>
                 </div>
                 <div class="spaser">

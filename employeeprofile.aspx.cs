@@ -274,8 +274,6 @@ public partial class employeeprofile : System.Web.UI.Page
                         objEmployee.DateOfHire = tempDate;
                     }
 
-
-
                 }
 
                 if (!string.IsNullOrEmpty(txtEXCLUSSION.Text.ToString()))

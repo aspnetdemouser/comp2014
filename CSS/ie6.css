@@ -1,0 +1,8 @@
+UL.tabs_listing_tabs LI
+{
+	background: transparent url(../images/promo_list_tab_active.gif) no-repeat center center!important;
+}
+UL.tabs_listing_tabs LI.active
+{
+	background: transparent url(../images/promo_list_tab2.gif) no-repeat center center!important;
+}

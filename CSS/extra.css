@@ -22,7 +22,7 @@
 
 .library_gray_box_bot .form {overflow: hidden; height: 100px;}
 
-.facility_gray_box TABLE TD a.list_delete_button {background: url(../img/ic_del.png) no-repeat left 1px;}
+.facility_gray_box TABLE TD a.list_delete_button {background: url(../images/ic_del.png) no-repeat left 1px;}
 .facility_gray_box TABLE TD a.list_delete_button img {visibility: hidden;}
 
 /* Corporate events top */
@@ -31,8 +31,8 @@
 #reqests-scroller ul {margin: 0;}
 #reqests-scroller ul li {width: 855px;}
 .reqests .jScrollPaneTrack {display: none;}
-.reqests A.jScrollArrowUp {right: 10px; top: 10px; width: 21px; height: 26px; background: url("../img/next-prev2.gif") repeat scroll left top transparent;}
-.reqests A.jScrollArrowDown {right: 10px; top: 40px; width: 21px; height: 26px; background: url("../img/next-prev2.gif") repeat scroll left bottom transparent;}
+.reqests A.jScrollArrowUp {right: 10px; top: 10px; width: 21px; height: 26px; background: url("../images/next-prev2.gif") repeat scroll left top transparent;}
+.reqests A.jScrollArrowDown {right: 10px; top: 40px; width: 21px; height: 26px; background: url("../images/next-prev2.gif") repeat scroll left bottom transparent;}
 
 /* General events top */
 div.acc_pl_box_cont .jcarousel-skin-tango .jcarousel-container {width: 935px; margin: 32px 0px 0 20px; padding: 0;}

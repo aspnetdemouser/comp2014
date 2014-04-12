@@ -50,7 +50,7 @@ A.jScrollArrowUp
 /*background-color: #666;*/
 	height: 12px;
 	width: 16px;
-	background: #3E3D3D url(../img/scroll_up.png) no-repeat center center;
+	background: #3E3D3D url(../images/scroll_up.png) no-repeat center center;
 }
 A.jScrollArrowUp:hover
 {
@@ -68,7 +68,7 @@ A.jScrollArrowDown
 /*background-color: #666;*/
 	height: 12px;
 	width: 16px;
-	background: #3E3D3D url(../img/scroll_down.png) no-repeat center center;
+	background: #3E3D3D url(../images/scroll_down.png) no-repeat center center;
 }
 A.jScrollArrowDown:hover
 {
@@ -92,7 +92,7 @@ A.jScrollActiveArrowButton, A.jScrollActiveArrowButton:hover
 }
 #scroll-list-page + .jScrollPaneTrack + A.jScrollArrowUp
 {
-	background: #4D4D4D url(../img/next-prev2.gif) no-repeat top center;
+	background: #4D4D4D url(../images/next-prev2.gif) no-repeat top center;
 	height: 22px;
 	width: 40px;
 	border-top: 3px solid #4D4D4D;
@@ -102,7 +102,7 @@ A.jScrollActiveArrowButton, A.jScrollActiveArrowButton:hover
 	height: 22px;
 	width: 40px;
 	/*[disabled]top:28px;*/
-	background: #4D4D4D url(../img/next-prev2.gif) no-repeat center bottom;
+	background: #4D4D4D url(../images/next-prev2.gif) no-repeat center bottom;
 	border-bottom: 3px solid #4D4D4D;
 }
 #scroll-list-page TABLE
@@ -125,7 +125,7 @@ A.jScrollActiveArrowButton, A.jScrollActiveArrowButton:hover
 }
 #scroll-list-small + .jScrollPaneTrack + A.jScrollArrowUp
 {
-	background: #4D4D4D url(../img/next-prev2.gif) no-repeat top center;
+	background: #4D4D4D url(../images/next-prev2.gif) no-repeat top center;
 	height: 22px;
 	width: 40px;
 	border-top: 3px solid #4D4D4D;
@@ -135,7 +135,7 @@ A.jScrollActiveArrowButton, A.jScrollActiveArrowButton:hover
 	height: 22px;
 	width: 40px;
 	/*[disabled]top:28px;*/
-	background: #4D4D4D url(../img/next-prev2.gif) no-repeat center bottom;
+	background: #4D4D4D url(../images/next-prev2.gif) no-repeat center bottom;
 	border-bottom: 3px solid #4D4D4D;
 }
 #scroll-dd-window
@@ -154,7 +154,7 @@ A.jScrollActiveArrowButton, A.jScrollActiveArrowButton:hover
 }
 #scroll-dd-window + .jScrollPaneTrack + A.jScrollArrowUp
 {
-	background: #4D4D4D url(../img/next-prev2.gif) no-repeat top center;
+	background: #4D4D4D url(../images/next-prev2.gif) no-repeat top center;
 	height: 22px;
 	width: 40px;
 	border-top: 3px solid #4D4D4D;
@@ -164,6 +164,6 @@ A.jScrollActiveArrowButton, A.jScrollActiveArrowButton:hover
 	height: 22px;
 	width: 40px;
 	/*[disabled]top:28px;*/
-	background: #4D4D4D url(../img/next-prev2.gif) no-repeat center bottom;
+	background: #4D4D4D url(../images/next-prev2.gif) no-repeat center bottom;
 	border-bottom: 3px solid #4D4D4D;
 }

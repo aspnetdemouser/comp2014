@@ -1092,7 +1092,8 @@ if ($(frm).find(".validateemail").length) {
 					$(obj).addClass("mandatory_selected");
 				}
 			});
-			if (err_on_focus_replace) {
+if (err_on_focus_replace) {
+    msg = "";
 				if (msg) msg+='<br>';
 				msg+= 'Please fill up missing fields below';
 				$(frm).find("DIV.form_err_message SPAN.form_mandatory_error").show();
