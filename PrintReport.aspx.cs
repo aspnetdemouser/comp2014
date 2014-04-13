@@ -39,7 +39,7 @@ public partial class PrintReport : System.Web.UI.Page
                     sb.Append("</td>");
                     sb.Append("</tr>");
                 }
-
+                bool hasAddress1 = false;
                 if (!string.IsNullOrEmpty(emp.EmployeeContact.AddressLine1))
                 {
                     sb.Append("<tr>");
@@ -49,12 +49,17 @@ public partial class PrintReport : System.Web.UI.Page
                     sb.Append("<td>" + emp.EmployeeContact.AddressLine1);
                     sb.Append("</td>");
                     sb.Append("</tr>");
+                    hasAddress1 = true;
                 }
 
                 if (!string.IsNullOrEmpty(emp.EmployeeContact.AddressLine2))
                 {
                     sb.Append("<tr>");
                     sb.Append("<td>");
+                    if (hasAddress1 == false)
+                    {
+                        sb.Append("<b>Address:</b>");
+                    }
                     sb.Append("</td>");
                     sb.Append("<td>" + emp.EmployeeContact.AddressLine2);
                     sb.Append("</td>");
