@@ -32,7 +32,7 @@
             </tr>
             <tr>
                 <td>
-                    <asp:CheckBox ID="chkUserName" runat="server" Text="Compliasense Username" />
+                    <asp:CheckBox ID="chkUserName" runat="server" Text="Compliasense User Name" />
                 </td>
             </tr>
             <tr>

@@ -33,9 +33,16 @@ namespace BLCompliance
 
 
                 prms[1] = new SqlParameter("@lastname", SqlDbType.VarChar);
-                if (lastNameToSearch.Trim() != "")
+                if (!string.IsNullOrEmpty(lastNameToSearch.Trim()))
                 {
-                    prms[1].Value = lastNameToSearch;
+                    if (lastNameToSearch.ToLower() == "enter your search criteria here")
+                    {
+                        prms[1].Value = System.DBNull.Value;
+                    }
+                    else
+                    {
+                        prms[1].Value = lastNameToSearch;
+                    }
                 }
                 else
                 {
@@ -178,7 +185,7 @@ namespace BLCompliance
 
         public static Result GetEmployeeDetailsForPrint(string ids, string fields, out List<employee> employeeList)
         {
-            Result result = new Result(0, false, "get employee fails");
+            Result result = new Result(0, false, "get employee for print fails");
             employeeList = new List<employee>();
             DataSet ds = null;
             try

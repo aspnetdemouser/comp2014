@@ -204,7 +204,7 @@ public partial class manage_facility_employees : System.Web.UI.Page
         }
         else if (string.IsNullOrEmpty(ids))
         {
-            Page.ClientScript.RegisterClientScriptBlock(Page.GetType(), "alert2", "javascript:alert('Please select employee to print.');", true);
+            Page.ClientScript.RegisterClientScriptBlock(Page.GetType(), "alert2", "javascript:alert('Please select employee(s) to print.');", true);
         }
         else
         {
