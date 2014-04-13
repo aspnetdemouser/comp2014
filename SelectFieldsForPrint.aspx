@@ -106,7 +106,7 @@
                 <td>
                     <asp:Button ID="btnPrint" runat="server" Text="Print" 
                         onclick="btnPrint_Click" />&nbsp;<asp:Button ID="btnBack"
-                        runat="server" Text="Back" />
+                        runat="server" Text="Back" onclick="btnBack_Click" />
                 </td>
             </tr>
         </table>

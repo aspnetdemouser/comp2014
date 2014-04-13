@@ -46,4 +46,8 @@ public partial class SelectFieldsForPrint : System.Web.UI.Page
             Response.Redirect("~/PrintReport.aspx");
         }
     }
+    protected void btnBack_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/manage_facility_employees.aspx");
+    }
 }

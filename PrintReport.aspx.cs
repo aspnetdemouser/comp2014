@@ -145,4 +145,8 @@ public partial class PrintReport : System.Web.UI.Page
             dvPrint.InnerHtml = sb.ToString();
         }
     }
+    protected void btnBack_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/manage_facility_employees.aspx");
+    }
 }

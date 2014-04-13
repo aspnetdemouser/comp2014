@@ -7,9 +7,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
+    <asp:Button ID="btnPrint" runat="server" Text="Print" OnClientClick="javascript:PrintMe();" />&nbsp;
+    <asp:Button ID="btnBack" runat="server" Text="Back" onclick="btnBack_Click" />
     <div runat="server" id="dvPrint">
     </div>
-    <asp:Button ID="btnPrint" runat="server" Text="Print" OnClientClick="javascript:PrintMe();" />
     </form>
 </body>
 </html>
