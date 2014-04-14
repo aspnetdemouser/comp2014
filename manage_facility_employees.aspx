@@ -78,39 +78,39 @@
                                 <ItemTemplate>
                                     <asp:CheckBox ID="chkboxSelectEmp" CssClass="chkItem" runat="server" />
                                 </ItemTemplate>
-                                <HeaderStyle VerticalAlign="Middle" Width="50px" />
-                                <ItemStyle VerticalAlign="Middle" Width="50px" />
+                                <HeaderStyle VerticalAlign="Middle" HorizontalAlign="Center" />
+                                <ItemStyle VerticalAlign="Middle" HorizontalAlign="Center" />
                                 <HeaderTemplate>
                                     <asp:CheckBox ID="chkboxSelectAll" CssClass="chkHeader" runat="server" />
                                 </HeaderTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Employee Name">
+                            <asp:TemplateField HeaderText="&nbsp;&nbsp;Employee Name">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lnkEdit" CommandArgument='<%# DataBinder.Eval(Container, "DataItem.Id") %>'
                                         CommandName="editEmployee" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ContactName") %>'></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Job Title">
+                            <asp:TemplateField HeaderText="&nbsp;&nbsp;Job Title">
                                 <ItemTemplate>
                                     <asp:Label ID="lblPosition" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.Position") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Date of Hire">
+                            <asp:TemplateField HeaderText="&nbsp;&nbsp;Date of Hire">
                                 <ItemTemplate>
                                     <asp:Label ID="lblDateOfHire" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.DateOfHire", "{0:MMM dd, yyyy}") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="License # and Exp.">
+                            <asp:TemplateField HeaderText="&nbsp;&nbsp;License # and Exp.">
                                 <ItemTemplate>
                                     <asp:Label ID="lblLicNumberAndExp" runat="server" Text=""></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Date of Last Exclusion Check">
+                            <asp:TemplateField HeaderText="&nbsp;&nbsp;Date of Last Exclusion Check">
                                 <ItemTemplate>
                                     <asp:Label ID="lblDateLastExclusionCheck" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.DateLastExclusionCheck", "{0:MMM dd, yyyy}") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Action" Visible="false">
+                            <asp:TemplateField HeaderText="&nbsp;&nbsp;Action" Visible="false">
                                 <ItemTemplate>
                                     <asp:ImageButton runat="server" ID="imgEdit" CssClass="ic_edit" value="" CommandName="Edit"
                                         Visible="false" />&nbsp;<asp:ImageButton runat="server" ID="imgDelete" CssClass="ic_del"

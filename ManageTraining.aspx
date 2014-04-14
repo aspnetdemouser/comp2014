@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.master" AutoEventWireup="true"
+﻿<%@ Page Title="Manage Training" Language="C#" MasterPageFile="~/main.master" AutoEventWireup="true"
     CodeFile="ManageTraining.aspx.cs" Inherits="ManageTraining" %>
 
 <%@ Register Src="~/controls/training_courses_listing.ascx" TagName="courses" TagPrefix="TC" %>
@@ -27,9 +27,9 @@
                         &nbsp;</div>
                 </div>
             </div>
-            <span style="padding-left: 0px; padding-top: 0px; font-size: 25px;">
-                <asp:Literal ID="lblInfo1" runat="server"></asp:Literal>
-            </span>
+            <p style="font-size:25px;margin-top:25px;">
+                <asp:Literal ID="lblInfo1" runat="server">Training Assignments</asp:Literal>
+            </p>
             <div class="box_cont">
                 <div class="delim">
                 </div>
@@ -45,38 +45,37 @@
                 <div class="jScrollPaneContainer" style="margin-left: 10px; margin-right: 5px; margin-top: 5px;">
                     <div class="spaser">
                     </div>
-                    <span style="font-size: 28px; font-weight: normal; color: #CECECE; margin-left: 310px;">
-                        Training Assignments</span>
                     <asp:GridView ID="gvTraining" runat="server" AutoGenerateColumns="false" PageSize="15"
                         HorizontalAlign="Right" AllowPaging="true" Width="100%" BorderStyle="None" PagerSettings-Mode="NextPreviousFirstLast"
                         PagerSettings-Position="Top" PagerStyle-HorizontalAlign="Center" DataKeyNames="TrainingAssignmentId"
                         AlternatingRowStyle-CssClass="gray" OnRowDataBound="gvTraining_RowDataBound"
                         OnPageIndexChanged="gvTraining_PageIndexChanged" OnPageIndexChanging="gvTraining_PageIndexChanging"
                         PagerSettings-FirstPageText="First" PagerSettings-LastPageText="Last" PagerSettings-NextPageText="Next"
-                        PagerSettings-PreviousPageText="Previous">
-                        <HeaderStyle CssClass="Header1" />
+                        PagerSettings-PreviousPageText="Previous" OnRowCommand="gvTraining_RowCommand">
+                        <HeaderStyle CssClass="Header1" HorizontalAlign="Left" />
                         <Columns>
-                            <asp:TemplateField HeaderText="Employee name">
+                            <asp:TemplateField HeaderText="&nbsp;&nbsp;Employee name">
                                 <ItemTemplate>
                                     <asp:Label ID="lblEmpName" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.EmployeeName") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Training assigned">
+                            <asp:TemplateField HeaderText="&nbsp;&nbsp;Training assigned">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblTraingAssigned" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.CourseName") %>'></asp:Label>
+                                    <asp:LinkButton ID="lnkEdit" CommandArgument='<%# DataBinder.Eval(Container, "DataItem.TrainingAssignmentId") %>'
+                                        CommandName="edit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.CourseName") %>'></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Date assigned">
+                            <asp:TemplateField HeaderText="&nbsp;&nbsp;Date assigned">
                                 <ItemTemplate>
                                     <asp:Label ID="lblDateAssigned" runat="server"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Date due">
+                            <asp:TemplateField HeaderText="&nbsp;&nbsp;Due date">
                                 <ItemTemplate>
                                     <asp:Label ID="lblDueDate" runat="server"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Completed" ItemStyle-Width="70">
+                            <asp:TemplateField HeaderText="&nbsp;&nbsp;Completed" ItemStyle-Width="70">
                                 <ItemTemplate>
                                     <asp:Label ID="lblCompleted" runat="server"></asp:Label>
                                 </ItemTemplate>

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BLCompliance;
 using BLCompliance.Model;
+using System.Text;
 
 public partial class ManageTraining : System.Web.UI.Page
 {
@@ -32,7 +33,7 @@ public partial class ManageTraining : System.Web.UI.Page
 
         if (Page.IsPostBack == false)
         {
-            GetAllTrainingAssignmentList();
+            BindData();
         }
     }
 
@@ -53,7 +54,7 @@ public partial class ManageTraining : System.Web.UI.Page
         return result;
     }
 
-    private void GetAllTrainingAssignmentList()
+    private void BindData()
     {
 
         if (Session["emp2014br2"] != null)
@@ -64,7 +65,7 @@ public partial class ManageTraining : System.Web.UI.Page
             {
 
                 List<TraningCourseUsers> employeeList = new List<TraningCourseUsers>();
-                if (chkActive.Checked)
+                if (chkActive.Checked)// not completed trainings
                 {
                     BLCompliance.BLTrainingCourses.GetAllTrainingAssignments(employee.Id, 1, out employeeList);
                 }
@@ -143,12 +144,12 @@ public partial class ManageTraining : System.Web.UI.Page
     protected void gvTraining_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvTraining.PageIndex = e.NewPageIndex;
-        GetAllTrainingAssignmentList();
+        BindData();
     }
 
     protected void chkActive_CheckedChanged(object sender, EventArgs e)
     {
-        GetAllTrainingAssignmentList();
+        BindData();
     }
 
     private void SetFacilityInfo(BLCompliance.Model.employee employee)
@@ -160,19 +161,29 @@ public partial class ManageTraining : System.Web.UI.Page
         if (result.ResultCode == 1 && contactInfo != null)
         {
 
-            if (!string.IsNullOrEmpty(contactInfo.State))
-            {
-                lblInfo1.Text = string.Format("{0} - {1}, {2}", employee.FacilityName, contactInfo.City, contactInfo.State);
-            }
-            else
-            {
-                lblInfo1.Text = string.Format("{0} - {1}", "", employee.FacilityName, contactInfo.City);
-            }
+            //if (!string.IsNullOrEmpty(contactInfo.State))
+            //{
+            //    lblInfo1.Text = string.Format("{0} - {1}, {2}", employee.FacilityName, contactInfo.City, contactInfo.State);
+            //}
+            //else
+            //{
+            //    lblInfo1.Text = string.Format("{0} - {1}", "", employee.FacilityName, contactInfo.City);
+            //}
 
             lblCityStateZip.Text = string.Format("{0}, {1}, {2}", contactInfo.City, contactInfo.State, contactInfo.ZipCode);
             lblCountry.Text = contactInfo.CountryName;
         }
 
 
+    }
+    protected void gvTraining_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        if (e.CommandName.ToLower() == "edit")
+        {
+            int recordId = int.Parse(e.CommandArgument.ToString());
+            var bytes = Encoding.UTF8.GetBytes(recordId.ToString());
+            var base64 = Convert.ToBase64String(bytes);
+            Response.Redirect("AssignTraining.aspx?edit=" + base64);
+        }
     }
 }

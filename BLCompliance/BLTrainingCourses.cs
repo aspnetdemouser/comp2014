@@ -121,7 +121,7 @@ namespace BLCompliance
 
                 ds = CData.ExecuteDataset(CommandType.StoredProcedure, "sp_compliance_get_training_users_to_assign_to_course", prms);
 
-                if (ds != null && ds.Tables.Count >0 && ds.Tables[0].Rows.Count > 0)
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
 
                     foreach (DataRow dr in ds.Tables[0].Rows)
@@ -304,25 +304,7 @@ namespace BLCompliance
             return result;
         }
 
-        private static bool CheckNullOrBlank(DataRow dr, string ColName)
-        {
-            if (dr[ColName] == System.DBNull.Value)
-            {
-                return true;
-            }
-            else if (dr[ColName] == null)
-            {
-                return true;
-            }
-            else if (String.IsNullOrEmpty(dr[ColName].ToString()))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        
 
         /// <summary>
         /// Get training assignments to me (logged in employee)
@@ -376,12 +358,14 @@ namespace BLCompliance
 
         /// <summary>
         /// Get training assignments all ( level 2)
+        /// 2 = completed
+        /// 1 = not completed
         /// </summary>
         /// <param name="employeeId"></param>
         /// <param name="completionStatus"></param>
         /// <param name="myTrainingAssignments"></param>
         /// <returns></returns>
-        public static Result GetAllTrainingAssignments(int employeeId,int completionStatus, out List<BLCompliance.Model.TraningCourseUsers> myTrainingAssignments)
+        public static Result GetAllTrainingAssignments(int employeeId, int completionStatus, out List<BLCompliance.Model.TraningCourseUsers> myTrainingAssignments)
         {
             myTrainingAssignments = new List<Model.TraningCourseUsers>();
             Result result = new Result(0, false, "GetAllTrainingAssignments");
@@ -397,7 +381,7 @@ namespace BLCompliance
 
                 prms[1] = new SqlParameter("@completion_status", SqlDbType.Int);
                 prms[1].Value = completionStatus;
-                
+
 
                 ds = CData.ExecuteDataset(CommandType.StoredProcedure, "sp_comp_get_training_assigments_to_manage", prms);
 
@@ -428,29 +412,237 @@ namespace BLCompliance
             return result;
         }
 
+               
 
-        private static void PopulateTrainingAssignMentFromDataRow(ref BLCompliance.Model.TraningCourseUsers trainingAssigment, DataRow dr)
+
+        /// <summary>
+        /// Add new course master
+        /// </summary>
+        /// <param name="courseTitle"></param>
+        /// <param name="createdBy"></param>
+        /// <returns></returns>
+        public static int AddCourse(string courseTitle, int createdBy)
         {
-            trainingAssigment.CourseId = int.Parse(dr["course_id"].ToString());
+
+            int courseId = 0;
+            try
+            {
+
+                if (!string.IsNullOrEmpty(courseTitle))
+                {
+                    SqlParameter[] prms = new SqlParameter[2];
+                    prms[0] = new SqlParameter("@course_title", SqlDbType.VarChar);
+                    prms[0].Value = courseTitle.Trim();
+
+                    prms[1] = new SqlParameter("@create_by", SqlDbType.Int);
+                    prms[1].Value = createdBy;
+
+                    object returnData = CData.ExecuteScalar(CommandType.StoredProcedure, "sp_comp_insert_course", prms);
+                    if (returnData != null)
+                    {
+                        int.TryParse(returnData.ToString(), out courseId);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return courseId;
+        }
+
+        /// <summary>
+        /// Get training assigned course for edit
+        /// </summary>
+        /// <param name="recordId"></param>
+        /// <param name="assignedTraining"></param>
+        /// <returns></returns>
+        public static Result GetTrainingCourseToEdit(int recordId, out BLCompliance.Model.TraningCourseUsers assignedTraining)
+        {
+            assignedTraining = null;
+            Result result = new Result(0, false, "GetTrainingCourseToEdit fails");
+            DataSet ds = null;
+
+            try
+            {
+                SqlParameter[] prms = new SqlParameter[1];
+                prms[0] = new SqlParameter("@id", SqlDbType.Int);
+                prms[0].Value = recordId;
+
+                ds = CData.ExecuteDataset(CommandType.StoredProcedure, "sp_comp_get_training_assigments_by_id", prms);
+
+                if (ds != null && ds.Tables[0].Rows.Count > 0)
+                {
+
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        Model.TraningCourseUsers ta = new Model.TraningCourseUsers();
+                        PopulateTrainingAssignMentFromDataRow(ref ta, dr);
+                        assignedTraining = ta;
+                    }
+                    result.ResultCode = 1;
+                    result.ResultMessage = "Success";
+                }
+                else
+                {
+                    result.ResultMessage = "Assigned training Not Found";
+                    result.ResultCode = 1001;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Update training status to completed or not
+        /// 1 = not completed, 2 = completed
+        /// </summary>
+        /// <param name="recordId"></param>
+        /// <param name="statusId"></param>
+        /// <param name="updateBy"></param>
+        /// <returns></returns>
+        public static void UpdateTrainingAssignedStatus(int recordId, int statusId , int updateBy)
+        {
+            try
+            {
+                if (recordId > 0 && updateBy > 0)
+                {
+                    SqlParameter[] prms = new SqlParameter[3];
+                    prms[0] = new SqlParameter("@record_id", SqlDbType.Int);
+                    prms[0].Value = recordId;
+
+                    prms[1] = new SqlParameter("@update_by", SqlDbType.Int);
+                    prms[1].Value = updateBy;
+
+                    prms[2] = new SqlParameter("@status_id", SqlDbType.Int);
+                    prms[2].Value = statusId;
+
+                   CData.ExecuteNonQuery(CommandType.StoredProcedure, "sp_comp_update_training_completion_status", prms);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public static void UpdateTrainingAssignmentById(int recordId, int statusId, int updateBy,DateTime dateAssigned, DateTime dateDue, int courseId)
+        {
+            try
+            {
+                if (recordId > 0 && updateBy > 0)
+                {
+                    SqlParameter[] prms = new SqlParameter[6];
+                    prms[0] = new SqlParameter("@record_id", SqlDbType.Int);
+                    prms[0].Value = recordId;
+
+                    prms[1] = new SqlParameter("@update_by", SqlDbType.Int);
+                    prms[1].Value = updateBy;
+
+                    prms[2] = new SqlParameter("@status_id", SqlDbType.Int);
+                    prms[2].Value = statusId;
+
+                    prms[3] = new SqlParameter("@course_id", SqlDbType.Int);
+                    if (courseId > 0)
+                    {
+                        prms[3].Value = courseId;
+                    }
+                    else
+                    {
+                        prms[3].Value = System.DBNull.Value;
+                    }
+
+
+                    prms[4] = new SqlParameter("@date_assigned", SqlDbType.DateTime);
+                    if (dateAssigned != DateTime.MinValue)
+                    {
+                        prms[4].Value = dateAssigned;
+                    }
+                    else
+                    {
+                        prms[4].Value = System.DBNull.Value;
+                    }
+
+
+                    prms[5] = new SqlParameter("@date_due", SqlDbType.DateTime);
+                    if (dateDue != DateTime.MinValue)
+                    {
+                        prms[5].Value = dateDue;
+                    }
+                    else
+                    {
+                        prms[5].Value = System.DBNull.Value;
+                    }
+
+                    CData.ExecuteNonQuery(CommandType.StoredProcedure, "sp_comp_update_training_completion_status", prms);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        #region private methods
+
+        private static bool CheckNullOrBlank(DataRow dr, string ColName)
+        {
+            if (dr[ColName] == System.DBNull.Value)
+            {
+                return true;
+            }
+            else if (dr[ColName] == null)
+            {
+                return true;
+            }
+            else if (String.IsNullOrEmpty(dr[ColName].ToString()))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private static void PopulateTrainingAssignMentFromDataRow(ref BLCompliance.Model.TraningCourseUsers assignedTraining, DataRow dr)
+        {
+            assignedTraining.CourseId = int.Parse(dr["course_id"].ToString());
 
             string colName = "course_title";
 
             if (!CheckNullOrBlank(dr, colName))
-                trainingAssigment.CourseName = dr[colName].ToString();
+                assignedTraining.CourseName = dr[colName].ToString();
 
             colName = "emp_name";
             if (!CheckNullOrBlank(dr, colName))
-                trainingAssigment.EmployeeName = dr[colName].ToString();
+                assignedTraining.EmployeeName = dr[colName].ToString();
 
             colName = "emp_id";
-            trainingAssigment.EmployeeId = int.Parse(dr[colName].ToString());
+            assignedTraining.EmployeeId = int.Parse(dr[colName].ToString());
 
             colName = "ta_id";
-            trainingAssigment.TrainingAssignmentId = int.Parse(dr[colName].ToString());
+            assignedTraining.TrainingAssignmentId = int.Parse(dr[colName].ToString());
 
+            try
+            {
+                colName = "emp_type";
+                assignedTraining.EmpType = int.Parse(dr[colName].ToString());
+            }
+            catch (Exception ex)
+            {
+
+            }
             colName = "completion_status";
             if (!CheckNullOrBlank(dr, colName))
-                trainingAssigment.CompletionStatus = int.Parse(dr[colName].ToString());
+                assignedTraining.CompletionStatus = int.Parse(dr[colName].ToString());
 
 
             colName = "date_assigned";
@@ -459,7 +651,7 @@ namespace BLCompliance
                 DateTime tempData;
                 if (DateTime.TryParse(dr[colName].ToString(), out tempData))
                 {
-                    trainingAssigment.DateAssigned = tempData;
+                    assignedTraining.DateAssigned = tempData;
                 }
             }
 
@@ -469,10 +661,13 @@ namespace BLCompliance
                 DateTime tempData;
                 if (DateTime.TryParse(dr[colName].ToString(), out tempData))
                 {
-                    trainingAssigment.DueDate = tempData;
+                    assignedTraining.DueDate = tempData;
                 }
             }
         }
+
+        #endregion
+
     }
 }
 

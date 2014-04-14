@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BLCompliance.Model;
+using System.Text;
 
 public partial class training : System.Web.UI.Page
 {
@@ -15,6 +16,7 @@ public partial class training : System.Web.UI.Page
             employee employee = Session["emp2014br2"] as employee;
             if (employee.EmployeeType == 1)
             {
+                //this is for level1 emp only
                 BindEmployees(employee.Id);
             }
         }
@@ -25,12 +27,11 @@ public partial class training : System.Web.UI.Page
     }
     private void BindEmployees(int empId)
     {
+        //get training assigned to me  (my login)
         List<TraningCourseUsers> employeeList = new List<TraningCourseUsers>();
         BLCompliance.BLTrainingCourses.GetMyTrainingAssignmetns(empId, out employeeList);
-
         gvTraining.DataSource = employeeList;
         gvTraining.DataBind();
-
         lblNoOfActions.Text = employeeList.Count().ToString();
     }
 
@@ -109,6 +110,16 @@ public partial class training : System.Web.UI.Page
         else
         {
             Response.Redirect("login.aspx");
+        }
+    }
+    protected void gvTraining_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        if (e.CommandName.ToLower() == "edit")
+        {
+            int recordId = int.Parse(e.CommandArgument.ToString());
+            var bytes = Encoding.UTF8.GetBytes(recordId.ToString());
+            var base64 = Convert.ToBase64String(bytes);
+            Response.Redirect("AssignTraining.aspx?edit=" + base64);
         }
     }
 }
