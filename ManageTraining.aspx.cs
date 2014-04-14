@@ -62,13 +62,19 @@ public partial class ManageTraining : System.Web.UI.Page
 
             if (employee.EmployeeType == 2) //level 2 user
             {
-                
 
                 List<TraningCourseUsers> employeeList = new List<TraningCourseUsers>();
-                BLCompliance.BLTrainingCourses.GetAllTrainingAssignments(employee.Id, out employeeList);
+                if (chkActive.Checked)
+                {
+                    BLCompliance.BLTrainingCourses.GetAllTrainingAssignments(employee.Id, 1, out employeeList);
+                }
+                else
+                {
+                    BLCompliance.BLTrainingCourses.GetAllTrainingAssignments(employee.Id, 0, out employeeList);
+                }
                 gvTraining.DataSource = employeeList;
                 gvTraining.DataBind();
-                
+
                 SetFacilityInfo(employee);
             }
         }
@@ -137,6 +143,11 @@ public partial class ManageTraining : System.Web.UI.Page
     protected void gvTraining_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvTraining.PageIndex = e.NewPageIndex;
+        GetAllTrainingAssignmentList();
+    }
+
+    protected void chkActive_CheckedChanged(object sender, EventArgs e)
+    {
         GetAllTrainingAssignmentList();
     }
 

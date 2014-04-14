@@ -37,9 +37,12 @@
                     <a href="AssignTraining.aspx">Assign Training</a></div>
                 <div class="spaser">
                 </div>
+                <div style="float: left; margin-left: 22px;">
+                    <asp:CheckBox runat="server" ID="chkActive" AutoPostBack="True" Text="Uncompleted training only"
+                        OnCheckedChanged="chkActive_CheckedChanged" Checked="True" /></div>
                 <div class="spaser">
                 </div>
-                <div class="jScrollPaneContainer" style="margin-left:10px;margin-right:5px;margin-top:5px;">
+                <div class="jScrollPaneContainer" style="margin-left: 10px; margin-right: 5px; margin-top: 5px;">
                     <div class="spaser">
                     </div>
                     <span style="font-size: 28px; font-weight: normal; color: #CECECE; margin-left: 310px;">
