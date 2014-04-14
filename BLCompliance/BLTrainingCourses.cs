@@ -378,9 +378,10 @@ namespace BLCompliance
         /// Get training assignments all ( level 2)
         /// </summary>
         /// <param name="employeeId"></param>
+        /// <param name="completionStatus"></param>
         /// <param name="myTrainingAssignments"></param>
         /// <returns></returns>
-        public static Result GetAllTrainingAssignments(int employeeId, out List<BLCompliance.Model.TraningCourseUsers> myTrainingAssignments)
+        public static Result GetAllTrainingAssignments(int employeeId,int completionStatus, out List<BLCompliance.Model.TraningCourseUsers> myTrainingAssignments)
         {
             myTrainingAssignments = new List<Model.TraningCourseUsers>();
             Result result = new Result(0, false, "GetAllTrainingAssignments");
@@ -390,9 +391,13 @@ namespace BLCompliance
             try
             {
 
-                SqlParameter[] prms = new SqlParameter[1];
+                SqlParameter[] prms = new SqlParameter[2];
                 prms[0] = new SqlParameter("@created_by", SqlDbType.Int);
                 prms[0].Value = employeeId;
+
+                prms[1] = new SqlParameter("@completion_status", SqlDbType.Int);
+                prms[1].Value = completionStatus;
+                
 
                 ds = CData.ExecuteDataset(CommandType.StoredProcedure, "sp_comp_get_training_assigments_to_manage", prms);
 
